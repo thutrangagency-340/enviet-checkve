@@ -4,185 +4,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Én Việt Travel - Tư vấn vé máy bay và hướng dẫn tra cứu đặt chỗ trên hệ thống chính thức.">
-<title>Én Việt Travel | Đặt Vé & Tra Cứu Vé</title>
+<meta name="description" content="Én Việt Group - Tư vấn vé máy bay và hướng dẫn tra cứu đặt chỗ trên hệ thống chính thức.">
+<title>Én Việt Group | Đặt Vé & Tra Cứu Vé</title>
 
 <style>
-:root{
-  --blue:#075d91;
-  --dark:#153951;
-  --orange:#f58220;
-  --light:#eef8fc;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  color:var(--dark);
-  background:#f5f9fc;
-  line-height:1.6;
-}
-header{
-  background:white;
-  position:sticky;
-  top:0;
-  z-index:10;
-  box-shadow:0 2px 12px #123b5915;
-}
-.topbar{
-  max-width:1150px;
-  margin:auto;
-  padding:17px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:12px;
-}
-.logo{
-  color:var(--blue);
-  font-size:27px;
-  font-weight:800;
-}
-.logo span{color:var(--orange)}
-nav a{
-  display:inline-block;
-  color:var(--dark);
-  text-decoration:none;
-  font-weight:bold;
-  margin:6px 9px;
-}
-nav a:hover{color:var(--orange)}
-.hero{
-  background:linear-gradient(115deg,#075d91,#1599c1 65%,#f58220);
-  color:white;
-  text-align:center;
-  padding:85px 20px 110px;
-}
-.hero h1{
-  font-size:clamp(30px,5vw,49px);
-  margin:0 0 15px;
-}
-.hero p{
-  max-width:700px;
-  margin:0 auto 25px;
-  font-size:19px;
-}
-.container{
-  max-width:1150px;
-  margin:auto;
-  padding:50px 20px;
-}
-h2{
-  font-size:29px;
-  text-align:center;
-  margin:0 0 25px;
-}
-.panel,.card,.contact{
-  background:white;
-  border-radius:16px;
-  padding:28px;
-  box-shadow:0 5px 22px #123b5914;
-}
-.booking{
-  max-width:1050px;
-  margin:-65px auto 0;
-  padding:0 20px;
-  position:relative;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:17px;
-}
-.full{grid-column:1/-1}
-label{
-  display:block;
-  font-weight:bold;
-  margin-bottom:6px;
-}
-input,select,textarea{
-  width:100%;
-  padding:13px;
-  border:1px solid #cad9e5;
-  border-radius:9px;
-  font:inherit;
-  background:white;
-}
-textarea{resize:vertical;min-height:105px}
-input:focus,select:focus,textarea:focus{
-  outline:2px solid #9ad9f3;
-  border-color:var(--blue);
-}
-[hidden]{display:none!important}
-.btn{
-  display:inline-block;
-  background:var(--orange);
-  color:white;
-  text-decoration:none;
-  border:0;
-  border-radius:9px;
-  padding:13px 24px;
-  font-size:15px;
-  font-weight:bold;
-  cursor:pointer;
-  text-align:center;
-}
-.btn:hover{background:#d96c10}
-.btn-blue{background:var(--blue)}
-.btn-blue:hover{background:#034c78}
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-}
-.card{text-align:center}
-.card h3{color:var(--blue)}
-.symbol{font-size:42px}
-.lookup{
-  background:var(--light);
-  border-radius:20px;
-  padding:35px;
-}
-.airline{
-  border-top:4px solid var(--orange);
-}
-.airline .btn{
-  width:100%;
-  margin-top:12px;
-}
-.note{
-  background:#fff6e8;
-  color:#704b17;
-  border-radius:10px;
-  padding:18px;
-  margin-top:24px;
-}
-.result{
-  margin-top:20px;
-  padding:20px;
-  border:1px solid #c7dce9;
-  border-radius:10px;
-  background:#f5fbff;
-}
-.contact{text-align:center}
-.small{font-size:13px;color:#60798b}
-footer{
-  background:var(--blue);
-  color:white;
-  text-align:center;
-  padding:30px 20px;
-}
-footer p{margin:6px}
-@media(max-width:650px){
-  .topbar{justify-content:center;text-align:center}
-  .grid{grid-template-columns:1fr}
-  .booking{margin:-40px auto 0}
-  .panel,.lookup{padding:20px}
-  .hero{padding:65px 18px 80px}
-  h2{font-size:25px}
-}
+:root{--blue:#075d91;--dark:#153951;--orange:#fa861b;--light:#eaf7fc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--dark);background:#f5f9fc;line-height:1.6}
+header{position:absolute;top:0;left:0;right:0;z-index:10;background:linear-gradient(180deg,rgba(23,58,82,.42),rgba(23,58,82,0));}
+.topbar{max-width:1450px;margin:auto;padding:23px 30px;display:flex;justify-content:space-between;align-items:center;gap:22px}
+.logo{flex-shrink:0;text-decoration:none}.logo img{display:block;width:138px;height:auto}
+nav{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:20px}
+nav a{color:white;text-decoration:none;font-weight:700;font-size:16px;text-shadow:0 1px 4px #2b526c66}nav a:hover{color:#ffcf9d}
+.header-action{background:var(--orange);color:#fff!important;border-radius:13px;padding:12px 20px;box-shadow:0 5px 12px #0002;white-space:nowrap;text-shadow:none}
+.hero{min-height:750px;background-image:linear-gradient(90deg,rgba(223,242,247,.83) 0%,rgba(227,243,245,.50) 31%,rgba(220,240,246,.07) 65%),url('hero-bg.jpg');background-size:cover;background-position:center;display:flex;align-items:center;padding:140px 6% 135px}
+.hero-inner{width:min(1230px,100%);margin:0 auto;position:relative}
+.hero-copy{max-width:630px}
+.hero-eyebrow{font-size:14px;letter-spacing:.24em;text-transform:uppercase;color:#0a6594;font-weight:800;margin-bottom:12px}
+.hero h1{font-weight:400;color:var(--orange);font-size:clamp(54px,6vw,92px);line-height:1.04;letter-spacing:-.04em;margin:0 0 12px;text-shadow:0 2px 8px #fff8}
+.hero h1 strong{font-weight:800;display:block}.hero .tagline{color:#f5831b;font-size:clamp(24px,2.8vw,38px);font-weight:500;margin:0 0 28px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.hero-plane{position:absolute;right:38%;top:-82px;color:var(--orange);font-size:59px;transform:rotate(-18deg);opacity:.88}
+.container{max-width:1150px;margin:auto;padding:55px 20px}h2{text-align:center;font-size:29px;margin:0 0 26px;color:var(--blue)}
+.panel,.card,.contact{background:white;border-radius:18px;padding:28px;box-shadow:0 7px 25px #123b5915}
+.booking{max-width:1120px;margin:-78px auto 0;padding:0 20px;position:relative;z-index:3}.booking .panel{padding:34px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.full{grid-column:1/-1}
+label{display:block;font-weight:700;margin-bottom:6px;color:#17466b}input,select,textarea{width:100%;padding:13px;border:1px solid #c8d8e4;border-radius:9px;font:inherit;background:white}textarea{min-height:105px;resize:vertical}input:focus,select:focus,textarea:focus{outline:2px solid #91d5f1;border-color:var(--blue)}[hidden]{display:none!important}
+.btn{display:inline-block;background:var(--orange);color:white;text-decoration:none;border:0;border-radius:9px;padding:13px 24px;font-size:15px;font-weight:bold;cursor:pointer;text-align:center}.btn:hover{background:#d56c0e}.btn-blue{background:var(--blue)}.btn-blue:hover{background:#034b76}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:19px}.card{text-align:center}.card h3{color:var(--blue)}.symbol{font-size:42px}
+.lookup{background:var(--light);border-radius:20px;padding:34px}.airline{border-top:4px solid var(--orange)}.airline .btn{width:100%;margin-top:12px}.note{background:#fff4e6;color:#6c4e26;border-radius:11px;padding:18px;margin-top:24px}
+.result{margin-top:20px;padding:20px;border:1px solid #c7dce9;border-radius:10px;background:#f5fbff}.contact{text-align:center}.small{font-size:13px;color:#60798b}footer{background:var(--blue);color:white;text-align:center;padding:30px 20px}footer p{margin:6px}
+@media(max-width:980px){.topbar{padding:18px}.logo img{width:108px}nav{gap:12px}nav a{font-size:14px}.hero{min-height:670px;background-position:55% center}.hero-plane{right:20%;}}
+@media(max-width:650px){header{background:linear-gradient(#195677c4,#1956774d)}.topbar{flex-direction:column;gap:9px;padding:10px 12px}.logo img{width:90px}nav{justify-content:center;gap:8px}nav a{font-size:12px}.header-action{padding:8px 10px}.hero{min-height:660px;padding:190px 22px 105px;background-position:60% center}.hero h1{font-size:52px}.hero .tagline{font-size:24px}.hero-plane{display:none}.booking{margin:-45px auto 0}.booking .panel,.lookup{padding:20px}.grid{grid-template-columns:1fr}h2{font-size:24px}}
 </style>
 </head>
 
@@ -190,32 +42,30 @@ footer p{margin:6px}
 
 <header>
   <div class="topbar">
-    <div class="logo">
-      ✈ ÉN VIỆT <span>TRAVEL</span>
-    </div>
-    <nav>
+    <a class="logo" href="#home" aria-label="Én Việt Group - Trang chủ"><img src="logo-enviet.svg" alt="Én Việt Group"></a>
+    <nav aria-label="Điều hướng chính">
       <a href="#home">Trang chủ</a>
-      <a href="#booking">Đặt vé</a>
-      <a href="#lookup">Tra cứu vé</a>
+      <a href="#booking">Vé Én Việt</a>
       <a href="#services">Dịch vụ</a>
+      <a href="#lookup">Tra cứu vé</a>
       <a href="#contact">Liên hệ</a>
+      <a href="#contact" class="header-action">Liên hệ đại lý</a>
     </nav>
   </div>
 </header>
-
 <section class="hero" id="home">
-  <h1>ÉN VIỆT TRAVEL</h1>
-  <p>
-    Đồng hành trên mọi hành trình.
-    Tư vấn vé máy bay nội địa, quốc tế
-    và hỗ trợ thông tin đặt chỗ.
-  </p>
-  <a href="#booking" class="btn">
-    ✈ TƯ VẤN ĐẶT VÉ
-  </a>
-  <a href="#lookup" class="btn btn-blue">
-    🔎 TRA CỨU VÉ
-  </a>
+  <div class="hero-inner">
+    <div class="hero-plane" aria-hidden="true">✈</div>
+    <div class="hero-copy">
+      <div class="hero-eyebrow">Đồng hành cùng mọi hành trình</div>
+      <h1>Én Việt <strong>Group</strong></h1>
+      <p class="tagline">Kết nối mọi đường bay đẹp</p>
+      <div class="hero-cta">
+        <a href="#booking" class="btn">✈ TƯ VẤN ĐẶT VÉ</a>
+        <a href="#lookup" class="btn btn-blue">🔎 TRA CỨU VÉ</a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <div class="booking" id="booking">
@@ -415,7 +265,7 @@ footer p{margin:6px}
 <section class="container" id="contact">
   <div class="contact">
     <h2>☎ LIÊN HỆ HỖ TRỢ</h2>
-    <h3>ÉN VIỆT TRAVEL</h3>
+    <h3>ÉN VIỆT GROUP</h3>
     <p>Tư vấn vé máy bay nội địa và quốc tế</p>
     <p>Hà Nội – Việt Nam</p>
     <p>
@@ -430,9 +280,9 @@ footer p{margin:6px}
 </section>
 
 <footer>
-  <h3>✈ ÉN VIỆT TRAVEL</h3>
+  <h3>✈ ÉN VIỆT GROUP</h3>
   <p>Vé máy bay nội địa & quốc tế</p>
-  <p>© 2026 Én Việt Travel</p>
+  <p>© 2026 Én Việt Group</p>
   <small>
     Website tư vấn và hướng dẫn tra cứu đặt chỗ.
     Không phải website chính thức của hãng hàng không.
