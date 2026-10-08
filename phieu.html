@@ -1,21 +1,279 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Phiếu yêu cầu thanh toán | Én Việt Group</title><link rel="stylesheet" href="style.css"></head><body>
-<header class="no-print"><div class="wrap"><div><h1>ÉN VIỆT GROUP</h1><p>Kết nối mọi đường bay đẹp</p></div><span>PHIẾU YÊU CẦU THANH TOÁN</span></div></header>
-<main class="container"><div class="panel receipt"><div id="loading">Đang tải phiếu...</div><div id="invoice" class="hide">
-<h2>ÉN VIỆT GROUP</h2><p class="sub">PHIẾU YÊU CẦU THANH TOÁN VÉ MÁY BAY</p><div class="line"></div>
-<div class="kv"><span>Mã phiếu:</span><strong id="code"></strong></div><div class="kv"><span>Ngày lập:</span><strong id="issueDate"></strong></div><div class="kv"><span>Trạng thái:</span><strong id="status"></strong></div>
-<h3>Thông tin hành trình</h3><div class="kv"><span>Khách hàng:</span><strong id="customer"></strong></div><div class="kv"><span>Mã đặt chỗ (PNR):</span><strong id="pnr"></strong></div><div class="kv"><span>Hành trình:</span><strong id="route"></strong></div><div class="kv"><span>Hãng bay:</span><strong id="airline"></strong></div><div class="kv"><span>Ngày bay:</span><strong id="flightDate"></strong></div><div class="kv"><span>Số hành khách:</span><strong id="passengers"></strong></div>
-<h3>Chi tiết thanh toán</h3><table><thead><tr><th>Nội dung</th><th>Số tiền</th></tr></thead><tbody><tr><td>Giá vé</td><td id="fare"></td></tr><tr><td>Thuế và phí</td><td id="tax"></td></tr><tr><td>Phí dịch vụ</td><td id="fee"></td></tr><tr><td>Giảm giá</td><td id="discount"></td></tr></tbody></table><div class="total">TỔNG THANH TOÁN: <span id="total"></span></div>
-<h3>Thông tin chuyển khoản</h3><div class="bank"><div class="kv"><span>Ngân hàng:</span><strong>MSB – Ngân hàng TMCP Hàng Hải Việt Nam</strong></div><div class="kv"><span>Chi nhánh:</span><strong>Đồng Nai</strong></div><div class="kv"><span>Chủ tài khoản thực nhận:</span><strong>CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ DU LỊCH TDC</strong></div><div class="kv"><span>Số tài khoản:</span><strong>80004024347</strong></div><div class="kv"><span>Nội dung chuyển khoản:</span><strong id="transfer"></strong></div><div class="actions no-print"><button type="button" id="copyAccount" class="btn secondary">Sao chép STK</button><button type="button" id="copyTransfer" class="btn secondary">Sao chép nội dung CK</button></div></div>
-<p class="warning"><strong>Lưu ý:</strong> Đơn vị hiển thị thương hiệu trên phiếu là Én Việt Group; <strong>bên thụ hưởng là Công ty TDC</strong>. Hãy kiểm tra tên chủ tài khoản hiện trong ứng dụng ngân hàng và xác minh quyền nhận tiền với đơn vị bán vé trước khi chuyển khoản. Phiếu này không chứng minh tiền đã được nhận. Không chuyển khoản nếu thông tin không trùng khớp.</p>
-<p id="noteSection" class="muted hide"><strong>Ghi chú:</strong> <span id="note"></span></p><p class="muted">Đây là phiếu yêu cầu thanh toán do đơn vị bán vé cung cấp, không phải hóa đơn điện tử/VAT, chứng từ ngân hàng hoặc xác nhận vé đã xuất.</p>
-<div class="actions no-print"><button type="button" class="btn" onclick="window.print()">In / Lưu thành PDF</button></div></div></div></main>
-<footer>Én Việt Group · Thông tin thanh toán phải được xác nhận với đại lý trước khi thực hiện.</footer>
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cổng thanh toán vé máy bay | Én Việt Group</title>
+<style>
+:root{
+  --blue:#1f6ff2;
+  --blue-dark:#0c4fb9;
+  --green:#1fa34a;
+  --ink:#213547;
+  --muted:#66788a;
+  --bg:#f3f4f6;
+  --line:#e3e6ea;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Arial,Helvetica,sans-serif}
+.wrap{width:min(100% - 24px,560px);margin:10px auto 34px;background:#fff;border-radius:12px;padding:18px 16px 22px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.hero{text-align:center;padding:6px 4px 12px}
+.logo{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:800;color:#0d609f;font-size:22px}
+.logo img{width:64px;height:64px;object-fit:contain;border-radius:8px;background:#fff}
+.logo b{color:#f17d20}
+.hero h1{margin:8px 0 6px;font-size:19px;color:var(--blue);letter-spacing:.2px}
+.hero p{margin:0;color:#7a8792;font-size:12px}
+.block{margin-top:14px;border:1px solid var(--line);border-radius:10px;padding:14px}
+.block h2{margin:0 0 12px;font-size:15px;color:#174f9f}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field label{display:block;font-size:12px;color:#556677;margin:0 0 6px;font-weight:700}
+.view{min-height:42px;border:1px solid #d8dce1;border-radius:7px;background:#fafbfc;padding:10px 11px;display:flex;align-items:center}
+.totalBox{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fff7ee;border:1px solid #ffd3ad;border-radius:9px;padding:14px;margin-top:12px}
+.totalBox .txt{font-size:13px;color:#8c5718;font-weight:700}
+.totalBox .money{font-size:28px;font-weight:800;color:#eb6c08}
+.methodRow{margin-top:10px}
+select{width:100%;height:44px;border:1px solid #d8dce1;border-radius:7px;background:#fff;padding:0 12px;font:inherit;color:#213547}
+.noteMethod{margin-top:8px;color:#8a5c19;background:#fff8ef;border:1px solid #ffe0bc;border-radius:8px;padding:10px 11px;font-size:12px}
+.transferCard{margin-top:12px;border:1px solid #d8dce1;border-radius:9px;padding:12px;background:#fff}
+.transferTop{display:grid;grid-template-columns:1fr 128px;gap:12px;align-items:start}
+.transferInfo p{margin:5px 0;font-size:13px}
+.transferInfo strong{color:#17385c}
+.qrWrap{border:1px solid #e0e4ea;border-radius:8px;padding:8px;text-align:center;background:#fafbfd}
+.qrWrap img{width:100%;max-width:112px;display:block;margin:0 auto 6px}
+.qrCaption{font-size:11px;color:#6d7b86}
+.btns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px}
+button{height:42px;border:0;border-radius:7px;font-weight:700;color:#fff;cursor:pointer;font:inherit}
+.btn-blue{background:var(--blue)}
+.btn-blue:hover{background:var(--blue-dark)}
+.btn-green{background:var(--green)}
+.formList{margin-top:14px}
+.inputRow{margin-top:12px}
+input,textarea{width:100%;height:42px;border:1px solid #d8dce1;border-radius:7px;padding:0 12px;font:inherit}
+textarea{height:90px;padding:12px;resize:vertical}
+.small{margin-top:16px;text-align:center;color:#83909a;font-size:11px}
+#message{margin-top:10px;font-size:12px;color:#105ea5;min-height:18px}
+#loading{text-align:center;padding:35px 10px;color:#627e93}
+.hide{display:none!important}
+.miniDate{text-align:right;font-size:11px;color:#68788a;margin:2px 2px -4px}
+.choices{display:grid;gap:7px}
+.choice{display:flex!important;align-items:center;gap:9px;border:1px solid #dbe1e7;border-radius:8px;padding:10px 11px!important;cursor:pointer;font-size:13px!important;color:#172f44!important;margin:0!important;background:#fff;font-weight:600!important}
+.choice input{width:15px!important;height:15px!important;accent-color:#1471d3;flex-shrink:0}
+.choice small{font-size:10px;color:#7a8b97;margin-left:auto;font-weight:400}
+.choice.active{border-color:#1f6ff2;background:#f2f8ff}
+.warning{font-size:11px;background:#f7f9fb;border-left:3px solid #1f6ff2;padding:9px 11px;margin-top:15px;line-height:1.55;color:#425566}
+
+@media(max-width:560px){
+  .grid2{grid-template-columns:1fr}
+  .transferTop{grid-template-columns:1fr}
+  .btns{grid-template-columns:1fr}
+  .totalBox .money{font-size:24px}
+}
+@media print{
+  body{background:#fff}
+  .wrap{width:100%;margin:0;box-shadow:none;border-radius:0;padding:0}
+  .btns,#message,.small,.noteMethod{display:none!important}
+  @page{size:A4;margin:12mm}
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+<main class="wrap" id="captureInvoice">
+  <header class="hero">
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/thutrangagency-340/enviet-checkve/main/logo-enviet.svg" alt="Én Việt Group" onerror="this.style.display='none'">
+    </div>
+    <h1>CỔNG THANH TOÁN TRỰC TUYẾN</h1>
+    <p>ÉN VIỆT GROUP · Phiếu yêu cầu thanh toán (không phải hóa đơn VAT)</p>
+  </header>
+
+  <div id="loading">Đang tải thông tin phiếu từ hệ thống…</div>
+
+  <section id="invoice" class="hide">
+    <div class="miniDate">Ngày lập: <b id="issueDateMini">—</b></div>
+    <div class="block">
+      <h2>Thông tin hành khách và chuyến bay</h2>
+      <div class="grid2">
+        <div class="field"><label>Tên hành khách</label><div class="view" id="customer">—</div></div>
+        <div class="field"><label>Mã đặt chỗ (PNR)</label><div class="view" id="pnr">—</div></div>
+        <div class="field"><label>Hành trình</label><div class="view" id="route">—</div></div>
+        <div class="field"><label>Hãng hàng không</label><div class="view" id="airline">—</div></div>
+        <div class="field"><label>Ngày bay</label><div class="view" id="flightDate">—</div></div>
+        <div class="field"><label>Số hành khách</label><div class="view" id="passengers">—</div></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Thanh toán</h2>
+      <div class="grid2">
+        <div class="field"><label>Mã phiếu</label><div class="view" id="code">—</div></div>
+        <div class="field"><label>Ngày lập phiếu</label><div class="view" id="issueDate">—</div></div>
+        <div class="field"><label>Giá vé</label><div class="view" id="fare">0 đ</div></div>
+        <div class="field"><label>Phí dịch vụ</label><div class="view" id="fee">0 đ</div></div>
+      </div>
+      <div class="totalBox">
+        <div class="txt">TỔNG THANH TOÁN</div>
+        <div class="money" id="total">0 đ</div>
+      </div>
+
+      <div class="methodRow field">
+        <label>Phương thức thanh toán</label>
+        <div class="choices" role="radiogroup" aria-label="Phương thức thanh toán">
+          <label class="choice"><input type="radio" name="paymentMethod" value="atm"> Thẻ ATM/Tài khoản ngân hàng <small>Chưa tích hợp</small></label>
+          <label class="choice"><input type="radio" name="paymentMethod" value="vnpay-atm"> Thẻ ATM nội địa qua VNPAY <small>Chưa tích hợp</small></label>
+          <label class="choice"><input type="radio" name="paymentMethod" value="onepay-credit"> Thẻ tín dụng qua OnePay <small>Chưa tích hợp</small></label>
+          <label class="choice"><input type="radio" name="paymentMethod" value="vnpay-credit"> Thẻ tín dụng qua VNPAY <small>Chưa tích hợp</small></label>
+          <label class="choice active"><input type="radio" name="paymentMethod" value="transfer" checked> Chuyển khoản MSB <small>Đối chiếu thủ công</small></label>
+        </div>
+      </div>
+      <div id="methodNote" class="noteMethod hide"></div>
+
+      <div id="transferSection" class="transferCard">
+        <div class="transferTop">
+          <div class="transferInfo">
+            <p><strong>Tên tài khoản:</strong> CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ DU LỊCH TDC</p>
+            <p><strong>Số tiền:</strong> <span id="amountText">0 đ</span></p>
+            <p><strong>Nội dung:</strong> <span id="transferText">—</span></p>
+            <p><strong>Ngân hàng:</strong> MSB - NGÂN HÀNG TMCP HÀNG HẢI VIỆT NAM</p>
+            <p><strong>Số tài khoản:</strong> 80004024347</p>
+          </div>
+          <div class="qrWrap" id="captureQr">
+            <img id="qrImage" alt="Mã QR chuyển khoản MSB" crossorigin="anonymous">
+            <div class="qrCaption">Mã QR chuyển khoản MSB</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btns">
+        <button class="btn-blue" id="btnShotInvoice">Tải ảnh phiếu</button>
+        <button class="btn-blue" id="btnShotQr">Tải ảnh QR</button>
+        <button class="btn-green" id="btnCopy">Sao chép nội dung</button>
+      </div>
+
+      <div class="warning">Tài khoản nhận tiền thuộc <strong>CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ DU LỊCH TDC</strong>, khác tên thương hiệu Én Việt Group. Vui lòng xác minh đơn vị nhận tiền được ủy quyền và kiểm tra tên người thụ hưởng trong ứng dụng ngân hàng trước khi chuyển khoản. QR không xác nhận giao dịch đã thành công.</div>
+      <div class="formList hide">
+        <div class="inputRow field"><label>Tên tài khoản</label><input id="accName" readonly></div>
+        <div class="inputRow field"><label>Số tiền</label><input id="accAmount" readonly></div>
+        <div class="inputRow field"><label>Nội dung</label><input id="accContent" readonly></div>
+        <div class="inputRow field"><label>Ngân hàng</label><input id="accBank" readonly></div>
+        <div class="inputRow field"><label>Số tài khoản</label><input id="accNumber" readonly></div>
+      </div>
+
+      <div id="message"></div>
+    </div>
+
+    <p class="small">Khách hàng không cần đăng nhập. Chỉ chuyển khoản sau khi đã kiểm tra đúng thông tin phiếu và bên nhận tiền.</p>
+  </section>
+</main>
+
 <script type="module">
-import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
-import {getFirestore,getDoc,doc} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
-import {firebaseConfig} from './firebase-config.js';
-const app=initializeApp(firebaseConfig),db=getFirestore(app),$=id=>document.getElementById(id);const id=new URLSearchParams(location.search).get('id');
-const money=v=>new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND',maximumFractionDigits:0}).format(Number(v)||0);
-if(!id||!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id))$('loading').textContent='Đường dẫn phiếu không hợp lệ.';
-else try{const snap=await getDoc(doc(db,'publicPaymentRequests',id));if(!snap.exists()){$('loading').textContent='Không tìm thấy phiếu hoặc phiếu không còn được chia sẻ.'}else{const p=snap.data();for(const k of ['code','issueDate','customer','pnr','route','airline','flightDate','passengers'])$(k).textContent=p[k]??'—';for(const k of ['fare','tax','fee','discount','total'])$(k).textContent=money(p[k]);$('status').textContent=({pending:'CHỜ THANH TOÁN',paid:'ĐÃ XÁC NHẬN NHẬN TIỀN',cancelled:'ĐÃ HỦY'})[p.status]||'CHỜ THANH TOÁN';const transfer=('ENV '+(p.pnr||p.code||'')).replace(/\s+/g,' ').slice(0,80);$('transfer').textContent=transfer; if(p.note){$('noteSection').classList.remove('hide');$('note').textContent=p.note}$('copyAccount').onclick=()=>navigator.clipboard.writeText('80004024347').then(()=>alert('Đã sao chép số tài khoản'));$('copyTransfer').onclick=()=>navigator.clipboard.writeText(transfer).then(()=>alert('Đã sao chép nội dung chuyển khoản'));$('loading').classList.add('hide');$('invoice').classList.remove('hide')}}catch(e){$('loading').textContent='Không thể tải phiếu. Hãy kiểm tra đường dẫn hoặc liên hệ đại lý.';console.error(e)}
-</script></body></html>
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+import { getFirestore, getDoc, doc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+import { firebaseConfig } from './firebase-config.js';
+
+const $ = (id) => document.getElementById(id);
+const money = (v) => new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND',maximumFractionDigits:0}).format(Number(v)||0);
+const params = new URLSearchParams(location.search);
+const id = params.get('id');
+let currentTransfer = '';
+let currentAmount = 0;
+
+function setMessage(text){ $('message').textContent = text || ''; }
+function filename(prefix){ const d = new Date(); const p = [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0'),'-',String(d.getHours()).padStart(2,'0'),String(d.getMinutes()).padStart(2,'0')].join(''); return `${prefix}-${p}.png`; }
+async function saveCapture(element, file){
+  try{
+    setMessage('Đang tạo ảnh, vui lòng chờ...');
+    const canvas = await html2canvas(element,{backgroundColor:'#ffffff',scale:2,useCORS:true});
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = file;
+    a.click();
+    setMessage('Đã tạo ảnh thành công.');
+  }catch(e){
+    console.error(e);
+    setMessage('Không chụp được ảnh. Vui lòng thử lại.');
+  }
+}
+async function copyAll(){
+  const text = `Tên tài khoản: CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ DU LỊCH TDC\nSố tiền: ${money(currentAmount)}\nNội dung: ${currentTransfer}\nNgân hàng: MSB - NGÂN HÀNG TMCP HÀNG HẢI VIỆT NAM\nSố tài khoản: 80004024347`;
+  try{
+    await navigator.clipboard.writeText(text);
+    setMessage('Đã sao chép nội dung thanh toán.');
+  }catch(e){
+    console.error(e);
+    setMessage('Không sao chép được. Vui lòng sao chép thủ công.');
+  }
+}
+function updateMethodUI(){
+  const method = document.querySelector('input[name=paymentMethod]:checked')?.value || 'transfer';
+  document.querySelectorAll('.choice').forEach(el=>el.classList.toggle('active',el.querySelector('input').checked));
+  const note = $('methodNote');
+  const transferSection = $('transferSection');
+  if(method === 'transfer'){
+    transferSection.classList.remove('hide');
+    note.classList.add('hide');
+    note.textContent = '';
+  }else{
+    transferSection.classList.add('hide');
+    note.classList.remove('hide');
+    note.textContent = 'Phương thức này đang chuẩn bị tích hợp. Vui lòng liên hệ nhân viên Én Việt để được hỗ trợ thanh toán.';
+  }
+}
+function fillBankInfo(amount, transfer){
+  currentAmount = Number(amount)||0;
+  currentTransfer = transfer;
+  $('amountText').textContent = money(currentAmount);
+  $('transferText').textContent = currentTransfer;
+  $('accName').value = 'CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ DU LỊCH TDC';
+  $('accAmount').value = money(currentAmount);
+  $('accContent').value = currentTransfer;
+  $('accBank').value = 'MSB - NGÂN HÀNG TMCP HÀNG HẢI VIỆT NAM';
+  $('accNumber').value = '80004024347';
+  const qr = `https://img.vietqr.io/image/MSB-80004024347-compact2.png?amount=${encodeURIComponent(currentAmount)}&addInfo=${encodeURIComponent(currentTransfer)}&accountName=${encodeURIComponent('CONG TY TNHH THUONG MAI VA DICH VU DU LICH TDC')}`;
+  $('qrImage').src = qr;
+  $('qrImage').onerror = () => setMessage('Không tải được ảnh QR. Hãy dùng số tài khoản và kiểm tra trong ứng dụng ngân hàng.');
+}
+async function main(){
+  document.querySelectorAll('input[name=paymentMethod]').forEach(x=>x.addEventListener('change',updateMethodUI));
+  $('btnShotInvoice').addEventListener('click', ()=>saveCapture($('captureInvoice'), filename('phieu-thanh-toan-enviet')));
+  $('btnShotQr').addEventListener('click', ()=>saveCapture($('captureQr'), filename('qr-enviet')));
+  $('btnCopy').addEventListener('click', copyAll);
+  updateMethodUI();
+
+  if(!id){ $('loading').textContent = 'Thiếu mã phiếu thanh toán.'; return; }
+
+  try{
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const snap = await getDoc(doc(db,'publicPaymentRequests',id));
+    if(!snap.exists()){
+      $('loading').textContent = 'Không tìm thấy phiếu hoặc phiếu không được chia sẻ.';
+      return;
+    }
+    const p = snap.data();
+    $('customer').textContent = p.customer || '—';
+    $('pnr').textContent = p.pnr || '—';
+    $('route').textContent = p.route || '—';
+    $('airline').textContent = p.airline || '—';
+    $('flightDate').textContent = p.flightDate || '—';
+    $('passengers').textContent = p.passengers || '1';
+    $('code').textContent = p.code || '—';
+    $('issueDate').textContent = p.issueDate || '—';
+    $('issueDateMini').textContent = p.issueDate || '—';
+    $('fare').textContent = money(p.fare);
+    $('fee').textContent = money(p.fee);
+    const total = Number(p.total || ((Number(p.fare)||0) + (Number(p.fee)||0)));
+    $('total').textContent = money(total);
+    const transfer = (`ENV ${p.pnr || p.code || ''} ${p.customer || ''}`).replace(/\s+/g,' ').trim().slice(0,80);
+    fillBankInfo(total, transfer);
+    $('loading').classList.add('hide');
+    $('invoice').classList.remove('hide');
+  }catch(err){
+    console.error(err);
+    $('loading').textContent = 'Không tải được phiếu. Vui lòng liên hệ đại lý để kiểm tra link.';
+  }
+}
+main();
+</script>
+</body>
+</html>
