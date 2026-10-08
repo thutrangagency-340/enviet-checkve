@@ -1,37 +1,36 @@
 
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Én Việt - Tư vấn vé máy bay nội địa, quốc tế và hỗ trợ tra cứu thông tin đặt chỗ.">
-<title>Én Việt | Vé Máy Bay & Tra Cứu Đặt Chỗ</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Én Việt Travel - Tư vấn vé máy bay và hướng dẫn tra cứu đặt chỗ trên hệ thống chính thức.">
+<title>Én Việt Travel | Đặt Vé & Tra Cứu Vé</title>
+
 <style>
-:root {
+:root{
   --blue:#075d91;
-  --dark:#123b59;
+  --dark:#153951;
   --orange:#f58220;
   --light:#eef8fc;
-  --white:#ffffff;
 }
-* {box-sizing:border-box}
-html {scroll-behavior:smooth}
-body {
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
   margin:0;
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:Arial,sans-serif;
   color:var(--dark);
   background:#f5f9fc;
   line-height:1.6;
 }
-header {
-  background:var(--white);
-  box-shadow:0 2px 12px #123b5915;
+header{
+  background:white;
   position:sticky;
   top:0;
   z-index:10;
+  box-shadow:0 2px 12px #123b5915;
 }
-.topbar {
+.topbar{
   max-width:1150px;
   margin:auto;
   padding:17px 20px;
@@ -41,160 +40,159 @@ header {
   flex-wrap:wrap;
   gap:12px;
 }
-.logo {
+.logo{
+  color:var(--blue);
   font-size:27px;
   font-weight:800;
-  color:var(--blue);
 }
-.logo span {color:var(--orange)}
-nav a {
+.logo span{color:var(--orange)}
+nav a{
   display:inline-block;
-  margin:5px 10px;
   color:var(--dark);
   text-decoration:none;
   font-weight:bold;
+  margin:6px 9px;
 }
-nav a:hover {color:var(--orange)}
-.hero {
-  background:linear-gradient(115deg,#075d91,#1595bf 65%,#f58220);
+nav a:hover{color:var(--orange)}
+.hero{
+  background:linear-gradient(115deg,#075d91,#1599c1 65%,#f58220);
   color:white;
   text-align:center;
-  padding:75px 20px 100px;
+  padding:85px 20px 110px;
 }
-.hero h1 {
-  font-size:clamp(32px,5vw,50px);
+.hero h1{
+  font-size:clamp(30px,5vw,49px);
   margin:0 0 15px;
 }
-.hero p {
+.hero p{
+  max-width:700px;
+  margin:0 auto 25px;
   font-size:19px;
-  max-width:680px;
-  margin:0 auto;
 }
-.container {
+.container{
   max-width:1150px;
   margin:auto;
   padding:50px 20px;
 }
-h2 {
+h2{
+  font-size:29px;
   text-align:center;
-  font-size:30px;
   margin:0 0 25px;
 }
-.panel {
+.panel,.card,.contact{
   background:white;
-  border-radius:18px;
+  border-radius:16px;
   padding:28px;
-  box-shadow:0 8px 30px #123b5918;
+  box-shadow:0 5px 22px #123b5914;
 }
-.booking {
+.booking{
   max-width:1050px;
   margin:-65px auto 0;
   padding:0 20px;
   position:relative;
 }
-.booking h2 {font-size:25px}
-.grid {
+.grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:16px;
+  gap:17px;
 }
-label {
+.full{grid-column:1/-1}
+label{
   display:block;
   font-weight:bold;
-  margin-bottom:5px;
+  margin-bottom:6px;
 }
-input,select,textarea {
+input,select,textarea{
   width:100%;
-  padding:12px;
-  border:1px solid #cbd9e4;
-  border-radius:8px;
+  padding:13px;
+  border:1px solid #cad9e5;
+  border-radius:9px;
   font:inherit;
   background:white;
 }
-textarea {min-height:95px;resize:vertical}
-input:focus,select:focus,textarea:focus {
+textarea{resize:vertical;min-height:105px}
+input:focus,select:focus,textarea:focus{
   outline:2px solid #9ad9f3;
   border-color:var(--blue);
 }
-.full {grid-column:1/-1}
-.btn {
+[hidden]{display:none!important}
+.btn{
+  display:inline-block;
   background:var(--orange);
   color:white;
-  padding:14px 25px;
+  text-decoration:none;
   border:0;
   border-radius:9px;
+  padding:13px 24px;
+  font-size:15px;
   font-weight:bold;
-  font-size:16px;
   cursor:pointer;
-  text-decoration:none;
-  display:inline-block;
+  text-align:center;
 }
-.btn:hover {background:#d96b10}
-.btn-blue {background:var(--blue)}
-.btn-blue:hover {background:#04466e}
-.cards {
+.btn:hover{background:#d96c10}
+.btn-blue{background:var(--blue)}
+.btn-blue:hover{background:#034c78}
+.cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
 }
-.card {
-  background:white;
-  border-radius:15px;
-  padding:27px 22px;
-  text-align:center;
-  box-shadow:0 5px 20px #123b5912;
-}
-.card .symbol {font-size:42px}
-.card h3 {color:var(--blue)}
-.lookup {
+.card{text-align:center}
+.card h3{color:var(--blue)}
+.symbol{font-size:42px}
+.lookup{
   background:var(--light);
   border-radius:20px;
   padding:35px;
 }
-.note {
-  background:#fff7e9;
-  color:#72501e;
-  padding:14px;
-  border-radius:9px;
-  margin-top:16px;
+.airline{
+  border-top:4px solid var(--orange);
 }
-.result {
-  display:none;
+.airline .btn{
+  width:100%;
+  margin-top:12px;
+}
+.note{
+  background:#fff6e8;
+  color:#704b17;
+  border-radius:10px;
+  padding:18px;
+  margin-top:24px;
+}
+.result{
   margin-top:20px;
   padding:20px;
-  background:white;
   border:1px solid #c7dce9;
   border-radius:10px;
+  background:#f5fbff;
 }
-.contact {
-  text-align:center;
-  background:white;
-  padding:35px;
-  border-radius:18px;
-}
-footer {
-  text-align:center;
+.contact{text-align:center}
+.small{font-size:13px;color:#60798b}
+footer{
   background:var(--blue);
   color:white;
-  padding:27px 20px;
+  text-align:center;
+  padding:30px 20px;
 }
-footer p {margin:5px}
-.small {font-size:13px;color:#60798b}
-@media(max-width:650px) {
-  .topbar {justify-content:center;text-align:center}
-  nav a {margin:5px 7px;font-size:14px}
-  .grid {grid-template-columns:1fr}
-  .booking {margin:-40px auto 0}
-  .panel,.lookup {padding:20px}
-  h2 {font-size:25px}
+footer p{margin:6px}
+@media(max-width:650px){
+  .topbar{justify-content:center;text-align:center}
+  .grid{grid-template-columns:1fr}
+  .booking{margin:-40px auto 0}
+  .panel,.lookup{padding:20px}
+  .hero{padding:65px 18px 80px}
+  h2{font-size:25px}
 }
 </style>
 </head>
+
 <body>
 
 <header>
   <div class="topbar">
-    <div class="logo">✈ ÉN VIỆT <span>TRAVEL</span></div>
+    <div class="logo">
+      ✈ ÉN VIỆT <span>TRAVEL</span>
+    </div>
     <nav>
       <a href="#home">Trang chủ</a>
       <a href="#booking">Đặt vé</a>
@@ -206,8 +204,18 @@ footer p {margin:5px}
 </header>
 
 <section class="hero" id="home">
-  <h1>ĐỒNG HÀNH TRÊN MỌI HÀNH TRÌNH</h1>
-  <p>Tư vấn vé máy bay nội địa & quốc tế, hỗ trợ lựa chọn hành trình và thông tin đặt chỗ.</p>
+  <h1>ÉN VIỆT TRAVEL</h1>
+  <p>
+    Đồng hành trên mọi hành trình.
+    Tư vấn vé máy bay nội địa, quốc tế
+    và hỗ trợ thông tin đặt chỗ.
+  </p>
+  <a href="#booking" class="btn">
+    ✈ TƯ VẤN ĐẶT VÉ
+  </a>
+  <a href="#lookup" class="btn btn-blue">
+    🔎 TRA CỨU VÉ
+  </a>
 </section>
 
 <div class="booking" id="booking">
@@ -216,6 +224,7 @@ footer p {margin:5px}
 
     <form id="bookingForm">
       <div class="grid">
+
         <div>
           <label for="trip">Loại hành trình</label>
           <select id="trip">
@@ -223,115 +232,200 @@ footer p {margin:5px}
             <option value="Khứ hồi">Khứ hồi</option>
           </select>
         </div>
+
         <div>
           <label for="passengers">Số hành khách</label>
-          <input id="passengers" type="number" min="1" max="20" value="1" required>
+          <input id="passengers" type="number"
+                 min="1" max="20" value="1" required>
         </div>
+
         <div>
           <label for="departure">Điểm khởi hành</label>
-          <input id="departure" placeholder="Ví dụ: Hà Nội (HAN)" required>
+          <input id="departure"
+                 placeholder="Hà Nội (HAN)" required>
         </div>
+
         <div>
           <label for="destination">Điểm đến</label>
-          <input id="destination" placeholder="Ví dụ: TP.HCM (SGN)" required>
+          <input id="destination"
+                 placeholder="TP.HCM (SGN)" required>
         </div>
+
         <div>
           <label for="departDate">Ngày đi</label>
           <input id="departDate" type="date" required>
         </div>
+
         <div id="returnBox" hidden>
           <label for="returnDate">Ngày về</label>
           <input id="returnDate" type="date">
         </div>
+
         <div class="full">
-          <label for="contactInfo">Số điện thoại hoặc email liên hệ</label>
-          <input id="contactInfo" placeholder="Thông tin để nhân viên liên hệ" required>
+          <label for="contactInfo">
+            Điện thoại hoặc email
+          </label>
+          <input id="contactInfo" required
+                 placeholder="Thông tin liên hệ">
         </div>
+
         <div class="full">
           <label for="message">Yêu cầu thêm</label>
-          <textarea id="message" placeholder="Hành lý, hãng bay hoặc yêu cầu khác"></textarea>
+          <textarea id="message"
+             placeholder="Hãng bay, hành lý, yêu cầu khác"></textarea>
         </div>
+
         <div class="full">
-          <button class="btn" type="submit">TẠO NỘI DUNG YÊU CẦU</button>
+          <button class="btn" type="submit">
+            TẠO YÊU CẦU TƯ VẤN
+          </button>
         </div>
+
       </div>
     </form>
 
-    <div id="bookingResult" class="result" role="status">
-      <h3>Yêu cầu tư vấn của bạn</h3>
+    <div id="bookingResult" class="result" hidden>
+      <h3>THÔNG TIN YÊU CẦU</h3>
       <textarea id="requestText" readonly></textarea>
-      <p><button class="btn btn-blue" id="copyRequest" type="button">SAO CHÉP YÊU CẦU</button></p>
-      <p class="small">Hãy gửi nội dung đã sao chép đến kênh liên hệ chính thức của đại lý. Website chưa tự động gửi hoặc đặt vé.</p>
+      <p>
+        <button id="copyRequest" type="button"
+                class="btn btn-blue">
+          SAO CHÉP YÊU CẦU
+        </button>
+      </p>
+      <p class="small">
+        Hãy gửi nội dung đã sao chép đến
+        kênh liên hệ chính thức của đại lý.
+        Form này không tự động gửi thông tin.
+      </p>
     </div>
   </div>
 </div>
 
 <section class="container" id="services">
   <h2>DỊCH VỤ CỦA CHÚNG TÔI</h2>
+
   <div class="cards">
     <div class="card">
       <div class="symbol">✈️</div>
       <h3>Vé máy bay nội địa</h3>
-      <p>Tư vấn hành trình và lựa chọn chuyến bay phù hợp.</p>
+      <p>Tư vấn hành trình và lựa chọn chuyến bay.</p>
     </div>
+
     <div class="card">
       <div class="symbol">🌏</div>
       <h3>Vé máy bay quốc tế</h3>
-      <p>Hỗ trợ thông tin hành trình quốc tế và nối chuyến.</p>
+      <p>Hỗ trợ thông tin hành trình quốc tế.</p>
     </div>
+
     <div class="card">
       <div class="symbol">🏨</div>
       <h3>Khách sạn</h3>
-      <p>Tư vấn dịch vụ lưu trú phục vụ công tác và du lịch.</p>
+      <p>Tư vấn dịch vụ lưu trú và du lịch.</p>
     </div>
+
     <div class="card">
       <div class="symbol">🧳</div>
       <h3>Hỗ trợ hành trình</h3>
-      <p>Hỗ trợ thông tin hành lý, lịch bay và thủ tục.</p>
+      <p>Thông tin hành lý, lịch bay và thủ tục.</p>
     </div>
   </div>
 </section>
 
 <section class="container" id="lookup">
   <div class="lookup">
-    <h2>🔎 TRA CỨU MÃ ĐẶT CHỖ</h2>
-    <p style="text-align:center">Giao diện minh họa cách nhập thông tin đặt chỗ.</p>
 
-    <form id="lookupForm">
-      <div class="grid">
-        <div>
-          <label for="pnr">Mã đặt chỗ (PNR)</label>
-          <input id="pnr" placeholder="Ví dụ: ABC123" maxlength="12" required>
-        </div>
-        <div>
-          <label for="lastName">Họ hành khách</label>
-          <input id="lastName" placeholder="Ví dụ: NGUYEN" required>
-        </div>
-        <div class="full">
-          <button type="submit" class="btn btn-blue">KIỂM TRA MÃ ĐẶT CHỖ</button>
-        </div>
-      </div>
-    </form>
-
-    <div id="lookupResult" class="result" role="status" aria-live="polite"></div>
-
-    <div class="note">
-      <strong>Lưu ý:</strong> Đây là chức năng minh họa, chưa kết nối dữ liệu hãng hàng không hoặc hệ thống đặt chỗ. Website không thể xác nhận mã đặt chỗ, tình trạng thanh toán, vé đã xuất hay chưa. Không nhập mã đặt chỗ và thông tin hành khách thật khi chưa có hệ thống bảo mật phù hợp.
-    </div>
+    <h2>🔎 TRA CỨU VÉ MÁY BAY</h2>
 
     <p style="text-align:center">
-      Bạn có thể tra cứu vé thật trên website hoặc ứng dụng chính thức của hãng hàng không đã đặt vé.
+      Chọn hãng hàng không để kiểm tra
+      thông tin đặt chỗ trên hệ thống chính thức.
     </p>
+
+    <div class="cards">
+
+      <div class="card airline">
+        <div class="symbol">✈️</div>
+        <h3>Vietnam Airlines</h3>
+        <p>Quản lý và kiểm tra thông tin đặt chỗ.</p>
+        <a class="btn btn-blue"
+           href="https://www.vietnamairlines.com/gb/en/buy-tickets-other-products/booking-and-manage-bookings/reservation-management"
+           target="_blank"
+           rel="noopener noreferrer">
+          TRA CỨU VIETNAM AIRLINES ↗
+        </a>
+      </div>
+
+      <div class="card airline">
+        <div class="symbol">✈️</div>
+        <h3>Vietjet Air</h3>
+        <p>Tra cứu mã đặt chỗ và hành trình.</p>
+        <a class="btn btn-blue"
+           href="https://www1.vietjetair.com/en/my/search-booking"
+           target="_blank"
+           rel="noopener noreferrer">
+          TRA CỨU VIETJET ↗
+        </a>
+      </div>
+
+      <div class="card airline">
+        <div class="symbol">✈️</div>
+        <h3>Bamboo Airways</h3>
+        <p>Vào mục My bookings của hãng.</p>
+        <a class="btn btn-blue"
+           href="https://www.bambooairways.com/"
+           target="_blank"
+           rel="noopener noreferrer">
+          TRA CỨU BAMBOO ↗
+        </a>
+      </div>
+
+      <div class="card airline">
+        <div class="symbol">✈️</div>
+        <h3>Thai Airways</h3>
+        <p>Kiểm tra và quản lý chuyến đi.</p>
+        <a class="btn btn-blue"
+           href="https://www.thaiairways.com/en-lk/book/my-trips/"
+           target="_blank"
+           rel="noopener noreferrer">
+          TRA CỨU THAI AIRWAYS ↗
+        </a>
+      </div>
+
+    </div>
+
+    <div class="note">
+      <strong>HƯỚNG DẪN TRA CỨU</strong>
+      <ol>
+        <li>Chọn hãng hàng không đã đặt vé.</li>
+        <li>Website chính thức của hãng sẽ mở trong tab mới.</li>
+        <li>Nhập mã đặt chỗ và thông tin hành khách theo yêu cầu của hãng.</li>
+        <li>Kiểm tra trạng thái và thông tin hành trình do hãng cung cấp.</li>
+      </ol>
+      <strong>Lưu ý:</strong>
+      Én Việt không tự xác minh hoặc xác nhận
+      vé đã thanh toán hay đã xuất. Khả năng
+      tra cứu phụ thuộc vào hệ thống và
+      chính sách của từng hãng.
+    </div>
+
   </div>
 </section>
 
 <section class="container" id="contact">
   <div class="contact">
-    <h2>LIÊN HỆ HỖ TRỢ</h2>
-    <p>ÉN VIỆT TRAVEL – Dịch vụ tư vấn vé máy bay</p>
-    <p>Địa điểm: Hà Nội – Việt Nam</p>
-    <p>Liên hệ qua kênh chính thức được công bố của đơn vị vận hành.</p>
-    <p class="small">Thông tin liên hệ sẽ được bổ sung sau khi xác minh.</p>
+    <h2>☎ LIÊN HỆ HỖ TRỢ</h2>
+    <h3>ÉN VIỆT TRAVEL</h3>
+    <p>Tư vấn vé máy bay nội địa và quốc tế</p>
+    <p>Hà Nội – Việt Nam</p>
+    <p>
+      Vui lòng liên hệ qua kênh chính thức
+      được công bố của đơn vị vận hành.
+    </p>
+    <p class="small">
+      Thông tin liên hệ sẽ được bổ sung
+      sau khi xác minh.
+    </p>
   </div>
 </section>
 
@@ -339,7 +433,10 @@ footer p {margin:5px}
   <h3>✈ ÉN VIỆT TRAVEL</h3>
   <p>Vé máy bay nội địa & quốc tế</p>
   <p>© 2026 Én Việt Travel</p>
-  <small>Website giới thiệu và giao diện đặt vé mẫu.</small>
+  <small>
+    Website tư vấn và hướng dẫn tra cứu đặt chỗ.
+    Không phải website chính thức của hãng hàng không.
+  </small>
 </footer>
 
 <script>
@@ -348,66 +445,70 @@ const returnBox = document.getElementById("returnBox");
 const returnDate = document.getElementById("returnDate");
 const departDate = document.getElementById("departDate");
 
-function updateTrip() {
+function updateTrip(){
   const roundTrip = trip.value === "Khứ hồi";
   returnBox.hidden = !roundTrip;
   returnDate.required = roundTrip;
+  if(!roundTrip){
+    returnDate.value = "";
+  }
 }
-trip.addEventListener("change", updateTrip);
+
+trip.addEventListener("change",updateTrip);
 updateTrip();
 
-document.getElementById("bookingForm").addEventListener("submit", function(e) {
+document.getElementById("bookingForm")
+.addEventListener("submit",function(e){
   e.preventDefault();
-  if (returnDate.required && returnDate.value < departDate.value) {
+
+  if(
+    trip.value === "Khứ hồi" &&
+    returnDate.value < departDate.value
+  ){
     alert("Ngày về không được trước ngày đi.");
     return;
   }
 
-  const fields = [
+  const fields=[
     "YÊU CẦU TƯ VẤN VÉ MÁY BAY",
-    "Hành trình: " + trip.value,
-    "Số khách: " + document.getElementById("passengers").value,
-    "Điểm đi: " + document.getElementById("departure").value,
-    "Điểm đến: " + document.getElementById("destination").value,
-    "Ngày đi: " + departDate.value
+    "Hành trình: "+trip.value,
+    "Số khách: "+
+      document.getElementById("passengers").value,
+    "Điểm đi: "+
+      document.getElementById("departure").value,
+    "Điểm đến: "+
+      document.getElementById("destination").value,
+    "Ngày đi: "+departDate.value
   ];
 
-  if (trip.value === "Khứ hồi") {
-    fields.push("Ngày về: " + returnDate.value);
+  if(trip.value==="Khứ hồi"){
+    fields.push("Ngày về: "+returnDate.value);
   }
 
   fields.push(
-    "Liên hệ: " + document.getElementById("contactInfo").value,
-    "Yêu cầu thêm: " + document.getElementById("message").value
+    "Liên hệ: "+
+      document.getElementById("contactInfo").value,
+    "Yêu cầu thêm: "+
+      document.getElementById("message").value
   );
 
-  document.getElementById("requestText").value = fields.join("\n");
-  document.getElementById("bookingResult").style.display = "block";
+  document.getElementById("requestText").value=
+    fields.join("\n");
+
+  document.getElementById("bookingResult").hidden=false;
 });
 
-document.getElementById("copyRequest").addEventListener("click", async function() {
-  const input = document.getElementById("requestText");
-  try {
+document.getElementById("copyRequest")
+.addEventListener("click",async function(){
+  const input=document.getElementById("requestText");
+  try{
     await navigator.clipboard.writeText(input.value);
-    alert("Đã sao chép yêu cầu.");
-  } catch (err) {
+    alert("Đã sao chép yêu cầu tư vấn.");
+  }catch(error){
     input.focus();
     input.select();
-    alert("Hãy sao chép nội dung đang được chọn.");
+    alert("Hãy sao chép phần nội dung đang chọn.");
   }
-});
-
-document.getElementById("lookupForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const pnr = document.getElementById("pnr").value.trim().toUpperCase();
-  const lastName = document.getElementById("lastName").value.trim().toUpperCase();
-
-  if (!pnr || !lastName) return;
-
-  const result = document.getElementById("lookupResult");
-  result.style.display = "block";
-  result.textContent = "Đây là bản mô phỏng giao diện tra cứu. Chưa có kết nối hệ thống đặt chỗ nên không thể xác minh mã, hành khách hay trạng thái vé. Vui lòng sử dụng trang chính thức của hãng hàng không.";
 });
 </script>
 
