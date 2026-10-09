@@ -1,232 +1,192 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Én Việt Group - Đăng nhập</title>
-
 <style>
-* {
-  box-sizing: border-box;
-}
+*{box-sizing:border-box}
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
-  color: #243e54;
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  color:#243e54;
   background:
     linear-gradient(
       rgba(231,247,255,.22),
       rgba(239,249,255,.30)
     ),
-    url("hero-bg.jpg") center / cover no-repeat fixed,
+    url("hero-bg.jpg") center/cover no-repeat fixed,
     #e8f5ff;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px 16px;
 }
 
-.card {
-  width: 100%;
-  max-width: 610px;
-  background: rgba(255,255,255,.80);
-  border: 1px solid rgba(255,255,255,.85);
-  border-radius: 22px;
-  padding: 38px 32px;
-  text-align: center;
-
-  box-shadow:
-    0 15px 40px rgba(37,102,148,.14);
-
-  backdrop-filter: blur(13px);
-  -webkit-backdrop-filter: blur(13px);
+.card{
+  width:100%;
+  max-width:610px;
+  background:rgba(255,255,255,.86);
+  border:1px solid rgba(255,255,255,.85);
+  border-radius:22px;
+  padding:38px 32px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(37,102,148,.14);
+  backdrop-filter:blur(13px);
 }
 
-.logo {
-  display: block;
-  width: 125px;
-  max-height: 95px;
-  object-fit: contain;
-  margin: 0 auto 14px;
+.logo{
+  display:block;
+  width:125px;
+  max-height:95px;
+  object-fit:contain;
+  margin:0 auto 14px;
 }
 
-h1 {
-  font-size: 30px;
-  font-weight: 800;
-  color: #1878b5;
-  margin: 8px 0 12px;
-  letter-spacing: .7px;
+h1{
+  font-size:30px;
+  font-weight:800;
+  color:#1878b5;
+  margin:8px 0 12px;
+  letter-spacing:.7px;
 }
 
-.plane-line {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin: 18px auto;
-  max-width: 300px;
-  color: #ed8b49;
+.plane-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin:18px auto;
+  max-width:300px;
+  color:#ed8b49;
 }
 
 .plane-line::before,
-.plane-line::after {
-  content: "";
-  height: 1px;
-  flex: 1;
-  background: #e2a279;
+.plane-line::after{
+  content:"";
+  height:1px;
+  flex:1;
+  background:#e2a279;
 }
 
-.plane-line span {
-  font-size: 22px;
+.plane-line span{font-size:22px}
+
+.subtitle{
+  font-size:14px;
+  font-weight:bold;
+  color:#e48642;
+  letter-spacing:.5px;
 }
 
-.subtitle {
-  font-size: 14px;
-  font-weight: bold;
-  color: #e48642;
-  letter-spacing: .5px;
+h2{
+  font-size:20px;
+  color:#225e88;
+  line-height:1.5;
+  margin:27px 0 12px;
 }
 
-h2 {
-  font-size: 20px;
-  color: #225e88;
-  line-height: 1.5;
-  margin: 27px 0 12px;
+.description{
+  font-size:13px;
+  color:#69869b;
+  line-height:1.7;
 }
 
-.description {
-  font-size: 13px;
-  color: #69869b;
-  line-height: 1.7;
+.btn{
+  display:block;
+  width:100%;
+  margin:28px auto 20px;
+  padding:17px;
+  border-radius:10px;
+  background:linear-gradient(110deg,#38b4e8,#188bcd);
+  color:#fff;
+  font-size:16px;
+  font-weight:bold;
+  text-decoration:none;
+  transition:.2s;
 }
 
-.btn {
-  display: block;
-  width: 100%;
-  margin: 28px auto 20px;
-  padding: 17px;
-  border-radius: 10px;
-
-  background: linear-gradient(
-    110deg,
-    #38b4e8,
-    #188bcd
-  );
-
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-  border: none;
-
-  transition: .2s;
+.btn:hover{
+  background:#0879ba;
+  transform:translateY(-2px);
 }
 
-.btn:hover {
-  background: #0879ba;
-  transform: translateY(-2px);
+.btn:focus-visible{
+  outline:2px solid #126fa9;
+  outline-offset:4px;
 }
 
-.btn:focus-visible {
-  outline: 2px solid #126fa9;
-  outline-offset: 4px;
+.notice{
+  padding:14px;
+  background:rgba(232,246,255,.85);
+  border-radius:10px;
+  color:#5a819c;
+  font-size:12px;
+  line-height:1.7;
 }
 
-.notice {
-  padding: 14px;
-  background: rgba(232,246,255,.85);
-  border-radius: 10px;
-  color: #5a819c;
-  font-size: 12px;
-  line-height: 1.7;
+footer{
+  margin-top:25px;
+  color:#849cad;
+  font-size:11px;
+  line-height:1.8;
 }
 
-footer {
-  margin-top: 25px;
-  color: #849cad;
-  font-size: 11px;
-  line-height: 1.8;
-}
-
-@media(max-width:600px) {
-  body {
-    background-attachment: scroll;
-  }
-
-  .card {
-    padding: 30px 20px;
-  }
-
-  h1 {
-    font-size: 25px;
-  }
-
-  h2 {
-    font-size: 18px;
-  }
-
-  .logo {
-    width: 110px;
-  }
+@media(max-width:600px){
+  body{background-attachment:scroll}
+  .card{padding:30px 20px}
+  h1{font-size:25px}
+  h2{font-size:18px}
+  .logo{width:110px}
 }
 </style>
 </head>
-
 <body>
 
 <main class="card">
+  <img
+    src="logo-enviet.svg"
+    class="logo"
+    alt="Én Việt Group">
 
-<img
-  src="logo-enviet.svg"
-  class="logo"
-  alt="Én Việt Group"
->
+  <h1>ÉN VIỆT GROUP</h1>
 
-<h1>ÉN VIỆT GROUP</h1>
-
-
-<div class="transfer-box">
-  <div class="payrow">
-
-    <dl class="data">
-      <dt>Tên tài khoản:</dt>
-      <dd id="owner">—</dd>
-
-      <dt>Số tiền:</dt>
-      <dd class="amount" id="amount">—</dd>
-
-      <dt>Nội dung:</dt>
-      <dd>
-        <span id="content">—</span>
-        <button type="button"
-          class="copy-inline"
-          id="copyContent">
-          Copy
-        </button>
-      </dd>
-
-      <dt>Ngân hàng:</dt>
-      <dd id="bank">—</dd>
-
-      <dt>Số tài khoản:</dt>
-      <dd id="account">—</dd>
-    </dl>
-
-    <div class="qrbox" id="qrPanel">
-      <img id="qr" class="hidden"
-        crossorigin="anonymous"
-        alt="VietQR chuyển khoản">
-
-      <small id="qrNote">
-        Đang kiểm tra mã QR...
-      </small>
-    </div>
-
+  <div class="plane-line">
+    <span>✈</span>
   </div>
-</div>
+
+  <div class="subtitle">
+    HỆ THỐNG QUẢN LÝ VÉ MÁY BAY
+  </div>
+
+  <h2>
+    CỔNG QUẢN TRỊ VÀ<br>
+    YÊU CẦU THANH TOÁN
+  </h2>
+
+  <p class="description">
+    Quản lý thông tin đặt chỗ, tạo phiếu yêu cầu
+    thanh toán và gửi liên kết thanh toán
+    cho khách hàng.
+  </p>
+
+  <a class="btn" href="./quantri.html">
+    ĐĂNG NHẬP QUẢN TRỊ
+  </a>
+
+  <div class="notice">
+    Khu vực dành cho nhân viên được cấp quyền.
+    Đăng nhập và xác thực tài khoản được thực hiện
+    tại hệ thống quản trị.
+  </div>
+
+  <footer>
+    © 2026 ÉN VIỆT GROUP<br>
+    Hà Nội – Việt Nam
+  </footer>
+</main>
+
+</body>
+</html>
