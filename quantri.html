@@ -1,54 +1,712 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quản trị phiếu - Én Việt Group</title><link rel="stylesheet" href="style.css"></head><body>
-<header><div class="wrap"><div><h1>ÉN VIỆT GROUP</h1><p>Quản trị phiếu yêu cầu thanh toán</p></div><span>TRUNG TÂM THANH TOÁN</span></div></header>
-<main class="container">
-<section id="loginPanel" class="panel"><h2>Đăng nhập quản trị</h2><p class="muted">Chỉ tài khoản đã được cấp quyền trong Firebase mới có thể lập và sửa phiếu.</p><form id="loginForm" class="grid"><div><label>Email quản trị</label><input id="email" type="email" autocomplete="username" required></div><div><label>Mật khẩu</label><input id="password" type="password" autocomplete="current-password" required></div><div class="full"><button class="btn" type="submit">Đăng nhập</button></div></form><p id="loginStatus" class="error" role="status"></p></section>
-<section id="adminPanel" class="hide"><div class="panel"><div class="actions" style="justify-content:space-between;margin-top:0"><h2>Danh sách phiếu</h2><button id="logout" class="btn light">Đăng xuất</button></div><p class="muted">Bấm một phiếu để sửa; tạo mới sẽ sinh mã chia sẻ ngẫu nhiên, không thể đoán dễ dàng.</p><div class="actions"><button id="newBtn" class="btn secondary">+ Tạo phiếu mới</button><button id="reloadBtn" class="btn light">Tải lại</button></div><div id="invoiceList" style="margin-top:15px"></div></div>
-<div class="panel"><h2 id="formTitle">Lập phiếu yêu cầu thanh toán</h2><form id="invoiceForm" class="grid">
-<div><label>Mã phiếu</label><input id="code" required maxlength="50" placeholder="ENV-2026-001"></div><div><label>Mã đặt chỗ (PNR)</label><input id="pnr" maxlength="30" required></div>
-<div><label>Tên khách hàng (chỉ nên dùng tên viết tắt khi chia sẻ)</label><input id="customer" required maxlength="100" placeholder="NGUYEN V. A."></div><div><label>Ngày lập phiếu</label><input id="issueDate" type="date" required></div>
-<div><label>Hành trình</label><input id="route" required maxlength="130" placeholder="Hà Nội → TP.HCM"></div><div><label>Hãng hàng không</label><input id="airline" maxlength="100"></div>
-<div><label>Ngày bay</label><input id="flightDate" type="date"></div><div><label>Số hành khách</label><input id="passengers" type="number" min="1" max="1000" value="1" required></div>
-<div><label>Giá vé (VND)</label><input id="fare" type="number" min="0" step="1" value="0" required></div><div><label>Thuế & phí (VND)</label><input id="tax" type="number" min="0" step="1" value="0" required></div>
-<div><label>Phí dịch vụ (VND)</label><input id="fee" type="number" min="0" step="1" value="0" required></div><div><label>Giảm giá (VND)</label><input id="discount" type="number" min="0" step="1" value="0" required></div>
-<div class="full"><label>Ghi chú công khai</label><textarea id="note" maxlength="500" placeholder="Chính sách đổi vé hoặc thời hạn thanh toán (nếu có)"></textarea></div>
-<div><label>Trạng thái</label><select id="status"><option value="pending">Chờ thanh toán</option><option value="paid">Đã xác nhận nhận tiền</option><option value="cancelled">Đã hủy</option></select></div><div class="total">Tổng tiền: <span id="total">0 ₫</span></div>
-<div class="full warning">Chỉ chọn <strong>Đã xác nhận nhận tiền</strong> sau khi đối soát trực tiếp với ngân hàng. Chủ tài khoản chuyển khoản là <strong>CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ DU LỊCH TDC</strong>, không phải Én Việt Group.</div>
-<div class="full actions"><button class="btn" type="submit" id="saveBtn">Lưu phiếu</button><button class="btn secondary" type="button" id="copyLinkBtn" disabled>Sao chép link khách</button><button class="btn light" type="button" id="viewBtn" disabled>Xem phiếu khách</button><button class="btn secondary" type="button" id="captureBtn" disabled>Chụp ảnh phiếu đã lưu (PNG)</button><button class="btn light" type="button" id="demoBtn">Xem thử toàn bộ giao diện</button></div></form><p id="saveStatus" role="status"></p></div>
-</section><section class="panel" id="previewPanel" style="display:none"><div class="actions" style="justify-content:space-between"><h2>Xem trước phiếu đã lưu</h2><button id="closePreview" class="btn light" type="button">Đóng xem trước</button></div><p class="muted">Kiểm tra thông tin trước khi lưu ảnh PNG và gửi cho khách. Phiếu là yêu cầu thanh toán, không phải hóa đơn VAT hoặc xác nhận ngân hàng.</p><iframe id="invoicePreview" title="Xem trước phiếu thanh toán" style="width:100%;height:980px;border:1px solid #dae9f5;border-radius:12px;background:#fff"></iframe><div class="actions"><button id="downloadPNG" class="btn" type="button">Tải ảnh PNG để gửi khách</button><button id="printInvoice" class="btn light" type="button">In / Lưu PDF</button></div><p id="previewStatus" role="status"></p></section></main><footer>Phiếu yêu cầu thanh toán, không thay thế hóa đơn VAT hay xác nhận giao dịch ngân hàng.</footer>
-<script type="module">
-import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
-import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-import {getFirestore,collection,doc,setDoc,getDoc,getDocs,query,orderBy,serverTimestamp} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
-import {firebaseConfig,adminUid} from './firebase-config.js';
-const $=id=>document.getElementById(id);
-if(!firebaseConfig.apiKey || firebaseConfig.apiKey.includes('DIEN_') || !firebaseConfig.projectId || firebaseConfig.projectId.includes('DIEN_') || !adminUid || adminUid.includes('DIEN_')){
- $('loginStatus').textContent='Cấu hình Firebase hoặc UID quản trị chưa đầy đủ. Hãy điền thông tin ứng dụng Web và UID vào firebase-config.js rồi tải lại trang.';
- $('loginForm').querySelector('button').disabled=true;
- throw new Error('Firebase chưa được cấu hình');
+
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quản trị thanh toán - Én Việt Group</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+body {
+  color:#24384e;
+  background:#f3f7fb;
 }
-const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+
+.panel {
+  border:1px solid #dbe5ee!important;
+  border-radius:14px!important;
+  box-shadow:0 5px 20px rgba(44,84,121,.05)!important;
+}
+
+.panel h2 {
+  color:#234b70!important;
+  letter-spacing:0;
+}
+
+label {
+  color:#33475b!important;
+  font-weight:600;
+}
+
+input,select,textarea {
+  border:1px solid #c8d7e5!important;
+  border-radius:8px!important;
+  background:white!important;
+}
+
+input:focus,select:focus,textarea:focus {
+  outline:2px solid #8dc7eb!important;
+  outline-offset:0;
+}
+
+.btn {
+  border-radius:8px!important;
+}
+
+.warning {
+  border-left:3px solid #ea8b4a!important;
+  background:#fff7ef!important;
+  color:#395064!important;
+}
+
+.help {
+  font-size:12px;
+  color:#6c8091;
+  margin-top:5px;
+}
+
+.full-width {
+  grid-column:1/-1;
+}
+
+#passengerList {
+  width:100%;
+  min-height:90px;
+  resize:vertical;
+}
+
+@media(max-width:650px) {
+  .grid {
+    grid-template-columns:1fr!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap">
+    <div>
+      <h1>ÉN VIỆT GROUP</h1>
+      <p>Quản trị hệ thống thanh toán</p>
+    </div>
+    <span>TRUNG TÂM THANH TOÁN</span>
+  </div>
+</header>
+
+<main class="container">
+
+<section id="loginPanel" class="panel">
+  <h2>Đăng nhập quản trị</h2>
+
+  <p class="muted">
+    Chỉ tài khoản Firebase được cấp quyền mới
+    được quản lý hóa đơn.
+  </p>
+
+  <form id="loginForm" class="grid">
+    <div>
+      <label for="email">Email quản trị</label>
+      <input id="email" type="email"
+        autocomplete="username" required>
+    </div>
+
+    <div>
+      <label for="password">Mật khẩu</label>
+      <input id="password" type="password"
+        autocomplete="current-password" required>
+    </div>
+
+    <div class="full">
+      <button class="btn" type="submit">
+        Đăng nhập
+      </button>
+    </div>
+  </form>
+
+  <p id="loginStatus" class="error" role="status"></p>
+</section>
+
+<section id="adminPanel" class="hide">
+
+<div class="panel">
+
+  <div class="actions"
+    style="justify-content:space-between;margin-top:0">
+
+    <h2>Danh sách hóa đơn</h2>
+
+    <button id="logout" class="btn light">
+      Đăng xuất
+    </button>
+  </div>
+
+  <p class="muted">
+    Chọn một hóa đơn để sửa hoặc tạo hóa đơn mới
+    với mã chia sẻ riêng.
+  </p>
+
+  <div class="actions">
+    <button id="newBtn" class="btn secondary">
+      + Tạo hóa đơn mới
+    </button>
+
+    <button id="reloadBtn" class="btn light">
+      Tải lại
+    </button>
+  </div>
+
+  <div id="invoiceList" style="margin-top:15px"></div>
+
+</div>
+
+<div class="panel">
+
+<h2 id="formTitle">LẬP HÓA ĐƠN THANH TOÁN</h2>
+
+<form id="invoiceForm" class="grid">
+
+<div>
+  <label for="code">Mã hóa đơn</label>
+  <input id="code" required maxlength="50"
+    placeholder="ENV-2026-001">
+</div>
+
+<div>
+  <label for="pnr">Mã đặt chỗ (PNR)</label>
+  <input id="pnr" maxlength="30" required>
+</div>
+
+<div>
+  <label for="customer">
+    Tên khách hàng (người đại diện)
+  </label>
+  <input id="customer" required maxlength="100"
+    placeholder="NGUYEN V. A.">
+</div>
+
+<div>
+  <label for="issueDate">Ngày lập hóa đơn</label>
+  <input id="issueDate" type="date" required>
+</div>
+
+<div class="full">
+  <label for="passengerList">
+    Danh sách hành khách (nếu có nhiều người)
+  </label>
+
+  <textarea id="passengerList"
+    maxlength="4000"
+    placeholder="1. NGUYEN VAN A&#10;2. TRAN THI B&#10;3. LE VAN C"></textarea>
+
+  <div class="help">
+    Lưu nội bộ cho quản trị; không tự động công khai
+    họ tên đầy đủ trên link chia sẻ cho khách.
+  </div>
+</div>
+
+<div>
+  <label for="route">Hành trình</label>
+  <input id="route" required maxlength="130"
+    placeholder="Hà Nội → TP.HCM">
+</div>
+
+<div>
+  <label for="airline">Hãng hàng không</label>
+
+  <select id="airline">
+    <option value="">-- Chọn hãng bay --</option>
+    <option>Vietnam Airlines</option>
+    <option>Vietjet Air</option>
+    <option>Bamboo Airways</option>
+    <option>Pacific Airlines</option>
+    <option>Vietravel Airlines</option>
+    <option>Korean Air</option>
+    <option>Emirates</option>
+    <option value="Khác">Khác</option>
+  </select>
+</div>
+
+<div>
+  <label for="flightDate">Ngày bay</label>
+  <input id="flightDate" type="date">
+</div>
+
+<div>
+  <label for="passengers">Số hành khách</label>
+  <input id="passengers" type="number"
+    min="1" max="1000" value="1" required>
+</div>
+
+<div>
+  <label for="fare">Giá vé / tổng số tiền (VNĐ)</label>
+  <input id="fare" type="number"
+    min="0" step="1" value="0" required>
+</div>
+
+<div>
+  <label for="status">Trạng thái</label>
+
+  <select id="status">
+    <option value="pending">Chờ thanh toán</option>
+    <option value="paid">Đã xác nhận nhận tiền</option>
+    <option value="cancelled">Đã hủy</option>
+  </select>
+</div>
+
+<div class="full total">
+  Tổng tiền: <span id="total">0 ₫</span>
+</div>
+
+<div class="full warning">
+  Chỉ chọn <strong>Đã xác nhận nhận tiền</strong>
+  sau khi đối soát trực tiếp với ngân hàng.
+  Chủ tài khoản chuyển khoản là
+  <strong>
+    CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ DU LỊCH TDC
+  </strong>, không phải Én Việt Group.
+</div>
+
+<div class="full actions">
+  <button class="btn" type="submit" id="saveBtn">
+    Lưu hóa đơn
+  </button>
+
+  <button class="btn secondary" type="button"
+    id="copyLinkBtn" disabled>
+    Sao chép link khách
+  </button>
+
+  <button class="btn light" type="button"
+    id="viewBtn" disabled>
+    Xem hóa đơn khách
+  </button>
+
+  <button class="btn secondary" type="button"
+    id="captureBtn" disabled>
+    Chụp ảnh đã lưu (PNG)
+  </button>
+
+  <button class="btn light" type="button"
+    id="demoBtn">
+    Xem thử giao diện khách
+  </button>
+</div>
+
+</form>
+
+<p id="saveStatus" role="status"></p>
+</div>
+
+</section>
+
+<section class="panel" id="previewPanel"
+  style="display:none">
+
+  <div class="actions"
+    style="justify-content:space-between">
+
+    <h2>Xem trước hóa đơn đã lưu</h2>
+
+    <button id="closePreview"
+      class="btn light" type="button">
+      Đóng
+    </button>
+  </div>
+
+  <p class="muted">
+    Kiểm tra thông tin trước khi gửi khách.
+    Đây là chứng từ yêu cầu thanh toán,
+    không phải hóa đơn VAT hợp lệ hoặc
+    xác nhận ngân hàng.
+  </p>
+
+  <iframe id="invoicePreview"
+    title="Xem trước hóa đơn"
+    style="width:100%;height:980px;
+    border:1px solid #dae9f5;
+    border-radius:12px;background:#fff">
+  </iframe>
+
+  <div class="actions">
+    <button id="downloadPNG"
+      class="btn" type="button">
+      Tải ảnh PNG
+    </button>
+
+    <button id="printInvoice"
+      class="btn light" type="button">
+      In / Lưu PDF
+    </button>
+  </div>
+
+  <p id="previewStatus" role="status"></p>
+</section>
+
+</main>
+
+<footer>
+  Hóa đơn thanh toán nội bộ / phiếu yêu cầu
+  thanh toán, không thay thế hóa đơn điện tử
+  hợp lệ hay chứng từ ngân hàng.
+</footer>
+
+<script type="module">
+
+import {initializeApp}
+from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut
+}
+from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+
+import {
+  getFirestore,
+  collection,
+  doc,
+  setDoc,
+  getDocs,
+  query,
+  orderBy,
+  serverTimestamp
+}
+from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+import {
+  firebaseConfig,
+  adminUid
+} from './firebase-config.js';
+
+const $ = id => document.getElementById(id);
+
+const fields = [
+  'code','pnr','customer','passengerList',
+  'issueDate','route','airline','flightDate',
+  'passengers','fare','status'
+];
+
+const money = v => new Intl.NumberFormat('vi-VN',{
+  style:'currency',
+  currency:'VND',
+  maximumFractionDigits:0
+}).format(v);
+
+const num = id =>
+  Math.max(0,Math.round(Number($(id).value)||0));
+
+const sum = () => num('fare');
+
+function updateTotal() {
+  $('total').textContent=money(sum());
+}
+
+$('fare').addEventListener('input',updateTotal);
+
+if(
+  !firebaseConfig.apiKey ||
+  firebaseConfig.apiKey.includes('DIEN_') ||
+  !firebaseConfig.projectId ||
+  firebaseConfig.projectId.includes('DIEN_') ||
+  !adminUid ||
+  adminUid.includes('DIEN_')
+){
+  $('loginStatus').textContent =
+    'Cấu hình Firebase hoặc UID quản trị chưa đầy đủ.';
+
+  $('loginForm').querySelector('button').disabled=true;
+  throw new Error('Firebase chưa được cấu hình');
+}
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
 let currentId=null;
-const fields=['code','pnr','customer','issueDate','route','airline','flightDate','passengers','fare','tax','fee','discount','note','status'];
-const money=v=>new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND',maximumFractionDigits:0}).format(v);
-const num=id=>Math.max(0,Math.round(Number($(id).value)||0));
-const sum=()=>num('fare')+num('tax')+num('fee')-num('discount');
-function updateTotal(){ $('total').textContent=money(Math.max(0,sum())); $('saveBtn').disabled=sum()<0; }
-for(const id of ['fare','tax','fee','discount']) $(id).addEventListener('input',updateTotal);
-function link(){return new URL('phieu.html?id='+encodeURIComponent(currentId),location.href).href}
-function reset(){currentId=null;$('invoiceForm').reset();$('formTitle').textContent='Lập phiếu yêu cầu thanh toán';$('issueDate').value=new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,10);$('copyLinkBtn').disabled=true;$('viewBtn').disabled=true;$('captureBtn').disabled=true;$('saveStatus').textContent='';updateTotal()}
-$('newBtn').onclick=reset;reset();
-$('loginForm').onsubmit=async e=>{e.preventDefault();$('loginStatus').textContent='Đang đăng nhập...';try{const {user}=await signInWithEmailAndPassword(auth,$('email').value,$('password').value);if(user.uid!==adminUid){await signOut(auth);throw Error('Tài khoản không có quyền quản trị.')} $('password').value='';$('loginStatus').textContent='';}catch(err){$('loginStatus').textContent='Không đăng nhập được: '+err.message}};
+
+const link=()=>new URL(
+  'phieu.html?id='+encodeURIComponent(currentId),
+  location.href
+).href;
+
+function reset(){
+  currentId=null;
+  $('invoiceForm').reset();
+
+  $('formTitle').textContent='LẬP HÓA ĐƠN THANH TOÁN';
+
+  $('issueDate').value=new Date(
+    Date.now()-new Date().getTimezoneOffset()*60000
+  ).toISOString().slice(0,10);
+
+  for(const id of ['copyLinkBtn','viewBtn','captureBtn']){
+    $(id).disabled=true;
+  }
+
+  $('saveStatus').textContent='';
+  updateTotal();
+}
+
+$('newBtn').onclick=reset;
+reset();
+
+$('loginForm').onsubmit=async e=>{
+  e.preventDefault();
+  $('loginStatus').textContent='Đang đăng nhập...';
+
+  try {
+    const {user}=await signInWithEmailAndPassword(
+      auth,
+      $('email').value,
+      $('password').value
+    );
+
+    if(user.uid!==adminUid){
+      await signOut(auth);
+      throw Error('Tài khoản không có quyền quản trị.');
+    }
+
+    $('password').value='';
+    $('loginStatus').textContent='';
+
+  } catch(err){
+    $('loginStatus').textContent =
+      'Không đăng nhập được: '+err.message;
+  }
+};
+
 $('logout').onclick=()=>signOut(auth);
-onAuthStateChanged(auth,user=>{const isAdmin=!!user&&user.uid===adminUid;$('loginPanel').classList.toggle('hide',isAdmin);$('adminPanel').classList.toggle('hide',!isAdmin);if(user&&!isAdmin)signOut(auth);if(isAdmin)loadList();});
+
+onAuthStateChanged(auth,user=>{
+  const isAdmin=!!user&&user.uid===adminUid;
+
+  $('loginPanel').classList.toggle('hide',isAdmin);
+  $('adminPanel').classList.toggle('hide',!isAdmin);
+
+  if(user&&!isAdmin) signOut(auth);
+  if(isAdmin) loadList();
+});
+
 $('reloadBtn').onclick=loadList;
-async function loadList(){const holder=$('invoiceList');holder.textContent='Đang tải...';try{const snap=await getDocs(query(collection(db,'paymentRequests'),orderBy('updatedAt','desc')));holder.textContent='';if(snap.empty){holder.textContent='Chưa có phiếu nào.';return}snap.forEach(d=>{const p=d.data(),b=document.createElement('button');b.type='button';b.className='btn light';b.style.margin='5px';b.textContent=(p.code||d.id)+' – '+(p.customer||'Khách')+' – '+money(p.total||0);b.onclick=()=>edit(d.id,p);holder.append(b)})}catch(e){holder.textContent='Không tải được danh sách: '+e.message}}
-function edit(id,p){currentId=id;for(const f of fields)$(f).value=p[f]??'';updateTotal();$('formTitle').textContent='Sửa phiếu: '+p.code;$('copyLinkBtn').disabled=false;$('viewBtn').disabled=false;$('captureBtn').disabled=false;$('saveStatus').textContent='';$('invoiceForm').scrollIntoView({behavior:'smooth'});}
-$('invoiceForm').onsubmit=async e=>{e.preventDefault();if(!auth.currentUser||auth.currentUser.uid!==adminUid)return;if(sum()<0){$('saveStatus').textContent='Giảm giá vượt quá tổng tiền.';return}const data={};for(const f of fields)data[f]=$(f).value;for(const f of ['fare','tax','fee','discount','passengers'])data[f]=num(f);data.total=sum();data.updatedAt=serverTimestamp();const id=currentId||crypto.randomUUID();$('saveBtn').disabled=true;$('saveStatus').textContent='Đang lưu...';try{await setDoc(doc(db,'paymentRequests',id),data,{merge:true});const shared={code:data.code,pnr:data.pnr,customer:data.customer,issueDate:data.issueDate,route:data.route,airline:data.airline,flightDate:data.flightDate,passengers:data.passengers,fare:data.fare,tax:data.tax,fee:data.fee,discount:data.discount,total:data.total,note:data.note,status:data.status,updatedAt:serverTimestamp()};await setDoc(doc(db,'publicPaymentRequests',id),shared);currentId=id;$('copyLinkBtn').disabled=false;$('viewBtn').disabled=false;$('captureBtn').disabled=false;$('saveStatus').className='success';$('saveStatus').textContent='Đã lưu. Có thể sao chép link gửi khách.';loadList()}catch(err){$('saveStatus').className='error';$('saveStatus').textContent='Lỗi lưu phiếu: '+err.message}finally{$('saveBtn').disabled=sum()<0}};
-$('copyLinkBtn').onclick=async()=>{try{await navigator.clipboard.writeText(link());$('saveStatus').textContent='Đã sao chép link.'}catch{prompt('Sao chép link sau:',link())}};
-$('viewBtn').onclick=()=>window.open(link(),'_blank','noopener');
-$('demoBtn').onclick=()=>window.open('phieu.html?demo=1','_blank','noopener');
-$('closePreview').onclick=()=>{$('previewPanel').style.display='none';$('invoicePreview').src='about:blank'};
-$('captureBtn').onclick=()=>{if(!currentId)return;$('previewPanel').style.display='block';$('previewStatus').textContent='Đang tải phiếu đã lưu...';$('invoicePreview').src=link();$('invoicePreview').onload=()=>{$('previewStatus').textContent='Phiếu đã mở. Kiểm tra các thông tin rồi nhấn Tải ảnh PNG.'};$('previewPanel').scrollIntoView({behavior:'smooth'})};
-$('downloadPNG').onclick=async()=>{const w=$('invoicePreview').contentWindow;try{if(!w||typeof w.exportInvoiceImage!=='function')throw Error('Phiếu chưa tải xong.');$('previewStatus').textContent='Đang tạo ảnh...';await w.exportInvoiceImage();$('previewStatus').textContent='Đã yêu cầu tải ảnh PNG. Kiểm tra thư mục Downloads.'}catch(e){$('previewStatus').textContent='Không chụp được: '+e.message+' Hãy mở Xem phiếu khách rồi nhấn Chụp ảnh phiếu.'}};
-$('printInvoice').onclick=()=>{try{$('invoicePreview').contentWindow.print()}catch(e){$('previewStatus').textContent='Hãy mở phiếu khách và dùng In / Lưu PDF.'}};
-</script></body></html>
+
+async function loadList(){
+  const holder=$('invoiceList');
+  holder.textContent='Đang tải...';
+
+  try {
+    const snap=await getDocs(
+      query(
+        collection(db,'paymentRequests'),
+        orderBy('updatedAt','desc')
+      )
+    );
+
+    holder.textContent='';
+
+    if(snap.empty){
+      holder.textContent='Chưa có hóa đơn nào.';
+      return;
+    }
+
+    snap.forEach(d=>{
+      const p=d.data();
+      const b=document.createElement('button');
+
+      b.type='button';
+      b.className='btn light';
+      b.style.margin='5px';
+
+      b.textContent =
+        (p.code||d.id)+' – '+
+        (p.customer||'Khách')+' – '+
+        money(p.total||0);
+
+      b.onclick=()=>edit(d.id,p);
+      holder.append(b);
+    });
+
+  } catch(e){
+    holder.textContent=
+      'Không tải được danh sách: '+e.message;
+  }
+}
+
+function edit(id,p){
+  currentId=id;
+
+  for(const f of fields){
+    $(f).value=p[f]??(
+      f==='passengers'?'1':
+      f==='fare'?'0':''
+    );
+  }
+
+  updateTotal();
+
+  $('formTitle').textContent=
+    'Sửa hóa đơn: '+(p.code||'');
+
+  for(const f of ['copyLinkBtn','viewBtn','captureBtn']){
+    $(f).disabled=false;
+  }
+
+  $('saveStatus').textContent='';
+
+  $('invoiceForm').scrollIntoView({
+    behavior:'smooth'
+  });
+}
+
+$('invoiceForm').onsubmit=async e=>{
+  e.preventDefault();
+
+  if(!auth.currentUser ||
+     auth.currentUser.uid!==adminUid) return;
+
+  const data={};
+
+  for(const f of fields){
+    data[f]=$(f).value;
+  }
+
+  for(const f of ['fare','passengers']){
+    data[f]=num(f);
+  }
+
+  data.total=sum();
+  data.updatedAt=serverTimestamp();
+
+  const id=currentId||crypto.randomUUID();
+
+  $('saveBtn').disabled=true;
+  $('saveStatus').textContent='Đang lưu...';
+
+  try {
+    await setDoc(
+      doc(db,'paymentRequests',id),
+      data,
+      {merge:true}
+    );
+
+    // Giữ tương thích với trang khách hiện tại.
+    const shared={
+      code:data.code,
+      pnr:data.pnr,
+      customer:data.customer,
+      issueDate:data.issueDate,
+      route:data.route,
+      airline:data.airline,
+      flightDate:data.flightDate,
+      passengers:data.passengers,
+      fare:data.fare,
+      tax:0,
+      fee:0,
+      discount:0,
+      total:data.total,
+      note:'',
+      status:data.status,
+      updatedAt:serverTimestamp()
+    };
+
+    await setDoc(
+      doc(db,'publicPaymentRequests',id),
+      shared
+    );
+
+    currentId=id;
+
+    for(const f of ['copyLinkBtn','viewBtn','captureBtn']){
+      $(f).disabled=false;
+    }
+
+    $('saveStatus').className='success';
+    $('saveStatus').textContent=
+      'Đã lưu. Có thể sao chép link gửi khách.';
+
+    loadList();
+
+  } catch(err){
+    $('saveStatus').className='error';
+    $('saveStatus').textContent=
+      'Lỗi lưu hóa đơn: '+err.message;
+
+  } finally{
+    $('saveBtn').disabled=false;
+  }
+};
+
+$('copyLinkBtn').onclick=async()=>{
+  if(!currentId) return;
+
+  try {
+    await navigator.clipboard.writeText(link());
+    $('saveStatus').textContent='Đã sao chép link.';
+  } catch {
+    prompt('Sao chép link sau:',link());
+  }
+};
+
+$('viewBtn').onclick=()=>{
+  if(currentId){
+    window.open(link(),'_blank','noopener');
+  }
+};
+
+$('demoBtn').onclick=()=>{
+  window.open(
+    'phieu.html?demo=1',
+    '_blank',
+    'noopener'
+  );
+};
+
+$('closePreview').onclick=()=>{
+  $('previewPanel').style.display='none';
+  $('invoicePreview').src='about:blank';
+};
+
+$('captureBtn').onclick=()=>{
+  if(!currentId) return;
+
+  $('previewPanel').style.display='block';
+  $('previewStatus').textContent='Đang tải phiếu đã lưu...';
+  $('invoicePreview').src=link();
+
+  $('invoicePreview').onload=()=>{
+    $('previewStatus').textContent=
+      'Phiếu đã mở. Kiểm tra rồi nhấn Tải ảnh PNG.';
+  };
+
+  $('previewPanel').scrollIntoView({
+    behavior:'smooth'
+  });
+};
+
+$('downloadPNG').onclick=async()=>{
+  const w=$('invoicePreview').contentWindow;
+
+  try {
+    if(!w||typeof w.exportInvoiceImage!=='function'){
+      throw Error(
+        'Trang xem phiếu chưa hỗ trợ nút xuất ảnh trực tiếp.'
+      );
+    }
+
+    await w.exportInvoiceImage();
+    $('previewStatus').textContent=
+      'Đã yêu cầu tải ảnh PNG.';
+
+  } catch(e){
+    $('previewStatus').textContent=
+      e.message+
+      ' Hãy mở Xem hóa đơn khách và chọn Chụp ảnh phiếu.';
+  }
+};
+
+$('printInvoice').onclick=()=>{
+  try {
+    $('invoicePreview').contentWindow.print();
+  } catch {
+    $('previewStatus').textContent=
+      'Hãy mở link khách và dùng In / Lưu PDF.';
+  }
+};
+
+</script>
+</body>
+</html>
