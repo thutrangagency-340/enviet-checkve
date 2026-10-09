@@ -10,5 +10,5 @@ export const firebaseConfig = {
 };
 
 // UID cua tai khoan quan tri Firebase
-export const adminUid = "DIEN_ADMIN_UID";
+export const adminUid = "kbK0s79KHZbzp8XMPnrfSjwTxw53";
   
