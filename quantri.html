@@ -1,112 +1,175 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Quản trị thanh toán - Én Việt Group</title>
-<link rel="stylesheet" href="style.css">
-<style>
-body{color:#24384e;background:#f3f7fb}
-.panel{border:1px solid #dbe5ee!important;border-radius:14px!important;box-shadow:0 5px 20px rgba(44,84,121,.05)!important}
-.panel h2{color:#234b70!important}
-label{color:#33475b!important;font-weight:600}
-input,select,textarea{border:1px solid #c8d7e5!important;border-radius:8px!important;background:white!important}
-input:focus,select:focus,textarea:focus{outline:2px solid #8dc7eb!important}
-.btn{border-radius:8px!important}
-.warning{border-left:3px solid #ea8b4a!important;background:#fff7ef!important;color:#395064!important}
-.help{font-size:12px;color:#6c8091;margin-top:5px}
-#passengerList{width:100%;min-height:90px;resize:vertical}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quản trị thanh toán | Én Việt Group</title>
 
-.airport-search{position:relative;min-width:0}
-.airport-search input{width:100%}
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#f3f8fc;color:#263c50;
+ font:14px Arial,sans-serif;
+}
+header{
+ background:linear-gradient(110deg,#1686bf,#42b7df);
+ color:white;padding:22px 16px;
+}
+.wrap,.container{max-width:1080px;margin:auto}
+header h1{font-size:23px;margin:0 0 6px}
+header p{margin:0;color:#eaf8ff}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.header-tag{font-size:12px;border:1px solid #c6edff;padding:9px;border-radius:8px}
+.container{padding:20px 14px 45px}
+.panel{
+ background:#fff;border:1px solid #dce8f0;
+ border-radius:14px;padding:23px;margin-bottom:18px;
+ box-shadow:0 5px 20px #315f8210;
+}
+h2{font-size:19px;color:#225678;margin:0 0 18px}
+h3{font-size:15px;color:#31546e}
+.muted,.help{color:#72889b;font-size:12px;line-height:1.6}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.full{grid-column:1/-1}
+label{display:block;font-weight:600;margin-bottom:7px;color:#344b5d}
+input,select,textarea{
+ display:block;width:100%;min-width:0;padding:12px;
+ border:1px solid #cedde8;border-radius:8px;
+ background:white;color:#293f50;font:inherit;
+}
+textarea{min-height:76px;resize:vertical}
+input:focus,select:focus,textarea:focus{
+ outline:2px solid #a3d9ee;border-color:#61b9df;
+}
+.btn{
+ background:#248fca;color:white;border:0;border-radius:8px;
+ padding:12px 16px;font-weight:600;cursor:pointer;
+ font:inherit;text-decoration:none;
+}
+.btn:hover{filter:brightness(.95)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.secondary{background:#e4f3fc;color:#246a96}
+.light{background:#edf2f6;color:#37566e}
+.actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.hide{display:none!important}
+.error{color:#b32e34}
+.success{color:#19774c}
+.total{
+ padding:17px;border:1px solid #c6e6f7;
+ background:#edf8ff;border-radius:10px;
+ font-size:19px;font-weight:bold;color:#176ba1;
+}
+.warning{
+ background:#fff9f2;border-left:3px solid #efa45a;
+ padding:14px;line-height:1.7;
+ border-radius:6px;color:#586571;
+}
+footer{text-align:center;font-size:12px;color:#889aa9;padding:20px}
+
+/* Danh sách hành khách */
+.passenger-card{
+ padding:15px;border:1px solid #d9e7f0;
+ border-radius:10px;background:#fcfeff;
+ margin-bottom:11px;
+}
+.passenger-top{
+ display:flex;justify-content:space-between;
+ align-items:center;margin-bottom:11px;
+}
+.passenger-top strong{color:#2a688e}
+.passenger-row{
+ display:grid;grid-template-columns:1fr 1fr;
+ gap:12px;
+}
+.small-btn{
+ background:#fff0f0;color:#b24c4c;
+ border:1px solid #f0d3d3;border-radius:6px;
+ padding:6px 10px;cursor:pointer;
+}
+.add-btn{
+ background:#f0f9ff;color:#2576a9;
+ border:1px dashed #96c9e8;
+ border-radius:8px;padding:12px;
+ width:100%;cursor:pointer;font-weight:bold;
+}
+
+/* Gợi ý sân bay */
+.airport-box{position:relative;min-width:0}
 .airport-results{
- position:absolute;z-index:50;top:100%;left:0;right:0;
- max-height:238px;overflow:auto;background:#fff;
- border:1px solid #cadbe9;border-radius:9px;
- box-shadow:0 12px 24px rgba(27,64,94,.13);
- margin-top:4px;padding:4px
+ position:absolute;top:100%;left:0;right:0;
+ max-height:230px;overflow:auto;z-index:30;
+ background:white;border:1px solid #cbdfe9;
+ border-radius:8px;box-shadow:0 10px 25px #204d7025;
 }
 .airport-results[hidden]{display:none}
 .airport-option{
  display:block;width:100%;text-align:left;
- padding:10px 11px;border:0;background:white;
- color:#29475f;border-radius:6px;cursor:pointer;
- font:inherit;font-size:13px
+ padding:11px;border:0;background:#fff;
+ color:#334d60;cursor:pointer;
 }
-.airport-option:hover,.airport-option:focus{
- background:#e9f5fc;outline:0
+.airport-option:hover{background:#edf8ff}
+@media(max-width:600px){
+ .grid{grid-template-columns:1fr}
+ .passenger-row{grid-template-columns:1fr 1fr}
+ .panel{padding:17px}
+ header .wrap{align-items:flex-start}
+ .header-tag{display:none}
 }
-.airport-hint{
- font-size:12px;color:#607d90;margin-top:5px
-}
-@media(max-width:650px){
- .grid{grid-template-columns:1fr!important}
+@media(max-width:380px){
+ .passenger-row{grid-template-columns:1fr}
 }
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="wrap">
- <div>
-  <h1>ÉN VIỆT GROUP</h1>
-  <p>Quản trị hệ thống thanh toán</p>
+ <div class="wrap">
+  <div>
+   <h1>ÉN VIỆT GROUP</h1>
+   <p>Quản trị hệ thống thanh toán</p>
+  </div>
+  <span class="header-tag">TRUNG TÂM THANH TOÁN</span>
  </div>
- <span>TRUNG TÂM THANH TOÁN</span>
-</div>
 </header>
 
 <main class="container">
 
-<section id="loginPanel" class="panel">
+<section class="panel" id="loginPanel">
  <h2>Đăng nhập quản trị</h2>
- <p class="muted">
-  Chỉ tài khoản Firebase được cấp quyền
-  mới được quản lý hóa đơn.
- </p>
  <form id="loginForm" class="grid">
   <div>
-   <label for="email">Email quản trị</label>
+   <label>Email quản trị</label>
    <input id="email" type="email"
-    autocomplete="username" required>
+     autocomplete="username" required>
   </div>
   <div>
-   <label for="password">Mật khẩu</label>
+   <label>Mật khẩu</label>
    <input id="password" type="password"
-    autocomplete="current-password" required>
+     autocomplete="current-password" required>
   </div>
   <div class="full">
-   <button class="btn" type="submit">
-    Đăng nhập
-   </button>
+   <button type="submit" class="btn">Đăng nhập</button>
   </div>
  </form>
- <p id="loginStatus" class="error" role="status"></p>
+ <p id="loginStatus" role="status"></p>
 </section>
 
 <section id="adminPanel" class="hide">
 
 <div class="panel">
- <div class="actions"
- style="justify-content:space-between;margin-top:0">
+ <div class="actions" style="justify-content:space-between">
   <h2>Danh sách hóa đơn</h2>
-  <button id="logout" class="btn light">
-   Đăng xuất
-  </button>
+  <button class="btn light" id="logout">Đăng xuất</button>
  </div>
- <p class="muted">
-  Chọn hóa đơn để sửa hoặc tạo hóa đơn mới.
- </p>
  <div class="actions">
-  <button id="newBtn" class="btn secondary">
+  <button class="btn secondary" id="newBtn">
    + Tạo hóa đơn mới
   </button>
-  <button id="reloadBtn" class="btn light">
-   Tải lại
-  </button>
+  <button class="btn light" id="reloadBtn">Tải lại</button>
  </div>
- <div id="invoiceList" style="margin-top:15px"></div>
+ <div id="invoiceList" style="margin-top:16px"></div>
 </div>
 
 <div class="panel">
@@ -115,75 +178,47 @@ input:focus,select:focus,textarea:focus{outline:2px solid #8dc7eb!important}
 <form id="invoiceForm" class="grid">
 
 <div>
- <label for="code">Mã hóa đơn</label>
- <input id="code" required maxlength="50"
-  placeholder="ENV-2026-001">
+ <label>Mã hóa đơn</label>
+ <input id="code" maxlength="50" required
+   placeholder="ENV-2026-001">
 </div>
 
 <div>
- <label for="pnr">Mã đặt chỗ (PNR)</label>
+ <label>Mã đặt chỗ (PNR)</label>
  <input id="pnr" maxlength="30" required>
 </div>
 
 <div>
- <label for="customer">Tên khách hàng (người đại diện)</label>
- <input id="customer" required maxlength="100"
-  placeholder="NGUYEN VAN A">
+ <label>Tên khách hàng (người đại diện)</label>
+ <input id="customer" maxlength="100" required
+   placeholder="NGUYEN VAN A">
 </div>
 
 <div>
- <label for="issueDate">Ngày lập hóa đơn</label>
+ <label>Ngày lập hóa đơn</label>
  <input id="issueDate" type="date" required>
 </div>
 
 <div class="full">
- <label for="passengerList">Danh sách hành khách</label>
- <textarea id="passengerList" maxlength="4000"
- placeholder="1. NGUYEN VAN A&#10;2. TRAN THI B&#10;3. LE VAN C"></textarea>
- <div class="help">
-  Danh sách lưu nội bộ, không tự động
-  công khai đầy đủ trên liên kết khách.
- </div>
+ <h3>DANH SÁCH HÀNH KHÁCH</h3>
+ <div id="passengerContainer"></div>
+ <button type="button" class="add-btn" id="addPassenger">
+  + Thêm hành khách
+ </button>
+ <p class="help">
+  Mỗi hành khách có ô họ tên và số hộ chiếu riêng.
+  Số hộ chiếu chỉ lưu trong dữ liệu quản trị.
+ </p>
 </div>
-
-<div class="full">
- <strong>Hành trình bay</strong>
- <div class="airport-hint">
-  Tìm theo thành phố, quốc gia hoặc mã sân bay.
-  Có thể nhập sân bay ngoài danh sách.
- </div>
-</div>
-
-<div class="airport-search">
- <label for="airportFrom">Điểm khởi hành</label>
- <input id="airportFrom" type="text" required
-  maxlength="120" autocomplete="off"
-  placeholder="Hà Nội / HAN / Việt Nam"
-  role="combobox" aria-autocomplete="list"
-  aria-expanded="false"
-  aria-controls="airportFromOptions">
- <div id="airportFromOptions"
-  class="airport-results"
-  role="listbox" hidden></div>
-</div>
-
-<div class="airport-search">
- <label for="airportTo">Điểm đến</label>
- <input id="airportTo" type="text" required
-  maxlength="120" autocomplete="off"
-  placeholder="Đài Bắc / TPE / Đài Loan"
-  role="combobox" aria-autocomplete="list"
-  aria-expanded="false"
-  aria-controls="airportToOptions">
- <div id="airportToOptions"
-  class="airport-results"
-  role="listbox" hidden></div>
-</div>
-
-<input id="route" type="hidden">
 
 <div>
- <label for="airline">Hãng hàng không</label>
+ <label>Số hành khách</label>
+ <input id="passengers" type="number" value="1"
+   min="1" readonly>
+</div>
+
+<div>
+ <label>Hãng hàng không</label>
  <select id="airline">
   <option value="">-- Chọn hãng bay --</option>
   <option>Vietnam Airlines</option>
@@ -193,29 +228,33 @@ input:focus,select:focus,textarea:focus{outline:2px solid #8dc7eb!important}
   <option>Vietravel Airlines</option>
   <option>Korean Air</option>
   <option>Emirates</option>
-  <option value="Khác">Khác</option>
+  <option>Khác</option>
  </select>
 </div>
 
+<div class="airport-box">
+ <label>Điểm khởi hành</label>
+ <input id="airportFrom" required autocomplete="off"
+  placeholder="Hà Nội, HAN, Việt Nam">
+ <div id="fromResults" class="airport-results" hidden></div>
+</div>
+
+<div class="airport-box">
+ <label>Điểm đến</label>
+ <input id="airportTo" required autocomplete="off"
+  placeholder="Đài Bắc, TPE, Đài Loan">
+ <div id="toResults" class="airport-results" hidden></div>
+</div>
+
+<input type="hidden" id="route">
+
 <div>
- <label for="flightDate">Ngày bay</label>
+ <label>Ngày bay</label>
  <input id="flightDate" type="date">
 </div>
 
 <div>
- <label for="passengers">Số hành khách</label>
- <input id="passengers" type="number"
-  min="1" max="1000" value="1" required>
-</div>
-
-<div>
- <label for="fare">Giá vé / Tổng số tiền (VNĐ)</label>
- <input id="fare" type="number"
-  min="0" step="1" value="0" required>
-</div>
-
-<div>
- <label for="status">Trạng thái</label>
+ <label>Trạng thái</label>
  <select id="status">
   <option value="pending">Chờ thanh toán</option>
   <option value="paid">Đã xác nhận nhận tiền</option>
@@ -223,38 +262,35 @@ input:focus,select:focus,textarea:focus{outline:2px solid #8dc7eb!important}
  </select>
 </div>
 
+<div class="full">
+ <label>Giá vé / Tổng tiền (VNĐ)</label>
+ <input id="fare" type="number" min="0" step="1"
+  value="0" required>
+</div>
+
 <div class="full total">
  Tổng tiền: <span id="total">0 ₫</span>
 </div>
 
 <div class="full warning">
- Chỉ chọn <strong>Đã xác nhận nhận tiền</strong>
- sau khi đối soát trực tiếp với ngân hàng.
- Chủ tài khoản chuyển khoản là
- <strong>CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ DU LỊCH TDC</strong>,
- không phải Én Việt Group.
+ Chỉ chọn <b>Đã xác nhận nhận tiền</b> sau khi
+ đối soát thực tế với ngân hàng.
+ Chủ tài khoản nhận chuyển khoản:
+ <b>CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ DU LỊCH TDC</b>.
 </div>
 
 <div class="full actions">
- <button class="btn" type="submit" id="saveBtn">
+ <button type="submit" class="btn" id="saveBtn">
   Lưu hóa đơn
  </button>
- <button class="btn secondary" type="button"
-  id="copyLinkBtn" disabled>
-  Sao chép link khách
- </button>
- <button class="btn light" type="button"
-  id="viewBtn" disabled>
-  Xem hóa đơn khách
- </button>
- <button class="btn secondary" type="button"
-  id="captureBtn" disabled>
-  Chụp ảnh đã lưu (PNG)
- </button>
- <button class="btn light" type="button"
-  id="demoBtn">
-  Xem thử giao diện khách
- </button>
+ <button type="button" class="btn secondary"
+  id="copyLinkBtn" disabled>Sao chép link khách</button>
+ <button type="button" class="btn light"
+  id="viewBtn" disabled>Xem hóa đơn khách</button>
+ <button type="button" class="btn secondary"
+  id="captureBtn" disabled>Chụp ảnh đã lưu</button>
+ <button type="button" class="btn light"
+  id="demoBtn">Xem thử giao diện khách</button>
 </div>
 
 </form>
@@ -263,29 +299,17 @@ input:focus,select:focus,textarea:focus{outline:2px solid #8dc7eb!important}
 
 </section>
 
-<section class="panel" id="previewPanel"
- style="display:none">
- <div class="actions"
-  style="justify-content:space-between">
-  <h2>Xem trước hóa đơn đã lưu</h2>
-  <button id="closePreview"
-   class="btn light" type="button">Đóng</button>
- </div>
- <p class="muted">
-  Đây là chứng từ yêu cầu thanh toán,
-  không phải hóa đơn VAT hoặc xác nhận ngân hàng.
- </p>
- <iframe id="invoicePreview"
-  title="Xem trước hóa đơn"
-  style="width:100%;height:980px;
-  border:1px solid #dae9f5;
-  border-radius:12px;background:#fff">
+<section class="panel" id="previewPanel" hidden>
+ <h2>Xem trước hóa đơn</h2>
+ <iframe id="invoicePreview" title="Xem hóa đơn"
+  style="width:100%;height:850px;border:1px solid #ddd">
  </iframe>
- <div class="actions">
-  <button id="downloadPNG"
-   class="btn" type="button">Tải ảnh PNG</button>
-  <button id="printInvoice"
-   class="btn light" type="button">In / Lưu PDF</button>
+ <div class="actions" style="margin-top:12px">
+  <button class="btn" id="downloadPNG">Tải PNG</button>
+  <button class="btn light" id="printInvoice">
+   In / Lưu PDF
+  </button>
+  <button class="btn light" id="closePreview">Đóng</button>
  </div>
  <p id="previewStatus" role="status"></p>
 </section>
@@ -293,343 +317,354 @@ input:focus,select:focus,textarea:focus{outline:2px solid #8dc7eb!important}
 </main>
 
 <footer>
- Hóa đơn thanh toán nội bộ / phiếu yêu cầu thanh toán,
- không thay thế hóa đơn điện tử hợp lệ
- hay chứng từ ngân hàng.
+ Phiếu yêu cầu thanh toán / chứng từ nội bộ.
+ Không phải hóa đơn VAT hoặc xác nhận của ngân hàng.
 </footer>
 
 <script type="module">
-
-import {initializeApp}
-from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+import {initializeApp} from
+'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
 
 import {
  getAuth,onAuthStateChanged,
  signInWithEmailAndPassword,signOut
-} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+} from
+'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
 
 import {
- getFirestore,collection,doc,setDoc,
- getDocs,query,orderBy,serverTimestamp
-} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+ getFirestore,collection,doc,getDocs,
+ query,orderBy,writeBatch,serverTimestamp
+} from
+'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
-import {
- firebaseConfig,adminUid
-} from './firebase-config.js';
+import {firebaseConfig,adminUid}
+ from './firebase-config.js';
 
 const $=id=>document.getElementById(id);
+const money=v=>new Intl.NumberFormat('vi-VN',{
+ style:'currency',currency:'VND',
+ maximumFractionDigits:0
+}).format(Number(v)||0);
 
 const fields=[
- 'code','pnr','customer','passengerList',
- 'issueDate','route','airline','flightDate',
- 'passengers','fare','status'
+ 'code','pnr','customer','issueDate','route',
+ 'airline','flightDate','status','fare','passengers'
 ];
 
-// Danh sách sân bay gợi ý.
-// Có thể nhập thủ công các địa điểm khác.
+let currentId=null;
+let people=[];
 
-const airportLines=`
-HAN|Hà Nội|Việt Nam|Noi Bai Hanoi
-SGN|TP.HCM|Việt Nam|Saigon Tan Son Nhat
-DAD|Đà Nẵng|Việt Nam|Da Nang
-PQC|Phú Quốc|Việt Nam|Phu Quoc
-CXR|Nha Trang|Việt Nam|Cam Ranh
-DLI|Đà Lạt|Việt Nam|Da Lat
-HUI|Huế|Việt Nam|Hue
-HPH|Hải Phòng|Việt Nam|Hai Phong
-VCA|Cần Thơ|Việt Nam|Can Tho
-VDO|Vân Đồn|Việt Nam|Van Don
-VII|Vinh|Việt Nam|Vinh
-UIH|Quy Nhơn|Việt Nam|Quy Nhon
-TPE|Đài Bắc|Đài Loan|Taipei Taoyuan Taiwan
-TSA|Đài Bắc Songshan|Đài Loan|Taipei Taiwan
-RMQ|Đài Trung|Đài Loan|Taichung Taiwan
-TNN|Đài Nam|Đài Loan|Tainan Taiwan
-KHH|Cao Hùng|Đài Loan|Kaohsiung Taiwan
-ICN|Seoul Incheon|Hàn Quốc|Korea
-GMP|Seoul Gimpo|Hàn Quốc|Korea
-PUS|Busan|Hàn Quốc|Pusan Korea
-CJU|Jeju|Hàn Quốc|Korea
-NRT|Tokyo Narita|Nhật Bản|Japan
-HND|Tokyo Haneda|Nhật Bản|Japan
-KIX|Osaka Kansai|Nhật Bản|Japan
-ITM|Osaka Itami|Nhật Bản|Japan
-NGO|Nagoya|Nhật Bản|Japan Chubu
-FUK|Fukuoka|Nhật Bản|Japan
-CTS|Sapporo|Nhật Bản|Japan Chitose
-OKA|Okinawa|Nhật Bản|Japan Naha
-SIN|Singapore|Singapore|Changi
-BKK|Bangkok Suvarnabhumi|Thái Lan|Thailand
-DMK|Bangkok Don Mueang|Thái Lan|Thailand
-HKT|Phuket|Thái Lan|Thailand
-CNX|Chiang Mai|Thái Lan|Thailand
-KUL|Kuala Lumpur|Malaysia|KL
-PEN|Penang|Malaysia|
-CGK|Jakarta|Indonesia|Soekarno Hatta
-DPS|Bali Denpasar|Indonesia|Ngurah Rai
-MNL|Manila|Philippines|Philippines
-CEB|Cebu|Philippines|
-PNH|Phnom Penh|Campuchia|Cambodia
-KTI|Phnom Penh Techo|Campuchia|Cambodia
-SAI|Siem Reap|Campuchia|Angkor
-VTE|Viêng Chăn|Lào|Laos Vientiane
-LPQ|Luang Prabang|Lào|Laos
-HKG|Hong Kong|Hong Kong|Hương Cảng
-MFM|Macau|Macau|Ma Cao
-CAN|Quảng Châu|Trung Quốc|Guangzhou China
-PVG|Thượng Hải Pudong|Trung Quốc|Shanghai
-SHA|Thượng Hải Hongqiao|Trung Quốc|Shanghai
-PEK|Bắc Kinh Capital|Trung Quốc|Beijing
-PKX|Bắc Kinh Daxing|Trung Quốc|Beijing
-SZX|Thâm Quyến|Trung Quốc|Shenzhen
-CTU|Thành Đô Shuangliu|Trung Quốc|Chengdu
-TFU|Thành Đô Tianfu|Trung Quốc|Chengdu
-KMG|Côn Minh|Trung Quốc|Kunming
-XIY|Tây An|Trung Quốc|Xian
-DEL|New Delhi|Ấn Độ|India
-BOM|Mumbai|Ấn Độ|India
-BLR|Bengaluru|Ấn Độ|Bangalore
-CCU|Kolkata|Ấn Độ|India
-DXB|Dubai|UAE|Emirates
-AUH|Abu Dhabi|UAE|Emirates
-DOH|Doha|Qatar|
-IST|Istanbul|Thổ Nhĩ Kỳ|Turkey
-SYD|Sydney|Úc|Australia
-MEL|Melbourne|Úc|Australia
-BNE|Brisbane|Úc|Australia
-PER|Perth|Úc|Australia
-ADL|Adelaide|Úc|Australia
-AKL|Auckland|New Zealand|
-CHC|Christchurch|New Zealand|
-LAX|Los Angeles|Mỹ|USA
-SFO|San Francisco|Mỹ|USA
-SAN|San Diego|Mỹ|USA
-SLC|Salt Lake City|Mỹ|Utah USA
-JFK|New York JFK|Mỹ|USA
-EWR|Newark New York|Mỹ|USA
-ORD|Chicago O Hare|Mỹ|USA
-SEA|Seattle|Mỹ|USA
-DFW|Dallas Fort Worth|Mỹ|USA
-IAH|Houston|Mỹ|USA
-ATL|Atlanta|Mỹ|USA
-IAD|Washington Dulles|Mỹ|USA
-BOS|Boston|Mỹ|USA
-MIA|Miami|Mỹ|USA
-YVR|Vancouver|Canada|
-YYZ|Toronto|Canada|
-YUL|Montreal|Canada|
-LHR|London Heathrow|Anh|UK
-LGW|London Gatwick|Anh|UK
-CDG|Paris Charles de Gaulle|Pháp|France
-ORY|Paris Orly|Pháp|France
-FRA|Frankfurt|Đức|Germany
-MUC|Munich|Đức|Germany
-AMS|Amsterdam|Hà Lan|Netherlands
-BRU|Brussels|Bỉ|Belgium
-ZRH|Zurich|Thụy Sĩ|Switzerland
-FCO|Rome Fiumicino|Ý|Italy
-MXP|Milan Malpensa|Ý|Italy
-MAD|Madrid|Tây Ban Nha|Spain
-BCN|Barcelona|Tây Ban Nha|Spain
-VIE|Vienna|Áo|Austria
-CPH|Copenhagen|Đan Mạch|Denmark
-OSL|Oslo|Na Uy|Norway
-ARN|Stockholm Arlanda|Thụy Điển|Sweden
-HEL|Helsinki|Phần Lan|Finland
-WAW|Warsaw|Ba Lan|Poland
-PRG|Prague|Séc|Czech Republic
-`;
-
-const airports=airportLines.trim().split('\n').map(line=>{
- const [code,city,country,alias='']=line.split('|');
- return {
-  code,city,country,
-  search:[code,city,country,alias].join(' ')
- };
-});
-
-function normalizeAirport(v){
- return String(v).normalize('NFD')
-  .replace(/[\u0300-\u036f]/g,'')
-  .replace(/đ/g,'d')
-  .replace(/Đ/g,'D')
-  .toLowerCase().trim();
+function addPassenger(name='',passport=''){
+ people.push({
+  id:crypto.randomUUID(),name,passport
+ });
+ renderPassengers();
 }
 
-function setupAirportSearch(inputId,menuId){
+function renderPassengers(){
+ const holder=$('passengerContainer');
+ holder.replaceChildren();
+
+ people.forEach((person,i)=>{
+  const card=document.createElement('div');
+  card.className='passenger-card';
+
+  const top=document.createElement('div');
+  top.className='passenger-top';
+
+  const title=document.createElement('strong');
+  title.textContent='Hành khách '+(i+1);
+
+  const del=document.createElement('button');
+  del.type='button';
+  del.className='small-btn';
+  del.textContent='Xóa';
+  del.disabled=people.length===1;
+  del.onclick=()=>{
+   people=people.filter(p=>p.id!==person.id);
+   renderPassengers();
+  };
+
+  top.append(title,del);
+
+  const row=document.createElement('div');
+  row.className='passenger-row';
+
+  for(const [field,labelText,placeholder] of [
+   ['name','Họ và tên','NGUYEN VAN A'],
+   ['passport','Số hộ chiếu','Passport No.']
+  ]){
+   const wrapper=document.createElement('div');
+   const label=document.createElement('label');
+   label.textContent=labelText;
+
+   const input=document.createElement('input');
+   input.type='text';
+   input.value=person[field];
+   input.placeholder=placeholder;
+   input.maxLength=field==='name'?120:30;
+   input.autocomplete='off';
+
+   input.oninput=()=>{
+    person[field]=input.value;
+   };
+
+   wrapper.append(label,input);
+   row.append(wrapper);
+  }
+
+  card.append(top,row);
+  holder.append(card);
+ });
+
+ $('passengers').value=people.length;
+}
+
+$('addPassenger').onclick=()=>addPassenger();
+
+function getPeople(){
+ return people.map(p=>({
+  name:p.name.trim(),
+  passport:p.passport.trim().toUpperCase()
+ }));
+}
+
+// Danh sách sân bay gợi ý.
+// Có thể nhập sân bay khác bằng tay.
+const airportData=`
+HAN|Hà Nội|Việt Nam
+SGN|TP.HCM|Việt Nam
+DAD|Đà Nẵng|Việt Nam
+PQC|Phú Quốc|Việt Nam
+CXR|Nha Trang|Việt Nam
+DLI|Đà Lạt|Việt Nam
+HPH|Hải Phòng|Việt Nam
+HUI|Huế|Việt Nam
+VII|Vinh|Việt Nam
+VCA|Cần Thơ|Việt Nam
+UIH|Quy Nhơn|Việt Nam
+TPE|Đài Bắc|Đài Loan
+TSA|Đài Bắc Songshan|Đài Loan
+RMQ|Đài Trung|Đài Loan
+TNN|Đài Nam|Đài Loan
+KHH|Cao Hùng|Đài Loan
+ICN|Seoul Incheon|Hàn Quốc
+GMP|Seoul Gimpo|Hàn Quốc
+PUS|Busan|Hàn Quốc
+CJU|Jeju|Hàn Quốc
+NRT|Tokyo Narita|Nhật Bản
+HND|Tokyo Haneda|Nhật Bản
+KIX|Osaka|Nhật Bản
+NGO|Nagoya|Nhật Bản
+FUK|Fukuoka|Nhật Bản
+CTS|Sapporo|Nhật Bản
+OKA|Okinawa|Nhật Bản
+SIN|Singapore|Singapore
+BKK|Bangkok|Thái Lan
+DMK|Bangkok Don Mueang|Thái Lan
+HKT|Phuket|Thái Lan
+CNX|Chiang Mai|Thái Lan
+KUL|Kuala Lumpur|Malaysia
+PEN|Penang|Malaysia
+CGK|Jakarta|Indonesia
+DPS|Bali|Indonesia
+MNL|Manila|Philippines
+CEB|Cebu|Philippines
+PNH|Phnom Penh|Campuchia
+KTI|Phnom Penh Techo|Campuchia
+SAI|Siem Reap|Campuchia
+VTE|Viêng Chăn|Lào
+LPQ|Luang Prabang|Lào
+HKG|Hong Kong|Hong Kong
+MFM|Macau|Macau
+CAN|Quảng Châu|Trung Quốc
+PVG|Thượng Hải Pudong|Trung Quốc
+SHA|Thượng Hải Hongqiao|Trung Quốc
+PEK|Bắc Kinh|Trung Quốc
+PKX|Bắc Kinh Daxing|Trung Quốc
+SZX|Thâm Quyến|Trung Quốc
+KMG|Côn Minh|Trung Quốc
+TFU|Thành Đô|Trung Quốc
+DEL|New Delhi|Ấn Độ
+BOM|Mumbai|Ấn Độ
+DXB|Dubai|UAE
+AUH|Abu Dhabi|UAE
+DOH|Doha|Qatar
+IST|Istanbul|Thổ Nhĩ Kỳ
+SYD|Sydney|Úc
+MEL|Melbourne|Úc
+BNE|Brisbane|Úc
+PER|Perth|Úc
+ADL|Adelaide|Úc
+AKL|Auckland|New Zealand
+CHC|Christchurch|New Zealand
+LAX|Los Angeles|Mỹ
+SFO|San Francisco|Mỹ
+SAN|San Diego|Mỹ
+SLC|Salt Lake City|Mỹ
+JFK|New York JFK|Mỹ
+EWR|Newark|Mỹ
+ORD|Chicago|Mỹ
+SEA|Seattle|Mỹ
+DFW|Dallas|Mỹ
+IAH|Houston|Mỹ
+ATL|Atlanta|Mỹ
+IAD|Washington Dulles|Mỹ
+BOS|Boston|Mỹ
+MIA|Miami|Mỹ
+YVR|Vancouver|Canada
+YYZ|Toronto|Canada
+YUL|Montreal|Canada
+LHR|London Heathrow|Anh
+LGW|London Gatwick|Anh
+CDG|Paris|Pháp
+ORY|Paris Orly|Pháp
+FRA|Frankfurt|Đức
+MUC|Munich|Đức
+AMS|Amsterdam|Hà Lan
+BRU|Brussels|Bỉ
+ZRH|Zurich|Thụy Sĩ
+FCO|Rome|Ý
+MXP|Milan|Ý
+MAD|Madrid|Tây Ban Nha
+BCN|Barcelona|Tây Ban Nha
+VIE|Vienna|Áo
+CPH|Copenhagen|Đan Mạch
+OSL|Oslo|Na Uy
+ARN|Stockholm|Thụy Điển
+HEL|Helsinki|Phần Lan
+WAW|Warsaw|Ba Lan
+PRG|Prague|Séc
+`;
+
+const airports=airportData.trim().split('\n').map(line=>{
+ const [code,city,country]=line.split('|');
+ return {code,city,country};
+});
+
+function normalize(s){
+ return String(s).normalize('NFD')
+ .replace(/[\u0300-\u036f]/g,'')
+ .replace(/đ/g,'d').replace(/Đ/g,'D')
+ .toLowerCase().trim();
+}
+
+function setupAirport(inputId,resultId){
  const input=$(inputId);
- const menu=$(menuId);
+ const results=$(resultId);
 
  function close(){
-  menu.hidden=true;
-  input.setAttribute('aria-expanded','false');
+  results.hidden=true;
  }
 
- function show(){
-  const q=normalizeAirport(input.value);
-  menu.replaceChildren();
+ input.addEventListener('input',()=>{
+  results.replaceChildren();
+  syncRoute();
 
+  const q=normalize(input.value);
   if(!q){close();return;}
 
   const found=airports.filter(a=>
-   normalizeAirport(a.search).includes(q)
+   normalize(
+    a.code+' '+a.city+' '+a.country
+   ).includes(q)
   ).slice(0,8);
 
   for(const a of found){
    const b=document.createElement('button');
    b.type='button';
    b.className='airport-option';
-   b.setAttribute('role','option');
    b.textContent=
-    a.city+' ('+a.code+') — '+a.country;
+    a.city+' ('+a.code+'), '+a.country;
 
-   b.addEventListener('mousedown',e=>
-    e.preventDefault()
-   );
-
-   b.addEventListener('click',()=>{
-    input.value=
-     a.city+' ('+a.code+'), '+a.country;
-    close();
-    input.focus();
+   b.onmousedown=e=>e.preventDefault();
+   b.onclick=()=>{
+    input.value=b.textContent;
     syncRoute();
-   });
-
-   menu.append(b);
+    close();
+   };
+   results.append(b);
   }
-
-  menu.hidden=found.length===0;
-  input.setAttribute(
-   'aria-expanded',
-   String(found.length>0)
-  );
- }
-
- input.addEventListener('input',()=>{
-  show();
-  syncRoute();
+  results.hidden=found.length===0;
  });
 
- input.addEventListener('focus',show);
-
- input.addEventListener('blur',()=>
-  setTimeout(close,120)
- );
+ input.addEventListener('blur',()=>{
+  setTimeout(close,150);
+ });
 
  input.addEventListener('keydown',e=>{
   if(e.key==='Escape')close();
-
-  if(e.key==='ArrowDown'&&!menu.hidden){
-   e.preventDefault();
-   menu.querySelector('button')?.focus();
-  }
- });
-
- menu.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){
-   close();
-   input.focus();
-  }
  });
 }
 
 function syncRoute(){
- const from=$('airportFrom').value.trim();
- const to=$('airportTo').value.trim();
-
- $('route').value=
-  from&&to?from+' → '+to:'';
+ const a=$('airportFrom').value.trim();
+ const b=$('airportTo').value.trim();
+ $('route').value=a&&b?a+' → '+b:'';
 }
 
 function restoreRoute(route){
  const parts=String(route||'')
   .split(/\s*(?:→|➔|->)\s*/);
-
  $('airportFrom').value=parts[0]||'';
-
- $('airportTo').value=
-  parts.length>1?
-  parts.slice(1).join(' → '):'';
-
+ $('airportTo').value=parts.slice(1).join(' → ');
  syncRoute();
 }
 
-setupAirportSearch(
- 'airportFrom','airportFromOptions'
-);
-setupAirportSearch(
- 'airportTo','airportToOptions'
-);
+setupAirport('airportFrom','fromResults');
+setupAirport('airportTo','toResults');
 
-const money=v=>new Intl.NumberFormat('vi-VN',{
- style:'currency',
- currency:'VND',
- maximumFractionDigits:0
-}).format(v);
-
-const num=id=>Math.max(
- 0,Math.round(Number($(id).value)||0)
-);
-
-const sum=()=>num('fare');
-
-function updateTotal(){
- $('total').textContent=money(sum());
-}
-
-$('fare').addEventListener('input',updateTotal);
-
-if(
- !firebaseConfig.apiKey||
- firebaseConfig.apiKey.includes('DIEN_')||
- !firebaseConfig.projectId||
- firebaseConfig.projectId.includes('DIEN_')||
- !adminUid||
- adminUid.includes('DIEN_')
-){
- $('loginStatus').textContent=
-  'Cấu hình Firebase hoặc UID chưa đầy đủ.';
-
- $('loginForm').querySelector('button').disabled=true;
-
- throw new Error('Firebase chưa được cấu hình');
-}
+$('fare').oninput=()=>{
+ $('total').textContent=money($('fare').value);
+};
 
 const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 const db=getFirestore(app);
 
-let currentId=null;
+function validConfig(){
+ return firebaseConfig.apiKey &&
+  !firebaseConfig.apiKey.includes('DIEN_') &&
+  adminUid && !adminUid.includes('DIEN_');
+}
 
-const link=()=>new URL(
- 'phieu.html?id='+encodeURIComponent(currentId),
- location.href
-).href;
+if(!validConfig()){
+ $('loginStatus').textContent=
+  'Firebase hoặc UID quản trị chưa được cấu hình.';
+ $('loginForm').querySelector('button').disabled=true;
+}
+
+const customerLink=()=>{
+ const url=new URL('phieu.html',location.href);
+ url.searchParams.set('id',currentId);
+ return url.href;
+};
+
+function buttons(enabled){
+ for(const id of [
+  'copyLinkBtn','viewBtn','captureBtn'
+ ])$(id).disabled=!enabled;
+}
 
 function reset(){
  currentId=null;
  $('invoiceForm').reset();
-
+ $('formTitle').textContent='LẬP HÓA ĐƠN THANH TOÁN';
+ people=[];
+ addPassenger();
  $('airportFrom').value='';
  $('airportTo').value='';
  syncRoute();
 
- $('formTitle').textContent=
-  'LẬP HÓA ĐƠN THANH TOÁN';
+ const d=new Date();
+ const local=new Date(
+  d.getTime()-d.getTimezoneOffset()*60000
+ );
+ $('issueDate').value=local.toISOString().slice(0,10);
 
- $('issueDate').value=new Date(
-  Date.now()-
-  new Date().getTimezoneOffset()*60000
- ).toISOString().slice(0,10);
-
- for(const id of [
-  'copyLinkBtn','viewBtn','captureBtn'
- ]){
-  $(id).disabled=true;
- }
-
+ $('total').textContent=money(0);
  $('saveStatus').textContent='';
- updateTotal();
+ buttons(false);
 }
 
 $('newBtn').onclick=reset;
@@ -640,43 +675,30 @@ $('loginForm').onsubmit=async e=>{
  $('loginStatus').textContent='Đang đăng nhập...';
 
  try{
-  const {user}=await signInWithEmailAndPassword(
-   auth,
-   $('email').value,
-   $('password').value
+  const result=await signInWithEmailAndPassword(
+   auth,$('email').value,$('password').value
   );
-
-  if(user.uid!==adminUid){
+  if(result.user.uid!==adminUid){
    await signOut(auth);
-   throw Error(
-    'Tài khoản không có quyền quản trị.'
-   );
+   throw Error('Không có quyền quản trị.');
   }
-
   $('password').value='';
   $('loginStatus').textContent='';
-
  }catch(err){
   $('loginStatus').textContent=
-   'Không đăng nhập được: '+err.message;
+   'Lỗi đăng nhập: '+err.message;
  }
 };
 
 $('logout').onclick=()=>signOut(auth);
 
 onAuthStateChanged(auth,user=>{
- const isAdmin=!!user&&user.uid===adminUid;
+ const allowed=!!user&&user.uid===adminUid;
+ $('loginPanel').classList.toggle('hide',allowed);
+ $('adminPanel').classList.toggle('hide',!allowed);
 
- $('loginPanel').classList.toggle(
-  'hide',isAdmin
- );
-
- $('adminPanel').classList.toggle(
-  'hide',!isAdmin
- );
-
- if(user&&!isAdmin)signOut(auth);
- if(isAdmin)loadList();
+ if(user&&!allowed)signOut(auth);
+ if(allowed)loadList();
 });
 
 $('reloadBtn').onclick=loadList;
@@ -692,8 +714,7 @@ async function loadList(){
     orderBy('updatedAt','desc')
    )
   );
-
-  holder.textContent='';
+  holder.replaceChildren();
 
   if(snap.empty){
    holder.textContent='Chưa có hóa đơn nào.';
@@ -701,140 +722,156 @@ async function loadList(){
   }
 
   snap.forEach(d=>{
-   const p=d.data();
+   const data=d.data();
    const b=document.createElement('button');
-
-   b.type='button';
    b.className='btn light';
-   b.style.margin='5px';
-
+   b.type='button';
+   b.style.margin='4px';
    b.textContent=
-    (p.code||d.id)+' – '+
-    (p.customer||'Khách')+' – '+
-    money(p.total||0);
+    (data.code||d.id)+' - '+
+    (data.customer||'Khách')+' - '+
+    money(data.total);
 
-   b.onclick=()=>edit(d.id,p);
+   b.onclick=()=>editInvoice(d.id,data);
    holder.append(b);
   });
-
- }catch(e){
-  holder.textContent=
-   'Không tải được danh sách: '+e.message;
+ }catch(err){
+  holder.textContent='Lỗi: '+err.message;
  }
 }
 
-function edit(id,p){
+function editInvoice(id,data){
  currentId=id;
 
  for(const f of fields){
-  $(f).value=p[f]??(
-   f==='passengers'?'1':
-   f==='fare'?'0':''
+  if(f==='route'||f==='passengers')continue;
+  $(f).value=data[f]??'';
+ }
+
+ people=[];
+
+ if(Array.isArray(data.passengerDetails) &&
+    data.passengerDetails.length){
+  for(const p of data.passengerDetails){
+   addPassenger(p.name||'',p.passport||'');
+  }
+ }else if(data.passengerList){
+  const names=String(data.passengerList)
+   .split('\n')
+   .map(x=>x.replace(/^\s*\d+[\.\)-]\s*/,'').trim())
+   .filter(Boolean);
+
+  for(const name of names)addPassenger(name,'');
+ }else{
+  const count=Math.min(
+   100,Math.max(1,Number(data.passengers)||1)
   );
+  for(let i=0;i<count;i++){
+   addPassenger(i===0?(data.customer||''):'','');
+  }
  }
 
- restoreRoute(p.route);
- updateTotal();
-
+ restoreRoute(data.route);
+ $('total').textContent=money(data.total);
  $('formTitle').textContent=
-  'Sửa hóa đơn: '+(p.code||'');
+  'Sửa hóa đơn: '+(data.code||id);
 
- for(const f of [
-  'copyLinkBtn','viewBtn','captureBtn'
- ]){
-  $(f).disabled=false;
- }
-
+ buttons(true);
  $('saveStatus').textContent='';
-
- $('invoiceForm').scrollIntoView({
-  behavior:'smooth'
- });
+ $('invoiceForm').scrollIntoView({behavior:'smooth'});
 }
 
 $('invoiceForm').onsubmit=async e=>{
  e.preventDefault();
 
- if(!auth.currentUser||
+ if(!auth.currentUser ||
   auth.currentUser.uid!==adminUid)return;
 
  syncRoute();
 
  if(!$('route').value){
   $('saveStatus').textContent=
-   'Vui lòng nhập đủ điểm đi và điểm đến.';
+   'Vui lòng nhập điểm đi và điểm đến.';
   return;
  }
 
- const data={};
+ const details=getPeople();
 
+ if(details.some(p=>!p.name)){
+  $('saveStatus').textContent=
+   'Vui lòng nhập họ tên của tất cả hành khách.';
+  return;
+ }
+
+ const fare=Math.max(
+  0,Math.round(Number($('fare').value)||0)
+ );
+
+ const data={};
  for(const f of fields){
   data[f]=$(f).value;
  }
 
- for(const f of ['fare','passengers']){
-  data[f]=num(f);
- }
+ data.fare=fare;
+ data.total=fare;
+ data.passengers=details.length;
 
- data.total=sum();
+ // Dữ liệu riêng cho quản trị.
+ data.passengerDetails=details;
+ data.passengerList=details.map(
+  p=>p.name
+ ).join('\n');
+
  data.updatedAt=serverTimestamp();
 
  const id=currentId||crypto.randomUUID();
+
+ // Chỉ đưa thông tin cần thiết lên trang khách.
+ // Không sao chép số hộ chiếu.
+ const shared={
+  code:data.code,
+  pnr:data.pnr,
+  customer:data.customer,
+  issueDate:data.issueDate,
+  route:data.route,
+  airline:data.airline,
+  flightDate:data.flightDate,
+  passengers:data.passengers,
+  fare:data.fare,
+  tax:0,fee:0,discount:0,
+  total:data.total,
+  note:'',
+  status:data.status,
+  updatedAt:serverTimestamp()
+ };
 
  $('saveBtn').disabled=true;
  $('saveStatus').textContent='Đang lưu...';
 
  try{
-  await setDoc(
+  const batch=writeBatch(db);
+  batch.set(
    doc(db,'paymentRequests',id),
-   data,
-   {merge:true}
+   data,{merge:true}
   );
-
-  // Giữ tương thích trang khách cũ.
-  const shared={
-   code:data.code,
-   pnr:data.pnr,
-   customer:data.customer,
-   issueDate:data.issueDate,
-   route:data.route,
-   airline:data.airline,
-   flightDate:data.flightDate,
-   passengers:data.passengers,
-   fare:data.fare,
-   tax:0,
-   fee:0,
-   discount:0,
-   total:data.total,
-   note:'',
-   status:data.status,
-   updatedAt:serverTimestamp()
-  };
-
-  await setDoc(
+  batch.set(
    doc(db,'publicPaymentRequests',id),
    shared
   );
 
+  await batch.commit();
+
   currentId=id;
-
-  for(const f of [
-   'copyLinkBtn','viewBtn','captureBtn'
-  ]){
-   $(f).disabled=false;
-  }
-
+  buttons(true);
   $('saveStatus').className='success';
   $('saveStatus').textContent=
-   'Đã lưu. Có thể sao chép link gửi khách.';
-
-  loadList();
+   'Đã lưu hóa đơn thành công.';
+  await loadList();
 
  }catch(err){
   $('saveStatus').className='error';
   $('saveStatus').textContent=
-   'Lỗi lưu hóa đơn: '+err.message;
-
+   'Lưu không thành công: '+err.message;
  }finally{
   $('saveBtn').disabled=false;
  }
@@ -842,72 +879,45 @@ $('invoiceForm').onsubmit=async e=>{
 
 $('copyLinkBtn').onclick=async()=>{
  if(!currentId)return;
-
  try{
-  await navigator.clipboard.writeText(link());
+  await navigator.clipboard.writeText(customerLink());
   $('saveStatus').textContent='Đã sao chép link.';
  }catch{
-  prompt('Sao chép link sau:',link());
+  prompt('Sao chép liên kết:',customerLink());
  }
 };
 
 $('viewBtn').onclick=()=>{
  if(currentId){
-  window.open(link(),'_blank','noopener');
+  window.open(customerLink(),'_blank','noopener');
  }
 };
 
 $('demoBtn').onclick=()=>{
- window.open(
-  'phieu.html?demo=1',
-  '_blank','noopener'
- );
-};
-
-$('closePreview').onclick=()=>{
- $('previewPanel').style.display='none';
- $('invoicePreview').src='about:blank';
+ window.open('phieu.html?demo=1','_blank','noopener');
 };
 
 $('captureBtn').onclick=()=>{
  if(!currentId)return;
+ $('previewPanel').hidden=false;
+ $('invoicePreview').src=customerLink();
+ $('previewPanel').scrollIntoView({behavior:'smooth'});
+};
 
- $('previewPanel').style.display='block';
- $('previewStatus').textContent=
-  'Đang tải phiếu đã lưu...';
-
- $('invoicePreview').src=link();
-
- $('invoicePreview').onload=()=>{
-  $('previewStatus').textContent=
-   'Phiếu đã mở. Kiểm tra rồi nhấn Tải ảnh PNG.';
- };
-
- $('previewPanel').scrollIntoView({
-  behavior:'smooth'
- });
+$('closePreview').onclick=()=>{
+ $('previewPanel').hidden=true;
+ $('invoicePreview').src='about:blank';
 };
 
 $('downloadPNG').onclick=async()=>{
  const w=$('invoicePreview').contentWindow;
-
  try{
-  if(!w||
-   typeof w.exportInvoiceImage!=='function'){
-   throw Error(
-    'Trang xem phiếu chưa hỗ trợ xuất ảnh.'
-   );
+  if(typeof w?.exportInvoiceImage!=='function'){
+   throw Error('Trang phiếu chưa hỗ trợ xuất PNG.');
   }
-
   await w.exportInvoiceImage();
-
-  $('previewStatus').textContent=
-   'Đã yêu cầu tải ảnh PNG.';
-
- }catch(e){
-  $('previewStatus').textContent=
-   e.message+
-   ' Hãy mở Xem hóa đơn khách để tải ảnh.';
+ }catch(err){
+  $('previewStatus').textContent=err.message;
  }
 };
 
@@ -916,7 +926,7 @@ $('printInvoice').onclick=()=>{
   $('invoicePreview').contentWindow.print();
  }catch{
   $('previewStatus').textContent=
-   'Hãy mở link khách và dùng In / Lưu PDF.';
+   'Mở hóa đơn khách rồi chọn In / Lưu PDF.';
  }
 };
 
