@@ -8,202 +8,232 @@
 
 <style>
 :root{
- --navy:#173d5a;
- --blue:#1785bd;
- --line:#dbe6ee;
- --ink:#243746;
- --muted:#6b8396;
+ --bg:#eef5fb;
+ --card:#fff;
+ --line:#d8e5ef;
+ --navy:#173e5a;
+ --blue:#1c8ec5;
+ --text:#253746;
+ --muted:#71879a;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
  margin:0;
- background:linear-gradient(180deg,#ecf4f9,#f6f9fc 380px);
- color:var(--ink);
- font:15px/1.55 Arial,sans-serif;
+ background:radial-gradient(circle at top left,#dff4ff,#eef5fb 45%);
+ color:var(--text);
+ font:13px/1.45 Arial,sans-serif;
  min-height:100vh;
 }
 header{
- background:linear-gradient(112deg,#133d60,#176b97 58%,#1c94c5);
+ background:linear-gradient(90deg,#1778ab,#2aa4d2);
  color:white;
- padding:23px 26px;
- box-shadow:0 4px 17px #143c5720;
+ padding:14px 18px;
+ box-shadow:0 4px 18px #10426126;
 }
 header>div,main{
  width:100%;
- max-width:1160px;
- margin-left:auto;
- margin-right:auto;
+ max-width:760px;
+ margin:0 auto;
 }
-h1{
+header>div{
+ display:flex;
+ justify-content:space-between;
+ align-items:flex-start;
+ gap:10px;
+}
+.brand-title{
+ display:flex;
+ align-items:flex-start;
+ gap:10px;
+}
+.brand-icon{
+ width:28px;
+ height:28px;
+ border-radius:8px;
+ background:#ffffff2e;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:14px;
+}
+header h1{
  margin:0;
- font-size:25px;
- letter-spacing:.9px;
+ font-size:15px;
  font-weight:800;
+ letter-spacing:.3px;
 }
 header p{
- margin:5px 0 0;
- font-size:12px;
- letter-spacing:.5px;
- color:#e6f5ff;
+ margin:2px 0 0;
+ font-size:11px;
+ color:#eaf8ff;
 }
-main{padding:28px 24px 18px}
+.header-dots{
+ display:flex;
+ gap:5px;
+ margin-top:3px;
+}
+.header-dots span{
+ width:6px;
+ height:6px;
+ border-radius:50%;
+ background:#ffffff99;
+}
+main{padding:10px 10px 22px}
 .card{
- background:white;
+ background:var(--card);
  border:1px solid var(--line);
- border-radius:16px;
- padding:28px 30px;
- margin-bottom:22px;
- box-shadow:0 8px 30px #1b4f700d;
+ border-radius:12px;
+ padding:12px;
+ margin-bottom:10px;
+ box-shadow:0 4px 18px #143c5a0d;
 }
 h2{
- font-size:19px;
+ margin:0 0 12px;
+ font-size:15px;
  color:var(--navy);
- margin:0 0 22px;
  font-weight:800;
 }
 h3{
- font-size:15px;
+ margin:0 0 10px;
+ font-size:12px;
  color:var(--navy);
- margin:0 0 14px;
  font-weight:800;
 }
-.grid{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- column-gap:24px;
- row-gap:20px;
-}
-.full{grid-column:1/-1}
-label{
- display:block;
- color:#385166;
- font-size:13px;
- font-weight:700;
- margin-bottom:8px;
-}
-input,select{
- width:100%;
- min-width:0;
- min-height:47px;
- padding:12px 14px;
- border:1px solid #cbdce8;
- border-radius:9px;
- font:14px Arial,sans-serif;
- background:white;
- color:#243b4f;
-}
-input:focus,select:focus{
- border-color:#168dbe;
- outline:0;
- box-shadow:0 0 0 3px #1590c326;
-}
-input[readonly]{
- background:#f3f8fb;
- color:#375e7d;
-}
-.item{
- border:1px solid #dce8f0;
- border-radius:11px;
- padding:19px 20px;
- margin-bottom:13px;
- background:#fbfdff;
-}
-.itemtop,.bar{
+.bar,.itemtop{
  display:flex;
  align-items:center;
  justify-content:space-between;
- gap:14px;
- margin-bottom:14px;
+ gap:10px;
+ margin-bottom:10px;
 }
 .bar h2{margin:0}
 .actions{
  display:flex;
- align-items:center;
- gap:11px;
  flex-wrap:wrap;
+ gap:7px;
 }
 .btn{
  border:0;
- border-radius:9px;
- min-height:43px;
- padding:12px 18px;
+ border-radius:7px;
+ min-height:30px;
+ padding:7px 10px;
  cursor:pointer;
- font-size:13px;
- font-weight:700;
  background:#177fb1;
- color:white;
+ color:#fff;
+ font-size:11px;
+ font-weight:700;
 }
-.btn:hover{background:#12628f}
+.btn:hover{background:#146b97}
 .btn.soft{
- background:#eaf4fa;
- color:#195d86;
+ background:#eef6fb;
+ color:#1c628b;
 }
 .btn.danger{
- background:#ffeded;
- color:#ad3c3c;
+ background:#ffecec;
+ color:#c14545;
 }
 button:disabled{
- opacity:.46;
+ opacity:.5;
  cursor:not-allowed;
 }
-.hidden{display:none!important}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:10px;
+}
+.full{grid-column:1/-1}
+label{
+ display:block;
+ margin-bottom:4px;
+ font-size:11px;
+ font-weight:700;
+ color:#425c70;
+}
+input,select{
+ width:100%;
+ min-width:0;
+ min-height:34px;
+ padding:7px 10px;
+ border:1px solid #c8dae7;
+ border-radius:6px;
+ background:#fff;
+ color:#24394b;
+ font:12px Arial,sans-serif;
+}
+input:focus,select:focus{
+ outline:none;
+ border-color:#50a9d2;
+ box-shadow:0 0 0 3px #34a4d622;
+}
+input[readonly]{background:#f4f8fb}
+.item{
+ border:1px solid #dbe7ef;
+ background:#fbfdff;
+ border-radius:8px;
+ padding:10px;
+ margin-bottom:8px;
+}
 .total{
- padding:22px 24px;
- background:linear-gradient(110deg,#ecf7fe,#e6f4fc);
- border-radius:11px;
- border:1px solid #b8dcef;
- color:#11699b;
- font-size:23px;
+ background:#ecf6fc;
+ border:1px solid #bedced;
+ border-radius:8px;
+ padding:10px 12px;
+ color:#166794;
+ font-size:14px;
  font-weight:800;
 }
 .help{
- font-size:12px;
- color:#758b9d;
- line-height:1.7;
- margin:11px 0 0;
+ margin:6px 0 0;
+ font-size:10.5px;
+ color:var(--muted);
+ line-height:1.55;
 }
 .msg{
- min-height:22px;
- font-size:13px;
- color:#a03535;
+ min-height:18px;
+ margin:8px 0 0;
+ font-size:11px;
+ color:#a74242;
 }
 .entry{
  display:flex;
  align-items:center;
  justify-content:space-between;
- gap:14px;
- border-bottom:1px solid #e9eff5;
- padding:14px 0;
- font-size:14px;
+ gap:10px;
+ border-bottom:1px solid #e7eef4;
+ padding:8px 0;
+ font-size:11.5px;
 }
+.entry:last-child{border-bottom:0}
 .entry span{overflow-wrap:anywhere}
 #invoiceList{
- max-height:360px;
+ max-height:170px;
  overflow:auto;
 }
-#saveBtn{
- background:linear-gradient(110deg,#126c9e,#1d97c8);
- min-width:175px;
-}
 #loginBox{
- max-width:770px;
- margin:0 auto 22px;
+ max-width:520px;
+ margin:14px auto;
+}
+.notice-box{
+ background:#fff8f1;
+ border:1px solid #f0e0cf;
+ border-radius:7px;
+ padding:9px 10px;
+ color:#836245;
+ font-size:10.5px;
+ line-height:1.5;
 }
 footer{
  text-align:center;
- color:#8095a5;
- padding:15px 24px 26px;
- font-size:11px;
+ color:#8ba0af;
+ font-size:10px;
+ padding:10px 14px 24px;
 }
-@media(max-width:760px){
- header{padding:20px 16px}
- main{padding:17px 12px}
- .card{padding:19px 17px}
- .grid{grid-template-columns:1fr;gap:15px}
+.hidden{display:none!important}
+@media(max-width:640px){
+ header>div,main{max-width:100%}
+ .grid{grid-template-columns:1fr}
  .full{grid-column:1}
- .item{padding:15px}
- .total{font-size:19px;padding:17px}
  .entry{flex-wrap:wrap}
  .actions .btn{flex:1 1 auto}
 }
@@ -214,8 +244,16 @@ footer{
 
 <header>
 <div>
-<h1>ÉN VIỆT GROUP</h1>
-<p>QUẢN TRỊ PHIẾU YÊU CẦU THANH TOÁN VÉ MÁY BAY</p>
+ <div class="brand-title">
+  <div class="brand-icon">✦</div>
+  <div>
+   <h1>GIAO DIỆN QUẢN TRỊ</h1>
+   <p>Quản lý hóa đơn, link khách hàng và thanh toán</p>
+  </div>
+ </div>
+ <div class="header-dots">
+  <span></span><span></span><span></span>
+ </div>
 </div>
 </header>
 
@@ -226,52 +264,46 @@ footer{
 <form id="loginForm" class="grid">
 <div>
 <label>Email</label>
-<input id="email" type="email"
- autocomplete="username" required>
+<input id="email" type="email" autocomplete="username" required>
 </div>
 <div>
 <label>Mật khẩu</label>
-<input id="password" type="password"
- autocomplete="current-password" required>
+<input id="password" type="password" autocomplete="current-password" required>
 </div>
 <div class="full">
 <button class="btn">ĐĂNG NHẬP</button>
 </div>
 </form>
-<p id="loginMsg" class="msg"></p>
+<p id="loginMsg" class="msg" role="status"></p>
 </section>
 
 <div id="dashboard" class="hidden">
 
 <section class="card">
 <div class="bar">
-<h2>DANH SÁCH HÓA ĐƠN</h2>
+<h2>Danh sách hóa đơn</h2>
 <button class="btn soft" id="logout">Đăng xuất</button>
 </div>
-
 <div class="actions">
-<button class="btn" id="newBtn">+ Tạo mới</button>
-<button class="btn soft" id="reload">Tải lại danh sách</button>
+<button class="btn" id="newBtn">+ Tạo hóa đơn mới</button>
+<button class="btn soft" id="reload">Tải lại</button>
 </div>
-
 <div id="invoiceList" style="margin-top:16px"></div>
 </section>
 
 <section class="card">
-<h2 id="formHeading">LẬP HÓA ĐƠN</h2>
+<h2 id="formHeading">LẬP HÓA ĐƠN THANH TOÁN</h2>
 
 <form id="invoiceForm" class="grid">
 
 <div>
 <label>Mã hóa đơn</label>
-<input id="code" required maxlength="60"
- placeholder="ENV-2026-001">
+<input id="code" required maxlength="60" placeholder="ENV-2026-001">
 </div>
 
 <div>
 <label>Mã đặt chỗ (PNR)</label>
-<input id="pnr" maxlength="35"
- placeholder="Mã đặt chỗ thực tế">
+<input id="pnr" maxlength="35" placeholder="Chỉ nhập mã đặt chỗ thực tế">
 </div>
 
 <div>
@@ -291,7 +323,7 @@ footer{
 + Thêm hành khách
 </button>
 <p class="help">
-Số hộ chiếu chỉ lưu trong dữ liệu quản trị,
+Số hộ chiếu chỉ lưu trong phần quản trị,
 không đưa vào phiếu chia sẻ cho khách.
 </p>
 </div>
@@ -314,11 +346,11 @@ không đưa vào phiếu chia sẻ cho khách.
 <h3>HÀNH TRÌNH BAY</h3>
 <div id="legsList"></div>
 <button type="button" class="btn soft hidden" id="addLeg">
-+ Thêm chặng bay
++ Thêm chặng
 </button>
 <p class="help">
-Nhập thành phố hoặc mã sân bay.
-Có thể nhập địa điểm ngoài danh sách.
+Nhập thành phố hoặc mã sân bay;
+có thể nhập điểm đến ngoài danh sách gợi ý.
 </p>
 </div>
 
@@ -351,8 +383,7 @@ Có thể nhập địa điểm ngoài danh sách.
 
 <div class="full">
 <label>Tổng giá vé (VNĐ)</label>
-<input id="fare" type="number"
- min="1" step="1" required>
+<input id="fare" type="number" min="1" step="1" required>
 </div>
 
 <div class="total full">
@@ -363,8 +394,8 @@ TỔNG THANH TOÁN:
 <div class="full">
 <h2>THÔNG TIN CHUYỂN KHOẢN</h2>
 <p class="help">
-Ngân hàng và tài khoản được nhập riêng
-cho từng hóa đơn, không cố định.
+Nhập tài khoản thực tế theo từng hóa đơn.
+Không có tài khoản cố định.
 </p>
 </div>
 
@@ -394,8 +425,7 @@ cho từng hóa đơn, không cố định.
 
 <div>
 <label>Mã ngân hàng VietQR</label>
-<input id="bankCode" maxlength="15"
- placeholder="VCB, MB, TCB..." required>
+<input id="bankCode" maxlength="15" placeholder="VCB, MB, TCB..." required>
 </div>
 
 <div>
@@ -405,8 +435,7 @@ cho từng hóa đơn, không cố định.
 
 <div>
 <label>Số tài khoản</label>
-<input id="bankAccount" inputmode="numeric"
- autocomplete="off" maxlength="20" required>
+<input id="bankAccount" inputmode="numeric" autocomplete="off" maxlength="20" required>
 </div>
 
 <div>
@@ -416,14 +445,15 @@ cho từng hóa đơn, không cố định.
 
 <div>
 <label>Nội dung chuyển khoản</label>
-<input id="transferContent" maxlength="25"
- placeholder="ENV2026001">
+<input id="transferContent" maxlength="25" placeholder="ENV2026001">
 </div>
 
-<div class="full help">
-VietQR chỉ hỗ trợ chuyển khoản.
-Phải kiểm tra giao dịch thực tế trên ngân hàng
-trước khi xác nhận đã thanh toán.
+<div class="full">
+<div class="notice-box">
+Chỉ chọn <b>Đã thanh toán</b> khi đã đối soát thực tế
+với ngân hàng. Mã VietQR chỉ hỗ trợ chuyển khoản,
+không chứng minh tiền đã nhận.
+</div>
 </div>
 
 <div class="full actions">
@@ -431,15 +461,15 @@ trước khi xác nhận đã thanh toán.
 LƯU HÓA ĐƠN
 </button>
 <button type="button" class="btn soft" id="copyBtn" disabled>
-COPY LINK KHÁCH
+Sao chép link khách
 </button>
 <button type="button" class="btn soft" id="viewBtn" disabled>
-XEM PHIẾU
+Xem hóa đơn khách
 </button>
 </div>
 
 </form>
-<p id="saveMsg" class="msg"></p>
+<p id="saveMsg" class="msg" role="status"></p>
 </section>
 
 </div>
@@ -447,7 +477,7 @@ XEM PHIẾU
 
 <footer>
 © 2026 ÉN VIỆT GROUP · Phiếu yêu cầu thanh toán
-không thay thế hóa đơn VAT hoặc biên nhận ngân hàng.
+không phải hóa đơn VAT hay biên nhận ngân hàng.
 </footer>
 
 <datalist id="airports">
@@ -470,7 +500,6 @@ không thay thế hóa đơn VAT hoặc biên nhận ngân hàng.
 </datalist>
 
 <script type="module">
-
 import {initializeApp} from
 "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 
@@ -486,8 +515,7 @@ import {
 } from
 "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-import {firebaseConfig,adminUid}
-from "./firebase-config.js";
+import {firebaseConfig,adminUid} from "./firebase-config.js";
 
 const $=id=>document.getElementById(id);
 
@@ -573,11 +601,7 @@ function drawPeople(){
 }
 
 function addPerson(n="",p=""){
- people.push({
-  id:newid(),
-  name:n,
-  passport:p
- });
+ people.push({id:newid(),name:n,passport:p});
  drawPeople();
 }
 
@@ -643,7 +667,6 @@ function resetLegs(){
  legs=$("tripType").value==="oneway"
   ?[newLeg()]
   :[newLeg(),newLeg()];
-
  drawLegs();
 }
 
@@ -680,20 +703,18 @@ function setLinkButtons(enabled){
 function reset(){
  currentId=null;
  $("invoiceForm").reset();
-
  people=[];
  addPerson();
  resetLegs();
 
  const now=new Date();
-
  $("issueDate").value=new Date(
   now.getTime()-now.getTimezoneOffset()*60000
  ).toISOString().slice(0,10);
 
  $("fare").value="";
  $("total").textContent=money(0);
- $("formHeading").textContent="LẬP HÓA ĐƠN";
+ $("formHeading").textContent="LẬP HÓA ĐƠN THANH TOÁN";
  $("saveMsg").textContent="";
  setLinkButtons(false);
 }
@@ -707,9 +728,7 @@ $("loginForm").onsubmit=async e=>{
 
  try{
   const r=await signInWithEmailAndPassword(
-   auth,
-   $("email").value,
-   $("password").value
+   auth,$("email").value,$("password").value
   );
 
   if(r.user.uid!==adminUid){
@@ -729,18 +748,13 @@ $("loginForm").onsubmit=async e=>{
 $("logout").onclick=()=>signOut(auth);
 
 onAuthStateChanged(auth,user=>{
- const allowed=!!user&&user.uid===adminUid;
+ const allowed=!!user && user.uid===adminUid;
 
  $("loginBox").classList.toggle("hidden",allowed);
  $("dashboard").classList.toggle("hidden",!allowed);
 
- if(user&&!allowed){
-  signOut(auth);
- }
-
- if(allowed){
-  loadList();
- }
+ if(user&&!allowed)signOut(auth);
+ if(allowed)loadList();
 });
 
 $("reload").onclick=loadList;
@@ -768,11 +782,10 @@ async function loadList(){
 
   for(const item of docs){
    const p=item.data();
-
    const r=document.createElement("div");
-   r.className="entry";
-
    const span=document.createElement("span");
+
+   r.className="entry";
    span.textContent=
     `${p.code||item.id} · ${p.customer||"Khách"} · ${money(p.total)}`;
 
@@ -780,13 +793,10 @@ async function loadList(){
     span,
     action("Chỉnh sửa",()=>edit(item.id,p))
    );
-
    root.append(r);
   }
-
  }catch(err){
-  root.textContent=
-   "Không tải được danh sách: "+err.message;
+  root.textContent="Không tải được: "+err.message;
  }
 }
 
@@ -807,8 +817,8 @@ function edit(id,p){
   String(p.bankCode||"").toUpperCase()
  );
 
- $("bankSelect").value=
-  option?.value||(p.bankCode?"other":"");
+ $("bankSelect").value=option?.value||
+  (p.bankCode?"other":"");
 
  people=(
   Array.isArray(p.passengerDetails)&&
@@ -827,30 +837,22 @@ function edit(id,p){
 
  if(Array.isArray(p.legs)&&p.legs.length){
   legs=p.legs.map(l=>newLeg(
-   l.from||"",
-   l.to||"",
-   l.date||""
+   l.from||"",l.to||"",l.date||""
   ));
  }else{
   const a=String(p.route||"").split(/\s*→\s*/);
-
   legs=[newLeg(
-   a[0]||"",
-   a[1]||"",
-   p.flightDate||""
+   a[0]||"",a[1]||"",p.flightDate||""
   )];
  }
 
  drawLegs();
-
  $("total").textContent=money(p.total);
  $("formHeading").textContent="CHỈNH SỬA HÓA ĐƠN";
  $("saveMsg").textContent="";
  setLinkButtons(true);
 
- $("invoiceForm").scrollIntoView({
-  behavior:"smooth"
- });
+ $("invoiceForm").scrollIntoView({behavior:"smooth"});
 }
 
 const customerLink=()=>{
@@ -861,7 +863,6 @@ const customerLink=()=>{
 
 $("copyBtn").onclick=async()=>{
  if(!currentId)return;
-
  try{
   await navigator.clipboard.writeText(customerLink());
   $("saveMsg").textContent="Đã copy liên kết khách.";
@@ -903,7 +904,7 @@ $("invoiceForm").onsubmit=async e=>{
 
  if(journey.some(l=>!l.from||!l.to||!l.date)){
   msg.textContent=
-   "Nhập đủ điểm đi, điểm đến và ngày bay từng chặng.";
+   "Nhập đủ điểm đi, điểm đến và ngày bay.";
   return;
  }
 
@@ -926,12 +927,11 @@ $("invoiceForm").onsubmit=async e=>{
   !bankOwner
  ){
   msg.textContent=
-   "Điền đầy đủ mã VietQR, ngân hàng, số tài khoản và chủ tài khoản.";
+   "Điền đủ thông tin ngân hàng và tài khoản.";
   return;
  }
 
  const code=$("code").value.trim();
-
  const transferContent=(
   $("transferContent").value.trim()||
   code.replace(/[^a-z0-9]/gi,"")
@@ -939,17 +939,15 @@ $("invoiceForm").onsubmit=async e=>{
 
  if(!/^[A-Z0-9 ]{1,25}$/.test(transferContent)){
   msg.textContent=
-   "Nội dung CK chỉ gồm chữ, số hoặc khoảng trắng, tối đa 25 ký tự.";
+   "Nội dung CK tối đa 25 ký tự chữ và số.";
   return;
  }
 
  const status=$("status").value;
 
  if(status==="paid"&&!confirm(
-  "Bạn đã kiểm tra ngân hàng và xác nhận đã nhận tiền?"
- )){
-  return;
- }
+  "Bạn đã kiểm tra ngân hàng và xác nhận nhận tiền?"
+ ))return;
 
  const route=journey.map(l=>
   l.from+" → "+l.to
@@ -1010,8 +1008,7 @@ $("invoiceForm").onsubmit=async e=>{
 
   batch.set(
    doc(db,"paymentRequests",id),
-   p,
-   {merge:true}
+   p,{merge:true}
   );
 
   batch.set(
@@ -1023,21 +1020,15 @@ $("invoiceForm").onsubmit=async e=>{
 
   currentId=id;
   setLinkButtons(true);
-
-  msg.textContent=
-   "Đã lưu thành công. Có thể copy link khách.";
-
+  msg.textContent="Đã lưu thành công. Có thể copy link khách.";
   loadList();
 
  }catch(err){
-  msg.textContent=
-   "Không lưu được: "+err.message;
-
+  msg.textContent="Không lưu được: "+err.message;
  }finally{
   $("saveBtn").disabled=false;
  }
 };
-
 </script>
 </body>
 </html>
