@@ -4,148 +4,255 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Én Việt Group - Đăng nhập</title>
+
 <style>
-*{box-sizing:border-box}
+:root{
+  --blue:#0879bb;
+  --dark:#164c78;
+  --orange:#f39a3e;
+}
+
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
   min-height:100vh;
   font-family:Arial,sans-serif;
-  color:#243e54;
+  color:#234963;
+
   background:
     linear-gradient(
-      rgba(231,247,255,.22),
-      rgba(239,249,255,.30)
+      135deg,
+      rgba(226,246,255,.60),
+      rgba(255,247,235,.42)
     ),
     url("hero-bg.jpg") center/cover no-repeat fixed,
-    #e8f5ff;
+    #e9f7ff;
+
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   padding:24px 16px;
 }
 
 .card{
   width:100%;
   max-width:610px;
-  background:rgba(255,255,255,.86);
-  border:1px solid rgba(255,255,255,.85);
-  border-radius:22px;
-  padding:38px 32px;
   text-align:center;
-  box-shadow:0 15px 40px rgba(37,102,148,.14);
-  backdrop-filter:blur(13px);
+  padding:42px 34px;
+  border-radius:24px;
+
+  background:rgba(255,255,255,.94);
+  border:1px solid #ffffff;
+
+  box-shadow:
+    0 18px 55px rgba(23,105,163,.17);
+
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(12px);
 }
 
+/* VIỀN MÀU XANH - CAM */
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:7px;
+
+  background:linear-gradient(
+    90deg,
+    #149cdb,
+    #67cffa,
+    #ffc16b,
+    #eb8435
+  );
+}
+
+/* LOGO */
+
 .logo{
-  display:block;
   width:125px;
   max-height:95px;
   object-fit:contain;
-  margin:0 auto 14px;
+  display:block;
+  margin:0 auto 15px;
 }
 
+/* TÊN THƯƠNG HIỆU */
+
 h1{
-  font-size:30px;
-  font-weight:800;
-  color:#1878b5;
   margin:8px 0 12px;
-  letter-spacing:.7px;
+  font-size:31px;
+  font-weight:800;
+  letter-spacing:.8px;
+  color:var(--blue);
 }
+
+/* MÁY BAY TRANG TRÍ */
 
 .plane-line{
   display:flex;
   align-items:center;
   justify-content:center;
   gap:12px;
+  max-width:310px;
   margin:18px auto;
-  max-width:300px;
-  color:#ed8b49;
+  color:var(--orange);
 }
 
 .plane-line::before,
 .plane-line::after{
   content:"";
-  height:1px;
+  height:2px;
   flex:1;
-  background:#e2a279;
+
+  background:linear-gradient(
+    90deg,
+    #9cddf8,
+    #f7ad66
+  );
 }
 
-.plane-line span{font-size:22px}
+.plane-line span{
+  font-size:25px;
+}
+
+/* PHỤ ĐỀ */
 
 .subtitle{
+  color:#d77b2b;
   font-size:14px;
-  font-weight:bold;
-  color:#e48642;
-  letter-spacing:.5px;
+  font-weight:800;
+  letter-spacing:1px;
 }
 
+/* TIÊU ĐỀ */
+
 h2{
-  font-size:20px;
-  color:#225e88;
+  color:var(--dark);
+  font-size:22px;
   line-height:1.5;
   margin:27px 0 12px;
 }
 
+/* MÔ TẢ */
+
 .description{
-  font-size:13px;
-  color:#69869b;
-  line-height:1.7;
+  color:#62869d;
+  font-size:14px;
+  line-height:1.8;
 }
+
+/* NÚT ĐĂNG NHẬP */
 
 .btn{
   display:block;
   width:100%;
-  margin:28px auto 20px;
   padding:17px;
-  border-radius:10px;
-  background:linear-gradient(110deg,#38b4e8,#188bcd);
-  color:#fff;
+  margin:27px auto 20px;
+
+  border-radius:12px;
+  color:white;
   font-size:16px;
-  font-weight:bold;
+  font-weight:800;
   text-decoration:none;
+
+  background:linear-gradient(
+    110deg,
+    #078fd0,
+    #165fa8
+  );
+
+  box-shadow:
+    0 7px 20px rgba(9,117,193,.23);
+
   transition:.2s;
 }
 
 .btn:hover{
-  background:#0879ba;
+  background:linear-gradient(
+    110deg,
+    #0876b1,
+    #104b87
+  );
+
   transform:translateY(-2px);
 }
 
 .btn:focus-visible{
-  outline:2px solid #126fa9;
-  outline-offset:4px;
+  outline:3px solid #f3a24b;
+  outline-offset:3px;
 }
 
+/* THÔNG BÁO */
+
 .notice{
-  padding:14px;
-  background:rgba(232,246,255,.85);
-  border-radius:10px;
-  color:#5a819c;
+  padding:15px;
+  border-radius:11px;
+
+  background:linear-gradient(
+    110deg,
+    #e6f5ff,
+    #f5fbff
+  );
+
+  border:1px solid #cce8fa;
+  color:#567d98;
   font-size:12px;
   line-height:1.7;
 }
 
+/* CHÂN TRANG */
+
 footer{
   margin-top:25px;
-  color:#849cad;
-  font-size:11px;
+  padding-top:16px;
+
+  border-top:1px solid #dfedf7;
+  color:#819bad;
+  font-size:12px;
   line-height:1.8;
 }
 
+/* GIAO DIỆN ĐIỆN THOẠI */
+
 @media(max-width:600px){
-  body{background-attachment:scroll}
-  .card{padding:30px 20px}
-  h1{font-size:25px}
-  h2{font-size:18px}
-  .logo{width:110px}
+
+  body{
+    background-attachment:scroll;
+  }
+
+  .card{
+    padding:32px 20px;
+  }
+
+  .logo{
+    width:110px;
+  }
+
+  h1{
+    font-size:26px;
+  }
+
+  h2{
+    font-size:19px;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <main class="card">
+
   <img
     src="logo-enviet.svg"
     class="logo"
@@ -167,8 +274,9 @@ footer{
   </h2>
 
   <p class="description">
-    Quản lý thông tin đặt chỗ, tạo phiếu yêu cầu
-    thanh toán và gửi liên kết thanh toán
+    Quản lý thông tin đặt chỗ,
+    tạo phiếu yêu cầu thanh toán
+    và gửi liên kết thanh toán
     cho khách hàng.
   </p>
 
@@ -186,6 +294,7 @@ footer{
     © 2026 ÉN VIỆT GROUP<br>
     Hà Nội – Việt Nam
   </footer>
+
 </main>
 
 </body>
