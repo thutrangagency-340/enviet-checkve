@@ -467,6 +467,19 @@ footer{
 </div>
 </div>
 
+$("copyContent").onclick = async () => {
+  const value = $("content").textContent.trim();
+
+  if (!value || value === "—") return;
+
+  try {
+    await navigator.clipboard.writeText(value);
+    $("feedback").textContent =
+      "Đã sao chép nội dung chuyển khoản.";
+  } catch {
+    window.prompt("Sao chép nội dung:", value);
+  }
+};
 <script type="module">
 
 import {initializeApp} from
