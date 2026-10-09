@@ -1,12 +1,14 @@
-// Điền từ Firebase Console → Project settings → Your apps → Web app.
-// Đây là cấu hình công khai của Firebase, KHÔNG thêm khóa bí mật hay private key.
+
 export const firebaseConfig = {
-  apiKey: 'DIEN_API_KEY',
-  authDomain: 'DIEN_PROJECT_ID.firebaseapp.com',
-  projectId: 'DIEN_PROJECT_ID',
-  storageBucket: 'DIEN_PROJECT_ID.firebasestorage.app',
-  messagingSenderId: 'DIEN_MESSAGING_SENDER_ID',
-  appId: 'DIEN_APP_ID'
+  apiKey: "AIzaSyDCbesOqPohbh8R5N42l7z6h3T8Coipa8o",
+  authDomain: "enviet-payment-center.firebaseapp.com",
+  projectId: "enviet-payment-center",
+  storageBucket: "enviet-payment-center.firebasestorage.app",
+  messagingSenderId: "995803196860",
+  appId: "1:995803196860:web:623863bdf426b079ac0fb9",
+  measurementId: "G-2DVDS6V976"
 };
-// UID duy nhất được phép tạo và cập nhật phiếu.
-export const adminUid = 'DIEN_ADMIN_UID';
+
+// UID cua tai khoan quan tri Firebase
+export const adminUid = "DIEN_ADMIN_UID";
+  
