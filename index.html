@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Én Việt Group - Hệ thống thanh toán vé máy bay</title>
+<title>Én Việt Group - Thanh toán vé máy bay</title>
 
 <style>
 * {
@@ -15,141 +15,177 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: Arial, sans-serif;
+  color: #28628c;
   background:
     linear-gradient(
-      rgba(232,247,255,.32),
-      rgba(245,251,255,.45)
+      rgba(227,246,255,.20),
+      rgba(235,248,255,.26)
     ),
-    url("enviet-home-background.jpg")
-    center / cover no-repeat fixed,
-    #eaf7ff;
+    url("hero-bg.jpg") center / cover no-repeat fixed,
+    linear-gradient(135deg,#a4d9fa,#eef9ff);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px 16px;
-  color: #28628c;
+  padding: 30px 18px;
 }
 
 .card {
   width: 100%;
-  max-width: 620px;
-  background: rgba(255,255,255,.97);
-  border-radius: 20px;
-  padding: 32px 30px;
+  max-width: 690px;
+  padding: 38px 34px 32px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(79,149,192,.12);
+  border-radius: 24px;
+  background: rgba(255,255,255,.78);
+  border: 1px solid rgba(255,255,255,.75);
+  box-shadow: 0 15px 45px rgba(55,125,180,.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .logo {
-  width: 120px;
-  max-height: 85px;
+  width: 125px;
+  max-height: 90px;
   object-fit: contain;
+  display: block;
+  margin: 0 auto 12px;
 }
 
 h1 {
-  margin: 15px 0 8px;
-  font-size: 27px;
-  color: #1681c3;
-  letter-spacing: .5px;
+  color: #167bc0;
+  font-size: 30px;
+  margin: 12px 0;
+  letter-spacing: .8px;
+}
+
+.plane-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  max-width: 360px;
+  margin: 19px auto;
+  color: #f58132;
+}
+
+.plane-line::before,
+.plane-line::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #f58c45
+  );
+}
+
+.plane-line::after {
+  transform: rotate(180deg);
+}
+
+.plane-line span {
+  font-size: 23px;
+  line-height: 1;
 }
 
 .subtitle {
-  font-size: 14px;
+  font-size: 16px;
+  color: #f27e2d;
   font-weight: bold;
-  color: #f28a39;
-  margin: 12px 0 22px;
-}
-
-.plane {
-  color: #f28a39;
-  font-size: 18px;
-  margin-bottom: 16px;
+  margin: 12px 0;
 }
 
 h2 {
-  color: #2878ae;
-  font-size: 19px;
+  font-size: 21px;
+  color: #176aa8;
+  margin: 24px 0 12px;
   line-height: 1.5;
-  margin: 10px 0 14px;
 }
 
 .description {
-  font-size: 13px;
-  color: #6b879b;
+  font-size: 14px;
   line-height: 1.7;
+  color: #65839d;
 }
 
 .btn {
   display: block;
-  margin: 25px 0 18px;
-  padding: 15px 14px;
-  border-radius: 10px;
+  padding: 18px 14px;
+  margin: 28px 0 22px;
+  border-radius: 12px;
   background: linear-gradient(
-    100deg,
-    #36b7f0,
-    #168be0
+    110deg,
+    #35baf2,
+    #168bef
   );
   color: white;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
   text-decoration: none;
   border: none;
-  box-shadow: none;
-  transition: .2s;
+  box-shadow: 0 5px 16px rgba(51,153,220,.16);
+  transition: background .2s, transform .2s;
 }
 
 .btn:hover {
   background: linear-gradient(
-    100deg,
-    #28a8e9,
-    #0879c9
+    110deg,
+    #24a8e5,
+    #087ad1
   );
+  transform: translateY(-2px);
 }
 
 .btn:focus-visible {
-  outline: 2px solid #168be0;
+  outline: 2px solid #178bd7;
   outline-offset: 3px;
 }
 
 .notice {
-  background: #edf8ff;
-  color: #4c7897;
-  border-radius: 10px;
-  padding: 14px;
-  font-size: 12px;
+  background: rgba(226,243,255,.82);
+  color: #39769f;
+  padding: 16px 14px;
+  border-radius: 12px;
+  font-size: 13px;
   line-height: 1.7;
 }
 
 footer {
-  margin-top: 24px;
+  margin-top: 27px;
+  color: #809bad;
   font-size: 11px;
-  color: #92a9b9;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
-@media (max-width: 600px) {
+@media (max-width:600px) {
   body {
+    padding: 18px 12px;
     background-attachment: scroll;
   }
 
   .card {
-    padding: 28px 18px;
+    padding: 30px 19px;
+    border-radius: 18px;
   }
 
   .logo {
-    width: 105px;
+    width: 110px;
   }
 
   h1 {
-    font-size: 24px;
+    font-size: 25px;
   }
 
   h2 {
-    font-size: 17px;
+    font-size: 18px;
+  }
+
+  .subtitle {
+    font-size: 14px;
   }
 
   .btn {
-    font-size: 12px;
+    font-size: 13px;
   }
 }
 </style>
@@ -160,27 +196,28 @@ footer {
 <main class="card">
 
 <img
-  src="enviet-logo-moi.png"
+  src="logo-enviet.svg"
   class="logo"
   alt="Én Việt Group"
 >
 
 <h1>ÉN VIỆT GROUP</h1>
 
+<div class="plane-line">
+  <span>✈</span>
+</div>
+
 <p class="subtitle">
 VÉ MÁY BAY NỘI ĐỊA &amp; QUỐC TẾ
 </p>
-
-<div class="plane">
-✈ ──────────
-</div>
 
 <h2>
 HỆ THỐNG THANH TOÁN VÉ MÁY BAY
 </h2>
 
 <p class="description">
-Quản lý phiếu đặt vé và thông tin yêu cầu chuyển khoản.
+Quản lý phiếu đặt vé và thông tin
+yêu cầu chuyển khoản.
 </p>
 
 <a class="btn" href="quantri.html">
