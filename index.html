@@ -1,56 +1,115 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Én Việt Group - Thanh toán vé máy bay</title>
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: #eff6fb;
-      color: #17435e;
-      font: 16px Arial, sans-serif;
-      display: grid;
-      place-items: center;
       min-height: 100vh;
+      background: linear-gradient(135deg, #eaf5fc, #ffffff);
+      font-family: Arial, sans-serif;
+      color: #164361;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
     }
     .card {
-      background: white;
-      padding: 38px;
-      max-width: 600px;
-      margin: 15px;
-      border-radius: 18px;
-      box-shadow: 0 8px 30px #003e6218;
+      width: 100%;
+      max-width: 650px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 35px #003e621c;
+      padding: 45px 30px;
       text-align: center;
     }
-    h1 { color: #08659e; }
-    a {
+    .logo {
+      width: 110px;
+      max-height: 100px;
+      object-fit: contain;
+    }
+    h1 {
+      color: #08659e;
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: 21px;
+      line-height: 1.5;
+      color: #17435e;
+    }
+    p {
+      line-height: 1.8;
+      color: #60788b;
+    }
+    .subtitle {
+      color: #f28c28;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+    .btn {
       display: block;
       background: #08659e;
       color: white;
-      padding: 15px 22px;
-      margin: 12px 0;
+      padding: 17px 20px;
       border-radius: 10px;
       text-decoration: none;
+      margin: 20px 0;
+      font-size: 16px;
+      font-weight: bold;
     }
-    p { line-height: 1.7; }
+    .btn:hover { background: #064c79; }
+    .notice {
+      background: #eff7fd;
+      padding: 17px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+    footer {
+      margin-top: 25px;
+      color: #78909f;
+      font-size: 12px;
+      line-height: 1.7;
+    }
   </style>
 </head>
 <body>
   <main class="card">
-    <img src="logo-enviet.svg" width="140" alt="Én Việt Group">
+    <img src="logo-enviet.svg"
+         alt="Logo Én Việt Group"
+         class="logo">
+
     <h1>ÉN VIỆT GROUP</h1>
-    <h2>HỆ THỐNG PHIẾU THANH TOÁN VÉ MÁY BAY</h2>
-    <p>Vé máy bay nội địa và quốc tế</p>
 
-    <a href="quantri.html">QUẢN TRỊ - TẠO PHIẾU THANH TOÁN</a>
+    <p class="subtitle">
+      VÉ MÁY BAY NỘI ĐỊA & QUỐC TẾ
+    </p>
 
-    <p>Khách hàng xem phiếu thanh toán qua liên kết riêng
-    được nhân viên cung cấp sau khi tạo phiếu.</p>
+    <h2>HỆ THỐNG PHIẾU THANH TOÁN TRỰC TUYẾN</h2>
 
-    <p><small>Phiếu yêu cầu chuyển khoản, không phải
-    hóa đơn VAT hoặc xác nhận giao dịch ngân hàng.</small></p>
+    <p>Quản lý thông tin đặt vé và yêu cầu thanh toán.</p>
+
+    <a class="btn" href="quantri.html">
+      QUẢN TRỊ - TẠO PHIẾU THANH TOÁN
+    </a>
+
+    <div class="notice">
+      Khách hàng xem thông tin thanh toán
+      thông qua liên kết phiếu riêng
+      được nhân viên cung cấp.
+    </div>
+
+    <footer>
+      © 2026 ÉN VIỆT GROUP
+      <p>
+        Phiếu yêu cầu thanh toán không thay thế hóa đơn VAT
+        hoặc chứng từ xác nhận giao dịch ngân hàng.
+      </p>
+    </footer>
   </main>
 </body>
 </html>
