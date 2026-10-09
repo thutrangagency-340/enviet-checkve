@@ -21,8 +21,8 @@ import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut} from 'htt
 import {getFirestore,collection,doc,setDoc,getDoc,getDocs,query,orderBy,serverTimestamp} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 import {firebaseConfig,adminUid} from './firebase-config.js';
 const $=id=>document.getElementById(id);
-if(!firebaseConfig.apiKey || firebaseConfig.apiKey.includes('DIEN_')){
- $('loginStatus').textContent='Chưa kết nối Firebase. Cần nhập cấu hình thực tế trong firebase-config.js rồi tải lại trang.';
+if(!firebaseConfig.apiKey || firebaseConfig.apiKey.includes('DIEN_') || !firebaseConfig.projectId || firebaseConfig.projectId.includes('DIEN_') || !adminUid || adminUid.includes('DIEN_')){
+ $('loginStatus').textContent='Cấu hình Firebase hoặc UID quản trị chưa đầy đủ. Hãy điền thông tin ứng dụng Web và UID vào firebase-config.js rồi tải lại trang.';
  $('loginForm').querySelector('button').disabled=true;
  throw new Error('Firebase chưa được cấu hình');
 }

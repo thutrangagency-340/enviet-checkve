@@ -1,20 +1,10 @@
-ÉN VIỆT GROUP — BẢN WEBSITE HOÀN CHỈNH
+BẢN SỬA LỖI MỘT LẦN – ÉN VIỆT GROUP
 
-1. Xem thử: mở index.html (bằng Live Server hoặc GitHub Pages), chọn “Xem mẫu phiếu đầy đủ”. Link: phieu.html?demo=1 — CHỈ LÀ MẪU, KHÔNG CHUYỂN KHOẢN.
-2. Tải toàn bộ file trong ZIP lên THƯ MỤC GỐC repo GitHub Pages (không tải riêng file ZIP).
-3. Vào Firebase Console, tạo dự án, đăng ký Web App; sao chép thông số vào firebase-config.js. Không thêm private key.
-4. Bật Authentication → Email/Password; tạo tài khoản quản trị. Copy User UID vào adminUid trong firebase-config.js.
-5. Tạo Cloud Firestore; trong firestore.rules thay DIEN_ADMIN_UID bằng đúng UID, công bố rules trong Firebase Console. Kiểm thử quyền bằng Rules Playground / tài khoản không phải admin.
-6. Mở /quantri.html, đăng nhập, nhập phiếu, chọn Lưu phiếu, Sao chép link khách; khách xem /phieu.html?id=UUID.
-7. Kiểm tra cấu hình DNS tên miền; GitHub Settings → Pages → Custom domain. DNS chưa trỏ chính xác sẽ bị NXDOMAIN.
-8. LƯU Ý: Đây là trang YÊU CẦU CHUYỂN KHOẢN, không phải thanh toán tự động. Trạng thái đã thanh toán phải được xác nhận đối soát ngân hàng bởi người có thẩm quyền. Mọi dữ liệu đơn hàng và thông tin tài khoản phải được chủ sở hữu kiểm chứng. Bản mẫu demo tuyệt đối không dùng để yêu cầu khách gửi tiền.
-9. Vì phiếu công khai đọc được bằng UUID, KHÔNG đăng số hộ chiếu, email cá nhân, số điện thoại hay dữ liệu nhạy cảm; cân nhắc backend xác thực nếu cần dữ liệu cá nhân.
+1. Đã sửa lỗi JavaScript xuống dòng gây hỏng toàn bộ trang quản trị.
+2. Đã đổi index.html thành giao diện chính, không còn nút demo.
+3. Hãy điền 6 trường firebaseConfig từ Firebase Console → Project settings → Your apps → Web app và adminUid là UID của tài khoản quản trị Authentication trong firebase-config.js. Không nhập mật khẩu hay private key.
+4. Vào repo GitHub, Add file → Upload files, kéo các file trong thư mục (không kéo ZIP); GitHub sẽ ghi đè file trùng tên khi commit. Nhớ giữ CNAME và các file khác đang dùng.
+5. Kiểm tra Rules đã áp dụng, phương thức đăng nhập Email/Password được bật, tên miền được ủy quyền.
+6. Trạng thái đã nhận tiền chỉ được đặt sau khi đã đối soát trực tiếp tại ngân hàng.
 
-
-BẢN CẬP NHẬT 6 CHỨC NĂNG
-- Quản trị: tạo, sửa, lưu phiếu; kiểm tra giá vé, tổng tiền, chi tiết hành trình.
-- Sau khi LƯU phiếu, nhấn 'Chụp ảnh phiếu đã lưu (PNG)' để xem trước, nhấn 'Tải ảnh PNG để gửi khách'.
-- Trên phiếu khách: Chụp ảnh phiếu, chụp ảnh QR, sao chép thông tin, In / Lưu PDF.
-- Nút 'Xem thử toàn bộ giao diện' hiển thị dữ liệu MẪU KHÔNG CHUYỂN KHOẢN.
-- Firebase phải được thiết lập thật trong firebase-config.js; GitHub Pages không cung cấp cơ sở dữ liệu, đăng nhập hay đối soát ngân hàng.
-- Chỉ đánh dấu đã nhận tiền sau khi đối soát ngân hàng, không nhầm phiếu yêu cầu với hóa đơn điện tử/hóa đơn của hãng bay.
+LƯU Ý: Do chưa có web firebaseConfig và UID đầy đủ, chưa thể đảm bảo đăng nhập chạy thật. Không nhập giá trị đoán vào config.
