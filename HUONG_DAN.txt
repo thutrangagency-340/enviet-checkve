@@ -1,0 +1,20 @@
+ÉN VIỆT GROUP — BẢN WEBSITE HOÀN CHỈNH
+
+1. Xem thử: mở index.html (bằng Live Server hoặc GitHub Pages), chọn “Xem mẫu phiếu đầy đủ”. Link: phieu.html?demo=1 — CHỈ LÀ MẪU, KHÔNG CHUYỂN KHOẢN.
+2. Tải toàn bộ file trong ZIP lên THƯ MỤC GỐC repo GitHub Pages (không tải riêng file ZIP).
+3. Vào Firebase Console, tạo dự án, đăng ký Web App; sao chép thông số vào firebase-config.js. Không thêm private key.
+4. Bật Authentication → Email/Password; tạo tài khoản quản trị. Copy User UID vào adminUid trong firebase-config.js.
+5. Tạo Cloud Firestore; trong firestore.rules thay DIEN_ADMIN_UID bằng đúng UID, công bố rules trong Firebase Console. Kiểm thử quyền bằng Rules Playground / tài khoản không phải admin.
+6. Mở /quantri.html, đăng nhập, nhập phiếu, chọn Lưu phiếu, Sao chép link khách; khách xem /phieu.html?id=UUID.
+7. Kiểm tra cấu hình DNS tên miền; GitHub Settings → Pages → Custom domain. DNS chưa trỏ chính xác sẽ bị NXDOMAIN.
+8. LƯU Ý: Đây là trang YÊU CẦU CHUYỂN KHOẢN, không phải thanh toán tự động. Trạng thái đã thanh toán phải được xác nhận đối soát ngân hàng bởi người có thẩm quyền. Mọi dữ liệu đơn hàng và thông tin tài khoản phải được chủ sở hữu kiểm chứng. Bản mẫu demo tuyệt đối không dùng để yêu cầu khách gửi tiền.
+9. Vì phiếu công khai đọc được bằng UUID, KHÔNG đăng số hộ chiếu, email cá nhân, số điện thoại hay dữ liệu nhạy cảm; cân nhắc backend xác thực nếu cần dữ liệu cá nhân.
+
+
+BẢN CẬP NHẬT 6 CHỨC NĂNG
+- Quản trị: tạo, sửa, lưu phiếu; kiểm tra giá vé, tổng tiền, chi tiết hành trình.
+- Sau khi LƯU phiếu, nhấn 'Chụp ảnh phiếu đã lưu (PNG)' để xem trước, nhấn 'Tải ảnh PNG để gửi khách'.
+- Trên phiếu khách: Chụp ảnh phiếu, chụp ảnh QR, sao chép thông tin, In / Lưu PDF.
+- Nút 'Xem thử toàn bộ giao diện' hiển thị dữ liệu MẪU KHÔNG CHUYỂN KHOẢN.
+- Firebase phải được thiết lập thật trong firebase-config.js; GitHub Pages không cung cấp cơ sở dữ liệu, đăng nhập hay đối soát ngân hàng.
+- Chỉ đánh dấu đã nhận tiền sau khi đối soát ngân hàng, không nhầm phiếu yêu cầu với hóa đơn điện tử/hóa đơn của hãng bay.

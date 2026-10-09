@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="208" height="110" viewBox="0 0 208 110" role="img" aria-label="Én Việt Group">
-<path d="M29 12 C37 29 34 52 44 60 C40 42 60 29 61 8 C51 19 44 33 42 40 C40 24 38 18 29 12Z" fill="#fa8b20"/>
-<path d="M10 43 L43 59 L54 59 L29 50 L22 43Z" fill="#fa8b20"/>
-<text x="49" y="66" font-family="Arial,sans-serif" font-weight="900" font-style="italic" font-size="49" fill="#17a8d3">VET</text>
-<path d="M19 72 L150 72" stroke="#ff9a2b" stroke-width="2"/>
-<text x="20" y="92" font-family="Arial,sans-serif" font-size="15" letter-spacing="1.1" fill="#f58220">ÉN VIỆT GROUP</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 90"><path d="M20 22Q40 47 68 18Q52 47 29 53Z" fill="#ed8026"/><text x="29" y="60" font-size="43" font-family="Arial,sans-serif" font-weight="bold" fill="#0871aa">VIET</text><text x="20" y="79" font-size="12" font-family="Arial,sans-serif" font-weight="bold" fill="#e77727">ÉN VIỆT GROUP</text></svg>

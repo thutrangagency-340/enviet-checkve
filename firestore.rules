@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function admin() { return request.auth != null && request.auth.uid == 'DIEN_ADMIN_UID'; }
+  match /paymentRequests/{id} { allow read, write: if admin(); }
+  match /publicPaymentRequests/{id} {
+   allow get: if true;
+   allow list: if false;
+   allow create, update, delete: if admin();
+  }
+  match /{document=**} { allow read, write: if false; }
+ }
+}
