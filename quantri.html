@@ -1,962 +1,749 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Quản trị thanh toán - Én Việt Group</title>
+<title>Én Việt Group | Quản trị</title>
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;background:#f3f7fb;
- color:#243447;font:14px Arial,sans-serif;
-}
-header{
- background:linear-gradient(110deg,#167eb9,#30aade);
- color:white;padding:22px 16px;
-}
-.wrap{max-width:1050px;margin:auto}
-header h1{margin:0;font-size:24px}
-header p{margin:6px 0 0;color:#eaf8ff}
-main{max-width:1050px;margin:22px auto;padding:0 14px}
-.panel{
- background:white;border:1px solid #dce7f0;
- border-radius:14px;padding:23px;
- margin-bottom:18px;
- box-shadow:0 5px 20px #204d7010;
-}
-h2{font-size:19px;color:#194e78;margin:0 0 19px}
-h3{font-size:15px;color:#263d51}
-.grid{
- display:grid;grid-template-columns:1fr 1fr;
- gap:15px;
-}
+body{margin:0;background:#f1f6fa;color:#233b50;font:14px Arial,sans-serif}
+header{background:linear-gradient(110deg,#116da5,#35b1dc);color:white;padding:24px 16px}
+header>div,main{max-width:1050px;margin:auto}
+h1{margin:0;font-size:25px}
+header p{margin-bottom:0}
+main{padding:22px 14px}
+.card{background:white;border:1px solid #d7e4ee;border-radius:14px;padding:22px;margin-bottom:18px;box-shadow:0 6px 22px #174a7010}
+h2{font-size:19px;color:#164d76;margin:0 0 20px}
+h3{font-size:15px;color:#164d76;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .full{grid-column:1/-1}
-label{
- display:block;font-weight:600;
- margin-bottom:7px;color:#344a5c;
-}
-input,select,textarea{
- display:block;width:100%;min-width:0;
- padding:12px;border:1px solid #cbdbe7;
- border-radius:8px;background:white;
- color:#263c4d;font:inherit;
-}
-textarea{resize:vertical;min-height:65px}
-input:focus,select:focus,textarea:focus{
- outline:2px solid #9bd8f2;
-}
-button{
- cursor:pointer;border:0;border-radius:8px;
- padding:12px 16px;font:inherit;
- font-weight:600;
-}
-.btn{background:#2089c6;color:white}
-.light{background:#eaf3f9;color:#245f89}
-.remove{background:#ffeded;color:#b93b3b}
-.actions{display:flex;gap:9px;flex-wrap:wrap}
-button:disabled{opacity:.5;cursor:not-allowed}
-.hide{display:none!important}
-.help{
- color:#748698;font-size:12px;
- line-height:1.6;margin:7px 0;
-}
-.person,.leg{
- border:1px solid #dde8f0;
- background:#fcfeff;
- border-radius:10px;padding:15px;
- margin-bottom:12px;
-}
-.block-top{
- display:flex;justify-content:space-between;
- align-items:center;gap:10px;
- margin-bottom:12px;
-}
-.block-top strong{color:#226790}
-.total{
- background:#edf7fd;border:1px solid #bce0f4;
- padding:19px;border-radius:10px;
- font-size:20px;color:#126ca5;
- font-weight:bold;
-}
-.notice{
- background:#fff8ef;
- border-left:3px solid #e69b58;
- padding:14px;border-radius:7px;
- line-height:1.7;
-}
-.status{min-height:20px;font-size:13px}
-.err{color:#bb3030}
-.ok{color:#17764f}
-footer{
- text-align:center;color:#8799a9;
- padding:20px;font-size:11px;
-}
+label{display:block;font-weight:600;margin-bottom:6px}
+input,select{width:100%;min-width:0;padding:12px;border:1px solid #c8dbe8;border-radius:8px;font:inherit;background:#fff;color:#213b4c}
+input:focus,select:focus{outline:2px solid #9bd6f1}
+.item{border:1px solid #dce8f0;border-radius:10px;padding:15px;margin-bottom:12px;background:#fbfdff}
+.itemtop,.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.bar h2{margin:0}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:0;border-radius:9px;padding:12px 16px;cursor:pointer;font-weight:bold;background:#167fc0;color:#fff}
+.soft{background:#e9f3fa;color:#155985}
+.danger{background:#ffebeb;color:#ad3232}
+button:disabled{opacity:.45;cursor:not-allowed}
+.hidden{display:none!important}
+.total{padding:17px;background:#e9f6ff;border-radius:10px;border:1px solid #b9def2;color:#126ca1;font-size:20px;font-weight:bold}
+.help{font-size:12px;color:#6d8595;line-height:1.6}
+.msg{min-height:20px;color:#a03535}
+.entry{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #e8eef3;padding:10px 0}
+.entry button{padding:8px 12px}
+.entry span{overflow-wrap:anywhere}
+footer{text-align:center;color:#8596a5;padding:22px;font-size:11px}
 @media(max-width:650px){
- .grid{grid-template-columns:1fr}
- .panel{padding:16px}
+.grid{grid-template-columns:1fr}
+.card{padding:16px}
+.entry{flex-wrap:wrap}
 }
 </style>
 </head>
-
 <body>
-
 <header>
-<div class="wrap">
- <h1>ÉN VIỆT GROUP</h1>
- <p>HỆ THỐNG QUẢN TRỊ THANH TOÁN VÉ MÁY BAY</p>
+<div>
+<h1>ÉN VIỆT GROUP</h1>
+<p>QUẢN TRỊ PHIẾU YÊU CẦU THANH TOÁN VÉ MÁY BAY</p>
 </div>
 </header>
 
 <main>
-
-<section id="loginPanel" class="panel">
- <h2>ĐĂNG NHẬP</h2>
- <form id="loginForm" class="grid">
-  <div>
-   <label>Email</label>
-   <input id="email" type="email"
-    autocomplete="username" required>
-  </div>
-  <div>
-   <label>Mật khẩu</label>
-   <input id="password" type="password"
-    autocomplete="current-password" required>
-  </div>
-  <div class="full">
-   <button class="btn">ĐĂNG NHẬP</button>
-  </div>
- </form>
- <p id="loginMsg" class="status" role="status"></p>
+<section id="loginBox" class="card">
+<h2>ĐĂNG NHẬP</h2>
+<form id="loginForm" class="grid">
+<div>
+<label>Email</label>
+<input id="email" type="email" autocomplete="username" required>
+</div>
+<div>
+<label>Mật khẩu</label>
+<input id="password" type="password" autocomplete="current-password" required>
+</div>
+<div class="full">
+<button class="btn">ĐĂNG NHẬP</button>
+</div>
+</form>
+<p id="loginMsg" class="msg" role="status"></p>
 </section>
 
-<section id="adminPanel" class="hide">
-
-<div class="panel">
- <div class="block-top">
-  <h2>DANH SÁCH HÓA ĐƠN</h2>
-  <button id="logout" class="light">Đăng xuất</button>
- </div>
- <div class="actions">
-  <button id="newBtn" class="btn">
-   + Tạo hóa đơn mới
-  </button>
-  <button id="reloadBtn" class="light">Tải lại</button>
- </div>
- <div id="invoiceList" style="margin-top:15px"></div>
+<div id="dashboard" class="hidden">
+<section class="card">
+<div class="bar">
+<h2>DANH SÁCH HÓA ĐƠN</h2>
+<button class="btn soft" id="logout">Đăng xuất</button>
 </div>
+<div class="actions">
+<button class="btn" id="newBtn">+ Tạo mới</button>
+<button class="btn soft" id="reload">Tải lại danh sách</button>
+</div>
+<div id="invoiceList" style="margin-top:16px"></div>
+</section>
 
-<div class="panel">
-
-<h2 id="formTitle">LẬP HÓA ĐƠN THANH TOÁN</h2>
-
+<section class="card">
+<h2 id="formHeading">LẬP HÓA ĐƠN</h2>
 <form id="invoiceForm" class="grid">
 
 <div>
- <label>Mã hóa đơn</label>
- <input id="code" maxlength="50" required
-  placeholder="ENV-2026-001">
+<label>Mã hóa đơn</label>
+<input id="code" required maxlength="60" placeholder="ENV-2026-001">
 </div>
-
 <div>
- <label>Mã đặt chỗ (PNR)</label>
- <input id="pnr" maxlength="30"
-  placeholder="Nhập mã thực tế do hệ thống đặt vé cấp">
+<label>Mã đặt chỗ (PNR)</label>
+<input id="pnr" maxlength="35" placeholder="Chỉ nhập mã đặt chỗ thực tế">
 </div>
-
 <div>
- <label>Tên khách hàng (người đại diện)</label>
- <input id="customer" required maxlength="120">
+<label>Khách hàng đại diện</label>
+<input id="customer" required maxlength="150">
 </div>
-
 <div>
- <label>Ngày lập</label>
- <input id="issueDate" type="date" required>
+<label>Ngày lập</label>
+<input id="issueDate" type="date" required>
 </div>
 
 <div class="full">
- <h3>DANH SÁCH HÀNH KHÁCH</h3>
- <div id="peopleList"></div>
- <button type="button" class="light"
-  id="addPerson">+ Thêm hành khách</button>
- <p class="help">
-  Họ tên và số hộ chiếu chia thành 2 ô ngang.
-  Số hộ chiếu chỉ lưu trong phần quản trị.
- </p>
+<h3>DANH SÁCH HÀNH KHÁCH</h3>
+<div id="peopleList"></div>
+<button type="button" class="btn soft" id="addPerson">+ Thêm hành khách</button>
+<p class="help">Số hộ chiếu chỉ lưu trong phần quản trị, không đưa vào dữ liệu phiếu chia sẻ cho khách.</p>
 </div>
 
 <div>
- <label>Số hành khách</label>
- <input id="passengers" type="number" readonly>
+<label>Số hành khách</label>
+<input id="passengers" readonly>
 </div>
-
 <div>
- <label>Loại hành trình</label>
- <select id="tripType">
-  <option value="oneway">Một chiều</option>
-  <option value="roundtrip">Khứ hồi</option>
-  <option value="multicity">Nhiều chặng</option>
- </select>
+<label>Loại hành trình</label>
+<select id="tripType">
+<option value="oneway">Một chiều</option>
+<option value="roundtrip">Khứ hồi</option>
+<option value="multicity">Nhiều chặng</option>
+</select>
 </div>
 
 <div class="full">
- <h3>HÀNH TRÌNH BAY</h3>
- <div id="legsList"></div>
- <button type="button" class="light hide"
-  id="addLeg">+ Thêm chặng bay</button>
- <p class="help">
-  Nhập tên thành phố, quốc gia hoặc mã sân bay.
-  Có thể nhập địa điểm ngoài danh sách gợi ý.
- </p>
+<h3>HÀNH TRÌNH BAY</h3>
+<div id="legsList"></div>
+<button type="button" class="btn soft hidden" id="addLeg">+ Thêm chặng</button>
+<p class="help">Nhập thành phố hoặc mã sân bay; có thể nhập điểm đến ngoài danh sách gợi ý.</p>
 </div>
 
 <div>
- <label>Hãng hàng không</label>
- <select id="airline">
-  <option value="">-- Chọn hãng bay --</option>
-  <option>Vietnam Airlines</option>
-  <option>Vietjet Air</option>
-  <option>Bamboo Airways</option>
-  <option>Pacific Airlines</option>
-  <option>Vietravel Airlines</option>
-  <option>Korean Air</option>
-  <option>Emirates</option>
-  <option>STARLUX Airlines</option>
-  <option>EVA Air</option>
-  <option>China Airlines</option>
-  <option value="Khác">Khác</option>
- </select>
+<label>Hãng hàng không</label>
+<select id="airline">
+<option value="">-- Chọn hãng --</option>
+<option>Vietnam Airlines</option>
+<option>Vietjet Air</option>
+<option>Bamboo Airways</option>
+<option>Pacific Airlines</option>
+<option>Vietravel Airlines</option>
+<option>Korean Air</option>
+<option>STARLUX Airlines</option>
+<option>EVA Air</option>
+<option>China Airlines</option>
+<option>Emirates</option>
+<option>Khác</option>
+</select>
 </div>
 
 <div>
- <label>Trạng thái thanh toán</label>
- <select id="status">
-  <option value="pending">Chờ thanh toán</option>
-  <option value="paid">Đã đối soát nhận tiền</option>
-  <option value="cancelled">Đã hủy</option>
- </select>
+<label>Trạng thái</label>
+<select id="status">
+<option value="pending">Chờ thanh toán</option>
+<option value="paid">Đã đối soát nhận tiền</option>
+<option value="cancelled">Đã hủy</option>
+</select>
 </div>
 
 <div class="full">
- <label>Tổng giá vé (VNĐ)</label>
- <input id="fare" type="number"
-  min="0" step="1" required value="0">
+<label>Tổng giá vé (VNĐ)</label>
+<input id="fare" type="number" min="1" step="1" required>
 </div>
 
-<div class="full total">
- TỔNG TIỀN: <span id="total">0 ₫</span>
+<div class="total full">
+TỔNG THANH TOÁN: <span id="total">0 ₫</span>
 </div>
 
 <div class="full">
- <h2>THÔNG TIN CHUYỂN KHOẢN</h2>
- <p class="help">
-  Thông tin ngân hàng được nhập riêng cho từng
-  hóa đơn, không sử dụng tài khoản cố định.
- </p>
+<h2>THÔNG TIN CHUYỂN KHOẢN</h2>
+<p class="help">Nhập tài khoản thực tế theo từng hóa đơn. Không có tài khoản cố định.</p>
 </div>
 
 <div>
- <label>Chọn ngân hàng</label>
- <select id="bankSelect">
-  <option value="">-- Chọn ngân hàng --</option>
-  <option value="VCB|Vietcombank">Vietcombank</option>
-  <option value="MB|MB Bank">MB Bank</option>
-  <option value="BIDV|BIDV">BIDV</option>
-  <option value="ICB|VietinBank">VietinBank</option>
-  <option value="TCB|Techcombank">Techcombank</option>
-  <option value="ACB|ACB">ACB</option>
-  <option value="VPB|VPBank">VPBank</option>
-  <option value="VIB|VIB">VIB</option>
-  <option value="MSB|MSB">MSB</option>
-  <option value="OCB|OCB">OCB</option>
-  <option value="other">Ngân hàng khác</option>
- </select>
+<label>Chọn ngân hàng</label>
+<select id="bankSelect">
+<option value="">-- Chọn ngân hàng --</option>
+<option value="VCB|Vietcombank">Vietcombank</option>
+<option value="MB|MB Bank">MB Bank</option>
+<option value="BIDV|BIDV">BIDV</option>
+<option value="ICB|VietinBank">VietinBank</option>
+<option value="TCB|Techcombank">Techcombank</option>
+<option value="ACB|ACB">ACB</option>
+<option value="VPB|VPBank">VPBank</option>
+<option value="VIB|VIB">VIB</option>
+<option value="MSB|MSB">MSB</option>
+<option value="OCB|OCB">OCB</option>
+<option value="TPB|TPBank">TPBank</option>
+<option value="STB|Sacombank">Sacombank</option>
+<option value="HDB|HDBank">HDBank</option>
+<option value="SHB|SHB">SHB</option>
+<option value="EIB|Eximbank">Eximbank</option>
+<option value="LPB|LPBank">LPBank</option>
+<option value="other">Ngân hàng khác (nhập mã VietQR)</option>
+</select>
 </div>
 
 <div>
- <label>Mã ngân hàng VietQR</label>
- <input id="bankCode" maxlength="15"
-  placeholder="VCB, MB, TCB...">
+<label>Mã ngân hàng VietQR</label>
+<input id="bankCode" maxlength="15" placeholder="Ví dụ: VCB, MB, TCB" required>
 </div>
-
 <div>
- <label>Tên ngân hàng hiển thị</label>
- <input id="bankName" maxlength="100">
+<label>Tên ngân hàng</label>
+<input id="bankName" maxlength="100" required>
 </div>
-
 <div>
- <label>Số tài khoản</label>
- <input id="bankAccount" maxlength="30"
-  autocomplete="off" inputmode="numeric">
+<label>Số tài khoản</label>
+<input id="bankAccount" inputmode="numeric" autocomplete="off" maxlength="20" required>
 </div>
-
 <div>
- <label>Chủ tài khoản</label>
- <input id="bankOwner" maxlength="150">
+<label>Chủ tài khoản</label>
+<input id="bankOwner" maxlength="150" required>
 </div>
-
 <div>
- <label>Nội dung chuyển khoản</label>
- <input id="transferContent" maxlength="25"
-  placeholder="ENV2026001">
+<label>Nội dung chuyển khoản</label>
+<input id="transferContent" maxlength="25" placeholder="ENV2026001">
 </div>
 
-<div class="full notice">
- Mã VietQR chỉ hỗ trợ điền sẵn thông tin chuyển
- khoản. Không tự xác nhận giao dịch thành công.
- Nhân viên phải kiểm tra thực tế giao dịch trên
- ngân hàng trước khi chọn trạng thái đã đối soát.
- Chủ tài khoản nhận tiền cần được xác minh và
- công khai chính xác cho khách hàng.
+<div class="full help">
+VietQR chỉ điền thông tin chuyển khoản, không chứng minh đã nhận tiền.
+Cần đối soát thực tế với ngân hàng. Chỉ sử dụng tài khoản thụ hưởng đã xác minh.
 </div>
 
 <div class="full actions">
- <button type="submit" id="saveBtn" class="btn">
-  LƯU HÓA ĐƠN
- </button>
- <button type="button" id="copyBtn"
-  class="light" disabled>
-  COPY LINK KHÁCH
- </button>
- <button type="button" id="viewBtn"
-  class="light" disabled>
-  XEM HÓA ĐƠN
- </button>
+<button type="submit" class="btn" id="saveBtn">LƯU HÓA ĐƠN</button>
+<button type="button" class="btn soft" id="copyBtn" disabled>COPY LINK KHÁCH</button>
+<button type="button" class="btn soft" id="viewBtn" disabled>XEM PHIẾU</button>
 </div>
-
 </form>
-
-<p id="saveMsg" class="status" role="status"></p>
-</div>
-
+<p id="saveMsg" class="msg" role="status"></p>
 </section>
+</div>
 </main>
 
 <footer>
-© 2026 ÉN VIỆT GROUP
-<br>
-Chứng từ yêu cầu thanh toán không thay thế
-hóa đơn VAT hoặc xác nhận ngân hàng.
+© 2026 ÉN VIỆT GROUP · Phiếu yêu cầu thanh toán không phải hóa đơn VAT hay biên nhận ngân hàng.
 </footer>
 
 <datalist id="airports">
- <option value="Hà Nội (HAN), Việt Nam">
- <option value="TP.HCM (SGN), Việt Nam">
- <option value="Đà Nẵng (DAD), Việt Nam">
- <option value="Phú Quốc (PQC), Việt Nam">
- <option value="Nha Trang (CXR), Việt Nam">
- <option value="Đài Bắc (TPE), Đài Loan">
- <option value="Đài Trung (RMQ), Đài Loan">
- <option value="Đài Nam (TNN), Đài Loan">
- <option value="Cao Hùng (KHH), Đài Loan">
- <option value="Seoul (ICN), Hàn Quốc">
- <option value="Busan (PUS), Hàn Quốc">
- <option value="Tokyo (NRT), Nhật Bản">
- <option value="Tokyo (HND), Nhật Bản">
- <option value="Osaka (KIX), Nhật Bản">
- <option value="Singapore (SIN)">
- <option value="Bangkok (BKK), Thái Lan">
- <option value="Kuala Lumpur (KUL), Malaysia">
- <option value="Hong Kong (HKG)">
- <option value="Quảng Châu (CAN), Trung Quốc">
- <option value="Thượng Hải (PVG), Trung Quốc">
- <option value="Dubai (DXB), UAE">
- <option value="Sydney (SYD), Úc">
- <option value="Melbourne (MEL), Úc">
- <option value="Los Angeles (LAX), Mỹ">
- <option value="San Francisco (SFO), Mỹ">
- <option value="San Diego (SAN), Mỹ">
- <option value="New York (JFK), Mỹ">
- <option value="Toronto (YYZ), Canada">
- <option value="London (LHR), Anh">
- <option value="Paris (CDG), Pháp">
- <option value="Frankfurt (FRA), Đức">
+<option value="Hà Nội (HAN), Việt Nam">
+<option value="TP.HCM (SGN), Việt Nam">
+<option value="Đà Nẵng (DAD), Việt Nam">
+<option value="Phú Quốc (PQC), Việt Nam">
+<option value="Đài Bắc (TPE), Đài Loan">
+<option value="Đài Trung (RMQ), Đài Loan">
+<option value="Đài Nam (TNN), Đài Loan">
+<option value="Cao Hùng (KHH), Đài Loan">
+<option value="Seoul (ICN), Hàn Quốc">
+<option value="Tokyo (NRT), Nhật Bản">
+<option value="Osaka (KIX), Nhật Bản">
+<option value="Singapore (SIN)">
+<option value="Bangkok (BKK), Thái Lan">
+<option value="Dubai (DXB), UAE">
+<option value="San Francisco (SFO), Mỹ">
+<option value="Los Angeles (LAX), Mỹ">
 </datalist>
 
 <script type="module">
-import {initializeApp} from
-"https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import {
- getAuth,onAuthStateChanged,
- signInWithEmailAndPassword,signOut
-} from
-"https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-
+  getAuth,onAuthStateChanged,
+  signInWithEmailAndPassword,signOut
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import {
- getFirestore,collection,doc,
- getDocs,query,orderBy,
- writeBatch,serverTimestamp
-} from
-"https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+  getFirestore,collection,doc,getDocs,
+  writeBatch,serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import {firebaseConfig,adminUid} from "./firebase-config.js";
 
-import {firebaseConfig,adminUid}
- from "./firebase-config.js";
+const $ = id => document.getElementById(id);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const money = n => new Intl.NumberFormat("vi-VN",{
+  style:"currency",currency:"VND",
+  maximumFractionDigits:0
+}).format(Number(n)||0);
+const newid = () => crypto.randomUUID();
 
-const $=id=>document.getElementById(id);
+let people=[], legs=[], currentId=null;
 
-const money=v=>new Intl.NumberFormat("vi-VN",{
- style:"currency",
- currency:"VND",
- maximumFractionDigits:0
-}).format(Number(v)||0);
-
-const uid=()=>crypto.randomUUID();
-
-let people=[];
-let legs=[];
-let currentId=null;
-let db,auth;
-
-function createInput(value,placeholder,onChange){
- const input=document.createElement("input");
- input.value=value||"";
- input.placeholder=placeholder;
- input.oninput=()=>onChange(input.value);
- return input;
+function input(value,placeholder,oninput,type="text"){
+  const el=document.createElement("input");
+  el.type=type;
+  el.value=value||"";
+  el.placeholder=placeholder||"";
+  el.oninput=()=>oninput(el.value);
+  return el;
 }
 
-function field(labelText,input){
- const wrap=document.createElement("div");
- const label=document.createElement("label");
- label.textContent=labelText;
- wrap.append(label,input);
- return wrap;
+function field(label,el){
+  const d=document.createElement("div");
+  const l=document.createElement("label");
+  l.textContent=label;
+  d.append(l,el);
+  return d;
+}
+
+function action(label,cb,cls="soft"){
+  const b=document.createElement("button");
+  b.type="button";
+  b.className="btn "+cls;
+  b.textContent=label;
+  b.onclick=cb;
+  return b;
 }
 
 function drawPeople(){
- const root=$("peopleList");
- root.replaceChildren();
+  const root=$("peopleList");
+  root.replaceChildren();
 
- people.forEach((p,i)=>{
-  const box=document.createElement("div");
-  box.className="person";
+  people.forEach((p,i)=>{
+    const box=document.createElement("div");
+    box.className="item";
+    const top=document.createElement("div");
+    top.className="itemtop";
+    const title=document.createElement("strong");
+    title.textContent="Hành khách "+(i+1);
 
-  const top=document.createElement("div");
-  top.className="block-top";
+    const del=action("Xóa",()=>{
+      people=people.filter(x=>x.id!==p.id);
+      drawPeople();
+    },"danger");
+    del.disabled=people.length===1;
+    top.append(title,del);
 
-  const title=document.createElement("strong");
-  title.textContent="Hành khách "+(i+1);
+    const grid=document.createElement("div");
+    grid.className="grid";
+    grid.append(
+      field("Họ và tên",input(p.name,"NGUYEN VAN A",v=>p.name=v)),
+      field("Số hộ chiếu",input(p.passport,"Passport No.",v=>p.passport=v))
+    );
+    box.append(top,grid);
+    root.append(box);
+  });
 
-  const remove=document.createElement("button");
-  remove.type="button";
-  remove.className="remove";
-  remove.textContent="Xóa";
-  remove.disabled=people.length===1;
-  remove.onclick=()=>{
-   people=people.filter(x=>x.id!==p.id);
-   drawPeople();
-  };
-
-  top.append(title,remove);
-
-  const row=document.createElement("div");
-  row.className="grid";
-
-  row.append(
-   field("Họ và tên",
-    createInput(p.name,"NGUYEN VAN A",v=>p.name=v)),
-   field("Số hộ chiếu",
-    createInput(p.passport,"Passport No.",
-     v=>p.passport=v))
-  );
-
-  box.append(top,row);
-  root.append(box);
- });
-
- $("passengers").value=people.length;
+  $("passengers").value=people.length;
 }
 
-function addPerson(name="",passport=""){
- people.push({id:uid(),name,passport});
- drawPeople();
+function addPerson(n="",p=""){
+  people.push({id:newid(),name:n,passport:p});
+  drawPeople();
 }
-
 $("addPerson").onclick=()=>addPerson();
 
-function newLeg(from="",to="",date=""){
- return {id:uid(),from,to,date};
-}
+const newLeg=(from="",to="",date="")=>({
+  id:newid(),from,to,date
+});
 
 function drawLegs(){
- const root=$("legsList");
- root.replaceChildren();
+  const root=$("legsList");
+  root.replaceChildren();
 
- const type=$("tripType").value;
+  legs.forEach((l,i)=>{
+    const box=document.createElement("div");
+    box.className="item";
+    const top=document.createElement("div");
+    top.className="itemtop";
+    const title=document.createElement("strong");
+    title.textContent=$("tripType").value==="roundtrip"
+      ?(i===0?"Chặng đi":"Chặng về")
+      :"Chặng "+(i+1);
+    top.append(title);
 
- legs.forEach((leg,i)=>{
-  const box=document.createElement("div");
-  box.className="leg";
+    if($("tripType").value==="multicity"&&legs.length>2){
+      top.append(action("Xóa",()=>{
+        legs=legs.filter(x=>x.id!==l.id);
+        drawLegs();
+      },"danger"));
+    }
 
-  const top=document.createElement("div");
-  top.className="block-top";
+    const grid=document.createElement("div");
+    grid.className="grid";
 
-  const title=document.createElement("strong");
-  title.textContent=
-   type==="roundtrip"?
-    (i===0?"Chặng đi":"Chặng về"):
-    "Chặng "+(i+1);
+    const from=input(l.from,"Nơi đi",v=>l.from=v);
+    const to=input(l.to,"Nơi đến",v=>l.to=v);
+    const date=input(l.date,"",v=>l.date=v,"date");
 
-  top.append(title);
+    from.setAttribute("list","airports");
+    to.setAttribute("list","airports");
 
-  if(type==="multicity" && legs.length>2){
-   const del=document.createElement("button");
-   del.type="button";
-   del.className="remove";
-   del.textContent="Xóa chặng";
-   del.onclick=()=>{
-    legs=legs.filter(x=>x.id!==leg.id);
-    drawLegs();
-   };
-   top.append(del);
-  }
+    grid.append(
+      field("Điểm đi",from),
+      field("Điểm đến",to),
+      field("Ngày bay",date)
+    );
+    box.append(top,grid);
+    root.append(box);
+  });
 
-  const row=document.createElement("div");
-  row.className="grid";
-
-  const from=createInput(
-   leg.from,"Điểm đi / HAN",
-   v=>leg.from=v
+  $("addLeg").classList.toggle(
+    "hidden",$("tripType").value!=="multicity"
   );
-  from.setAttribute("list","airports");
-
-  const to=createInput(
-   leg.to,"Điểm đến / TPE",
-   v=>leg.to=v
-  );
-  to.setAttribute("list","airports");
-
-  const date=document.createElement("input");
-  date.type="date";
-  date.value=leg.date;
-  date.onchange=()=>leg.date=date.value;
-
-  row.append(
-   field("Điểm khởi hành",from),
-   field("Điểm đến",to),
-   field("Ngày bay",date)
-  );
-
-  box.append(top,row);
-  root.append(box);
- });
-
- $("addLeg").classList.toggle(
-  "hide",type!=="multicity"
- );
 }
 
 function resetLegs(){
- const type=$("tripType").value;
-
- if(type==="oneway"){
-  legs=[newLeg()];
- }else{
-  legs=[newLeg(),newLeg()];
- }
-
- drawLegs();
+  legs=$("tripType").value==="oneway"
+    ?[newLeg()]
+    :[newLeg(),newLeg()];
+  drawLegs();
 }
-
 $("tripType").onchange=resetLegs;
 $("addLeg").onclick=()=>{
- legs.push(newLeg());
- drawLegs();
+  legs.push(newLeg());
+  drawLegs();
 };
 
 $("bankSelect").onchange=()=>{
- const v=$("bankSelect").value;
-
- if(v && v!=="other"){
-  const [code,name]=v.split("|");
-  $("bankCode").value=code;
-  $("bankName").value=name;
- }else{
-  $("bankCode").value="";
-  $("bankName").value="";
- }
+  const selected=$("bankSelect").value;
+  if(!selected||selected==="other"){
+    $("bankCode").value="";
+    $("bankName").value="";
+    return;
+  }
+  const [c,n]=selected.split("|");
+  $("bankCode").value=c;
+  $("bankName").value=n;
 };
 
 $("fare").oninput=()=>{
- $("total").textContent=money($("fare").value);
+  $("total").textContent=money($("fare").value);
 };
 
-function buttons(yes){
- $("copyBtn").disabled=!yes;
- $("viewBtn").disabled=!yes;
+function setLinkButtons(enabled){
+  $("copyBtn").disabled=!enabled;
+  $("viewBtn").disabled=!enabled;
 }
 
 function reset(){
- currentId=null;
- $("invoiceForm").reset();
+  currentId=null;
+  $("invoiceForm").reset();
+  people=[];
+  addPerson();
+  resetLegs();
 
- $("formTitle").textContent=
-  "LẬP HÓA ĐƠN THANH TOÁN";
+  const now=new Date();
+  $("issueDate").value=new Date(
+    now.getTime()-now.getTimezoneOffset()*60000
+  ).toISOString().slice(0,10);
 
- people=[];
- addPerson();
-
- resetLegs();
-
- const d=new Date();
- const local=new Date(
-  d.getTime()-d.getTimezoneOffset()*60000
- );
- $("issueDate").value=
-  local.toISOString().slice(0,10);
-
- $("total").textContent=money(0);
- $("saveMsg").textContent="";
- buttons(false);
+  $("fare").value="";
+  $("total").textContent=money(0);
+  $("formHeading").textContent="LẬP HÓA ĐƠN";
+  $("saveMsg").textContent="";
+  setLinkButtons(false);
 }
-
 $("newBtn").onclick=reset;
 reset();
 
-const app=initializeApp(firebaseConfig);
-auth=getAuth(app);
-db=getFirestore(app);
-
 $("loginForm").onsubmit=async e=>{
- e.preventDefault();
+  e.preventDefault();
+  $("loginMsg").textContent="Đang đăng nhập...";
 
- $("loginMsg").textContent="Đang đăng nhập...";
-
- try{
-  const result=await signInWithEmailAndPassword(
-   auth,$("email").value,$("password").value
-  );
-
-  if(result.user.uid!==adminUid){
-   await signOut(auth);
-   throw Error("Không có quyền quản trị");
+  try{
+    const r=await signInWithEmailAndPassword(
+      auth,$("email").value,$("password").value
+    );
+    if(r.user.uid!==adminUid){
+      await signOut(auth);
+      throw Error("Không có quyền quản trị");
+    }
+    $("password").value="";
+    $("loginMsg").textContent="";
+  }catch(err){
+    $("loginMsg").textContent=
+      "Đăng nhập thất bại: "+err.message;
   }
-
-  $("password").value="";
-  $("loginMsg").textContent="";
-
- }catch(err){
-  $("loginMsg").textContent=
-   "Đăng nhập thất bại: "+err.message;
- }
 };
 
 $("logout").onclick=()=>signOut(auth);
 
 onAuthStateChanged(auth,user=>{
- const allowed=!!user && user.uid===adminUid;
+  const allowed=!!user&&user.uid===adminUid;
 
- $("loginPanel").classList.toggle("hide",allowed);
- $("adminPanel").classList.toggle("hide",!allowed);
+  $("loginBox").classList.toggle("hidden",allowed);
+  $("dashboard").classList.toggle("hidden",!allowed);
 
- if(user&&!allowed)signOut(auth);
- if(allowed)loadList();
+  if(user&&!allowed)signOut(auth);
+  if(allowed)loadList();
 });
 
-$("reloadBtn").onclick=loadList;
+$("reload").onclick=loadList;
 
 async function loadList(){
- const root=$("invoiceList");
- root.textContent="Đang tải...";
+  const root=$("invoiceList");
+  root.textContent="Đang tải...";
 
- try{
-  const snapshot=await getDocs(
-   query(
-    collection(db,"paymentRequests"),
-    orderBy("updatedAt","desc")
-   )
-  );
+  try{
+    const snap=await getDocs(
+      collection(db,"paymentRequests")
+    );
+    root.replaceChildren();
 
-  root.replaceChildren();
+    if(snap.empty){
+      root.textContent="Chưa có hóa đơn.";
+      return;
+    }
 
-  if(snapshot.empty){
-   root.textContent="Chưa có hóa đơn.";
-   return;
+    const docs=snap.docs.sort((a,b)=>
+      (b.data().updatedAt?.seconds||0)-
+      (a.data().updatedAt?.seconds||0)
+    );
+
+    for(const item of docs){
+      const p=item.data();
+      const r=document.createElement("div");
+      const span=document.createElement("span");
+      r.className="entry";
+      span.textContent=
+        `${p.code||item.id} · ${p.customer||"Khách"} · ${money(p.total)}`;
+      r.append(span,action("Chỉnh sửa",()=>edit(item.id,p)));
+      root.append(r);
+    }
+  }catch(err){
+    root.textContent=
+      "Không tải được danh sách: "+err.message;
   }
-
-  snapshot.forEach(item=>{
-   const p=item.data();
-   const b=document.createElement("button");
-   b.type="button";
-   b.className="light";
-   b.style.margin="4px";
-
-   b.textContent=
-    (p.code||item.id)+" – "+
-    (p.customer||"Khách")+" – "+
-    money(p.total);
-
-   b.onclick=()=>edit(item.id,p);
-   root.append(b);
-  });
-
- }catch(err){
-  root.textContent="Không tải được: "+err.message;
- }
 }
 
 function edit(id,p){
- currentId=id;
-
- for(const key of [
-  "code","pnr","customer","issueDate",
-  "airline","status","fare",
-  "bankCode","bankName","bankAccount",
-  "bankOwner","transferContent"
- ]){
-  $(key).value=p[key]??"";
- }
-
- $("bankSelect").value="";
-
- people=[];
- if(Array.isArray(p.passengerDetails) &&
-    p.passengerDetails.length){
-  for(const x of p.passengerDetails){
-   people.push({
-    id:uid(),
-    name:x.name||"",
-    passport:x.passport||""
-   });
-  }
- }else{
-  const count=Math.min(
-   100,Math.max(1,Number(p.passengers)||1)
-  );
-  for(let i=0;i<count;i++){
-   people.push({
-    id:uid(),
-    name:i===0?p.customer||"":"",
-    passport:""
-   });
-  }
- }
- drawPeople();
-
- $("tripType").value=p.tripType||"oneway";
-
- if(Array.isArray(p.legs)&&p.legs.length){
-  legs=p.legs.map(x=>newLeg(
-   x.from||"",x.to||"",x.date||""
-  ));
- }else{
-  const route=String(p.route||"");
-  const parts=route.split(/\s*→\s*/);
-  legs=[newLeg(
-   parts[0]||"",
-   parts[1]||"",
-   p.flightDate||""
-  )];
- }
- drawLegs();
-
- $("total").textContent=money(p.total);
- $("formTitle").textContent="SỬA HÓA ĐƠN";
- $("saveMsg").textContent="";
- buttons(true);
-
- $("invoiceForm").scrollIntoView({
-  behavior:"smooth"
- });
-}
-
-function customerLink(){
- const url=new URL("phieu.html",location.href);
- url.searchParams.set("id",currentId);
- return url.href;
-}
-
-$("invoiceForm").onsubmit=async e=>{
- e.preventDefault();
-
- if(!auth.currentUser ||
-    auth.currentUser.uid!==adminUid)return;
-
- const details=people.map(p=>({
-  name:p.name.trim(),
-  passport:p.passport.trim().toUpperCase()
- }));
-
- if(details.some(p=>!p.name)){
-  $("saveMsg").textContent=
-   "Vui lòng nhập họ tên tất cả hành khách.";
-  return;
- }
-
- const journey=legs.map(x=>({
-  from:x.from.trim(),
-  to:x.to.trim(),
-  date:x.date
- }));
-
- if(journey.some(x=>!x.from||!x.to)){
-  $("saveMsg").textContent=
-   "Vui lòng nhập đủ điểm đi và điểm đến.";
-  return;
- }
-
- const amount=Math.round(Number($("fare").value));
-
- if(!Number.isSafeInteger(amount)||amount<0){
-  $("saveMsg").textContent="Số tiền không hợp lệ.";
-  return;
- }
-
- const bankCode=$("bankCode").value.trim().toUpperCase();
- const bankAccount=$("bankAccount").value.trim();
- const bankName=$("bankName").value.trim();
- const bankOwner=$("bankOwner").value.trim();
-
- const bankFields=[bankCode,bankAccount,bankName,bankOwner];
- const anyBank=bankFields.some(Boolean);
- const completeBank=bankFields.every(Boolean);
-
- if(anyBank&&!completeBank){
-  $("saveMsg").textContent=
-   "Hãy điền đầy đủ thông tin ngân hàng.";
-  return;
- }
-
- if(completeBank&&(
-  !/^[A-Z0-9]{2,15}$/.test(bankCode)||
-  !/^[0-9]{5,20}$/.test(bankAccount)
- )){
-  $("saveMsg").textContent=
-   "Kiểm tra lại mã ngân hàng hoặc số tài khoản.";
-  return;
- }
-
- const transfer=(
-  $("transferContent").value.trim() ||
-  $("code").value.replace(/[^A-Za-z0-9]/g,"")
- ).toUpperCase();
-
- if(!/^[A-Z0-9 ]{1,25}$/.test(transfer)){
-  $("saveMsg").textContent=
-   "Nội dung chuyển khoản tối đa 25 ký tự chữ, số.";
-  return;
- }
-
- const status=$("status").value;
-
- if(status==="paid"){
-  if(!confirm(
-   "Bạn đã đối soát và xác nhận thực sự nhận tiền trên ngân hàng?"
-  ))return;
- }
-
- // Giữ trường route cũ để trang khách đọc được.
- const route=journey.map(x=>
-  x.from+" → "+x.to
- ).join(" | ");
-
- const p={
-  code:$("code").value.trim(),
-  pnr:$("pnr").value.trim(),
-  customer:$("customer").value.trim(),
-  issueDate:$("issueDate").value,
-  airline:$("airline").value,
-  status,
-  fare:amount,
-  total:amount,
-  passengers:details.length,
-  passengerDetails:details,
-  tripType:$("tripType").value,
-  legs:journey,
-  route,
-  flightDate:journey[0]?.date||"",
-  bankCode,
-  bankName,
-  bankAccount,
-  bankOwner,
-  transferContent:transfer,
-  updatedAt:serverTimestamp()
- };
-
- // Dữ liệu chia sẻ KHÔNG có số hộ chiếu.
- const shared={
-  code:p.code,
-  pnr:p.pnr,
-  customer:p.customer,
-  issueDate:p.issueDate,
-  airline:p.airline,
-  status:p.status,
-  fare:p.fare,
-  total:p.total,
-  passengers:p.passengers,
-  tripType:p.tripType,
-  legs:p.legs,
-  route:p.route,
-  flightDate:p.flightDate,
-  bankCode:p.bankCode,
-  bankName:p.bankName,
-  bankAccount:p.bankAccount,
-  bankOwner:p.bankOwner,
-  transferContent:p.transferContent,
-  tax:0,
-  fee:0,
-  discount:0,
-  note:"",
-  updatedAt:serverTimestamp()
- };
-
- const id=currentId||uid();
-
- $("saveBtn").disabled=true;
- $("saveMsg").textContent="Đang lưu...";
-
- try{
-  const batch=writeBatch(db);
-
-  batch.set(
-   doc(db,"paymentRequests",id),
-   p,{merge:true}
-  );
-
-  batch.set(
-   doc(db,"publicPaymentRequests",id),
-   shared
-  );
-
-  await batch.commit();
-
   currentId=id;
-  buttons(true);
 
-  $("saveMsg").className="status ok";
-  $("saveMsg").textContent=
-   "Đã lưu hóa đơn thành công.";
+  for(const k of [
+    "code","pnr","customer","issueDate",
+    "airline","status","fare",
+    "bankCode","bankName","bankAccount",
+    "bankOwner","transferContent"
+  ]){
+    $(k).value=p[k]??"";
+  }
 
-  loadList();
+  const option=[...$("bankSelect").options].find(x=>
+    x.value.split("|")[0]===
+    String(p.bankCode||"").toUpperCase()
+  );
+  $("bankSelect").value=option?.value||
+    (p.bankCode?"other":"");
 
- }catch(err){
-  $("saveMsg").className="status err";
-  $("saveMsg").textContent=
-   "Lỗi lưu: "+err.message;
+  people=(
+    Array.isArray(p.passengerDetails)&&
+    p.passengerDetails.length
+      ?p.passengerDetails
+      :[{name:p.customer||"",passport:""}]
+  ).map(x=>({
+    id:newid(),name:x.name||"",
+    passport:x.passport||""
+  }));
+  drawPeople();
 
- }finally{
-  $("saveBtn").disabled=false;
- }
+  $("tripType").value=p.tripType||"oneway";
+
+  if(Array.isArray(p.legs)&&p.legs.length){
+    legs=p.legs.map(l=>newLeg(
+      l.from||"",l.to||"",l.date||""
+    ));
+  }else{
+    const a=String(p.route||"").split(/\s*→\s*/);
+    legs=[newLeg(
+      a[0]||"",a[1]||"",p.flightDate||""
+    )];
+  }
+
+  drawLegs();
+  $("total").textContent=money(p.total);
+  $("formHeading").textContent="CHỈNH SỬA HÓA ĐƠN";
+  $("saveMsg").textContent="";
+  setLinkButtons(true);
+  $("invoiceForm").scrollIntoView({behavior:"smooth"});
+}
+
+const customerLink=()=>{
+  const u=new URL("phieu.html",location.href);
+  u.searchParams.set("id",currentId);
+  return u.href;
 };
 
 $("copyBtn").onclick=async()=>{
- if(!currentId)return;
-
- const url=customerLink();
-
- try{
-  await navigator.clipboard.writeText(url);
-  $("saveMsg").textContent="Đã copy link khách.";
- }catch{
-  prompt("Sao chép liên kết:",url);
- }
+  if(!currentId)return;
+  try{
+    await navigator.clipboard.writeText(customerLink());
+    $("saveMsg").textContent="Đã copy liên kết khách.";
+  }catch{
+    prompt("Sao chép liên kết:",customerLink());
+  }
 };
 
 $("viewBtn").onclick=()=>{
- if(currentId){
-  window.open(customerLink(),"_blank","noopener");
- }
+  if(currentId){
+    window.open(customerLink(),"_blank","noopener");
+  }
+};
+
+$("invoiceForm").onsubmit=async e=>{
+  e.preventDefault();
+
+  if(!auth.currentUser||
+     auth.currentUser.uid!==adminUid)return;
+
+  const msg=$("saveMsg");
+  msg.textContent="";
+
+  const details=people.map(p=>({
+    name:p.name.trim(),
+    passport:p.passport.trim().toUpperCase()
+  }));
+
+  if(details.some(p=>!p.name)){
+    msg.textContent="Nhập đủ họ tên hành khách.";
+    return;
+  }
+
+  const journey=legs.map(l=>({
+    from:l.from.trim(),
+    to:l.to.trim(),
+    date:l.date
+  }));
+
+  if(journey.some(l=>!l.from||!l.to||!l.date)){
+    msg.textContent=
+      "Nhập đủ điểm đi, điểm đến và ngày bay từng chặng.";
+    return;
+  }
+
+  const amount=Number($("fare").value);
+
+  if(!Number.isSafeInteger(amount)||amount<=0){
+    msg.textContent="Tổng tiền phải là số nguyên dương.";
+    return;
+  }
+
+  const bankCode=$("bankCode").value.trim().toUpperCase();
+  const bankName=$("bankName").value.trim();
+  const bankAccount=$("bankAccount").value.trim();
+  const bankOwner=$("bankOwner").value.trim();
+
+  if(
+    !/^[A-Z0-9]{2,15}$/.test(bankCode)||
+    !bankName||
+    !/^[0-9]{5,20}$/.test(bankAccount)||
+    !bankOwner
+  ){
+    msg.textContent=
+      "Điền đầy đủ mã ngân hàng VietQR, tên ngân hàng, số tài khoản và chủ tài khoản.";
+    return;
+  }
+
+  const code=$("code").value.trim();
+  const transferContent=(
+    $("transferContent").value.trim()||
+    code.replace(/[^a-z0-9]/gi,"")
+  ).toUpperCase();
+
+  if(!/^[A-Z0-9 ]{1,25}$/.test(transferContent)){
+    msg.textContent=
+      "Nội dung chuyển khoản chỉ gồm chữ, số hoặc khoảng trắng, tối đa 25 ký tự.";
+    return;
+  }
+
+  const status=$("status").value;
+
+  if(status==="paid"&&!confirm(
+    "Bạn đã kiểm tra ngân hàng và xác nhận thực sự nhận được tiền?"
+  ))return;
+
+  const route=journey.map(l=>
+    l.from+" → "+l.to
+  ).join(" | ");
+
+  const p={
+    code,
+    pnr:$("pnr").value.trim(),
+    customer:$("customer").value.trim(),
+    issueDate:$("issueDate").value,
+    airline:$("airline").value,
+    status,
+    fare:amount,
+    total:amount,
+    passengers:details.length,
+    passengerDetails:details,
+    tripType:$("tripType").value,
+    legs:journey,
+    route,
+    flightDate:journey[0].date,
+    bankCode,
+    bankName,
+    bankAccount,
+    bankOwner,
+    transferContent,
+    updatedAt:serverTimestamp()
+  };
+
+  // Không sao chép số hộ chiếu sang phiếu khách.
+  const shared={
+    code:p.code,
+    pnr:p.pnr,
+    customer:p.customer,
+    issueDate:p.issueDate,
+    airline:p.airline,
+    status:p.status,
+    fare:p.fare,
+    total:p.total,
+    passengers:p.passengers,
+    tripType:p.tripType,
+    legs:p.legs,
+    route:p.route,
+    flightDate:p.flightDate,
+    bankCode,
+    bankName,
+    bankAccount,
+    bankOwner,
+    transferContent,
+    updatedAt:serverTimestamp()
+  };
+
+  const id=currentId||newid();
+
+  $("saveBtn").disabled=true;
+  msg.textContent="Đang lưu...";
+
+  try{
+    const batch=writeBatch(db);
+
+    batch.set(
+      doc(db,"paymentRequests",id),
+      p,{merge:true}
+    );
+
+    batch.set(
+      doc(db,"publicPaymentRequests",id),
+      shared
+    );
+
+    await batch.commit();
+    currentId=id;
+    setLinkButtons(true);
+
+    msg.textContent=
+      "Đã lưu thành công. Bạn có thể copy link khách.";
+    loadList();
+  }catch(err){
+    msg.textContent="Không lưu được: "+err.message;
+  }finally{
+    $("saveBtn").disabled=false;
+  }
 };
 </script>
 </body>
