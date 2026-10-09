@@ -1,1 +1,295 @@
-*{box-sizing:border-box}body{margin:0;color:#17354b;background:#f1f6fa;font:15px/1.5 Arial,sans-serif}header{background:linear-gradient(110deg,#e6f4ff,#fff);border-bottom:1px solid #d8e8f3;color:#08659e}header .wrap{max-width:1080px;margin:auto;padding:21px;display:flex;justify-content:space-between;align-items:center;gap:20px}h1{margin:0;font-size:27px;color:#e77727}header p{margin:0}header span{font-weight:bold}.container{max-width:1080px;margin:24px auto;padding:0 16px}.panel{background:#fff;border:1px solid #d8e7f0;border-radius:14px;box-shadow:0 9px 24px #0c456310;padding:24px;margin-bottom:22px}h2{margin:0 0 14px;color:#08659e;font-size:21px}.muted{color:#677e8b}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid>div{min-width:0}.full{grid-column:1/-1}label{display:block;margin-bottom:5px;color:#3e5b6e;font-weight:600}input,textarea,select{width:100%;border:1px solid #bdd2df;border-radius:8px;padding:11px;font:inherit;background:white}textarea{min-height:84px}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px;align-items:center}.btn{border:0;border-radius:9px;padding:11px 15px;background:#08659e;color:white;font:inherit;font-weight:bold;cursor:pointer}.btn.secondary{background:#e77727}.btn.light{background:#e6f2fa;color:#08659e}.btn:disabled{opacity:.45;cursor:not-allowed}.total{font-size:18px;font-weight:bold;align-self:end}.total span{color:#e77727}.warning{border-left:4px solid #e79747;background:#fff8ed;padding:11px 14px}.error{color:#ae3939}.success{color:#167b52}.hide{display:none}footer{padding:22px;color:#6f8492;text-align:center;font-size:12px}@media(max-width:650px){.grid{grid-template-columns:1fr}.container{margin-top:14px}.panel{padding:16px}header .wrap{display:block}header span{font-size:12px}}
+
+/* ÉN VIỆT GROUP - GIAO DIỆN CHUYÊN NGHIỆP */
+
+:root {
+  --primary: #08659e;
+  --primary-dark: #064d79;
+  --orange: #e77727;
+  --background: #f1f6fa;
+  --border: #d8e7f0;
+  --text: #17354b;
+  --muted: #677e8b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--background);
+  font: 15px/1.5 Arial, sans-serif;
+}
+
+/* HEADER */
+
+header {
+  background: linear-gradient(
+    110deg,
+    #e6f4ff,
+    #ffffff
+  );
+  border-bottom: 1px solid #d8e8f3;
+  color: var(--primary);
+}
+
+header .wrap {
+  max-width: 1080px;
+  margin: auto;
+  padding: 21px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 27px;
+  font-weight: 800;
+  color: var(--orange);
+}
+
+header p {
+  margin: 0;
+}
+
+header span {
+  font-weight: bold;
+}
+
+/* BỐ CỤC CHÍNH */
+
+.container {
+  max-width: 1080px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.panel {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 9px 24px #0c456310;
+  padding: 24px;
+  margin-bottom: 22px;
+}
+
+h2 {
+  margin: 0 0 14px;
+  color: var(--primary);
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* FORM HAI CỘT */
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.grid > div {
+  min-width: 0;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+/* NHÃN VÀ Ô NHẬP */
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #3e5b6e;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #bdd2df;
+  border-radius: 8px;
+  padding: 11px 13px;
+  font: inherit;
+  background: #ffffff;
+  color: #263d4e;
+  transition:
+    border-color .2s,
+    box-shadow .2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #238bd0;
+  box-shadow: 0 0 0 3px #238bd01a;
+}
+
+input[readonly] {
+  background: #f5f9fc;
+  color: #536a7c;
+}
+
+textarea {
+  min-height: 84px;
+  resize: vertical;
+}
+
+/* NÚT THAO TÁC */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 12px;
+  align-items: center;
+}
+
+.btn {
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 15px;
+  background: var(--primary);
+  color: #ffffff;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    background .2s,
+    transform .2s;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn.secondary {
+  background: var(--orange);
+}
+
+.btn.secondary:hover {
+  background: #cd641d;
+}
+
+.btn.light {
+  background: #e6f2fa;
+  color: var(--primary);
+}
+
+.btn.light:hover {
+  background: #d7ebf8;
+}
+
+.btn:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* TỔNG TIỀN */
+
+.total {
+  font-size: 18px;
+  font-weight: bold;
+  align-self: end;
+}
+
+.total span {
+  color: var(--orange);
+}
+
+/* KHUNG THÔNG BÁO */
+
+.warning {
+  border-left: 4px solid #e79747;
+  background: #fff8ed;
+  padding: 11px 14px;
+  border-radius: 7px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* TRẠNG THÁI */
+
+.error {
+  color: #ae3939;
+}
+
+.success {
+  color: #167b52;
+}
+
+.hide {
+  display: none !important;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 22px;
+  color: #6f8492;
+  text-align: center;
+  font-size: 12px;
+}
+
+/* GIAO DIỆN ĐIỆN THOẠI */
+
+@media (max-width: 650px) {
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full {
+    grid-column: 1;
+  }
+
+  .container {
+    margin-top: 14px;
+  }
+
+  .panel {
+    padding: 16px;
+    border-radius: 11px;
+  }
+
+  header .wrap {
+    display: block;
+    padding: 17px;
+  }
+
+  header span {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 23px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  .actions {
+    gap: 8px;
+  }
+
+  .btn {
+    padding: 10px 13px;
+    font-size: 13px;
+  }
+}
