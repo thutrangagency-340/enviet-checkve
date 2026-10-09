@@ -2,405 +2,538 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Én Việt Group | Cổng thanh toán</title>
 
 <style>
-:root {
-  --blue:#176df2;
-  --navy:#164266;
-  --line:#dfe5ec;
-  --muted:#6d7988;
+:root{
+  --blue:#1677d8;
+  --dark:#16466f;
+  --red:#da3045;
+  --red-dark:#b91f35;
+  --line:#d6e5f0;
+  --muted:#658096;
+  --light:#edf8ff;
 }
 
-* {
+*{
   box-sizing:border-box;
 }
 
-body {
+body{
   margin:0;
-  background:#f2f5f9;
+  color:#24445d;
   font:14px/1.55 Arial,sans-serif;
-  color:#243344;
+  background:linear-gradient(
+    135deg,
+    #e6f5ff 0%,
+    #f7fbff 50%,
+    #fff0f2 100%
+  );
 }
 
-.wrap {
-  max-width:780px;
-  margin:25px auto;
-  padding:0 12px;
+.wrap{
+  width:100%;
+  max-width:790px;
+  margin:26px auto;
+  padding:0 14px;
 }
 
-.panel {
+.panel{
   background:#fff;
-  border:1px solid #e2e8ef;
-  border-radius:15px;
-  box-shadow:0 9px 34px #20446312;
+  border:1px solid #d7e7f2;
+  border-radius:17px;
   overflow:hidden;
+  box-shadow:0 14px 38px rgba(24,88,145,.12);
+  position:relative;
 }
 
-.brand {
-  padding:22px 22px 12px;
+.panel::before{
+  content:"";
+  display:block;
+  height:6px;
+  background:linear-gradient(
+    90deg,
+    #1579d6 0%,
+    #47bde3 45%,
+    #dc3047 100%
+  );
+}
+
+.brand{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:12px;
+  gap:13px;
+  padding:24px 20px 11px;
 }
 
-.brand img {
-  width:48px;
-  height:48px;
+.brand img{
+  width:52px;
+  height:52px;
   object-fit:contain;
 }
 
-.brand strong {
-  font-size:25px;
-  color:var(--navy);
-  letter-spacing:.4px;
+.brand strong{
+  color:#116da9;
+  font-size:26px;
+  font-weight:800;
+  letter-spacing:.5px;
 }
 
-.heading {
+.heading{
   text-align:center;
-  padding:0 18px 20px;
+  padding:0 16px 22px;
 }
 
-.heading h1 {
+.heading h1{
   color:var(--blue);
   font-size:24px;
-  margin:4px 0;
+  font-weight:800;
+  margin:5px 0;
 }
 
-.heading p {
+.heading p{
+  color:#d02c43;
   font-size:12px;
-  color:var(--muted);
+  font-weight:600;
   margin:0;
 }
 
-.body {
-  padding:5px 30px 30px;
+.body{
+  padding:6px 30px 28px;
 }
 
-.summary {
-  border:1px solid var(--line);
-  background:#f8fbff;
-  border-radius:10px;
-  padding:12px 15px;
-  margin-bottom:21px;
+.summary{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px 16px;
+  gap:12px 18px;
+  background:linear-gradient(115deg,#edf8ff,#fff5f6);
+  border:1px solid #cde5f5;
+  border-left:4px solid var(--blue);
+  border-radius:11px;
+  padding:16px;
+  margin-bottom:23px;
   font-size:12px;
 }
 
-.summary small {
+.summary small{
   display:block;
-  color:var(--muted);
+  color:#6488a1;
+  margin-bottom:3px;
 }
 
-.summary b {
+.summary b{
+  color:#16496f;
+  font-weight:700;
   overflow-wrap:anywhere;
 }
 
-.option {
-  border:1px solid #d9dfe5;
-  background:#fafafa;
-  border-radius:10px;
-  padding:16px 18px;
-  margin:0 0 12px;
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:var(--dark);
+  font-size:15px;
+  font-weight:800;
+  margin:21px 0 13px;
+}
+
+.section-title::before{
+  content:"";
+  width:5px;
+  height:20px;
+  border-radius:3px;
+  background:var(--red);
+}
+
+.option{
   display:flex;
   align-items:center;
   gap:12px;
-  color:#273442;
+  padding:15px 17px;
+  margin-bottom:11px;
+  border:1px solid #dce6ee;
+  border-radius:10px;
+  background:#fcfdff;
+  color:#33495c;
 }
 
-.option input {
-  accent-color:var(--blue);
+.option input{
+  accent-color:var(--red);
   width:16px;
   height:16px;
   margin:0;
+  flex-shrink:0;
 }
 
-.option b {
-  font-size:14px;
+.option b{
+  font-size:13px;
 }
 
-.option small {
-  color:#88939f;
+.option small{
+  color:#8193a2;
+  font-size:11px;
   font-style:italic;
 }
 
-.option.disabled {
-  opacity:.65;
+.option.disabled{
+  opacity:.6;
   cursor:not-allowed;
 }
 
-.option.active {
-  border:2px solid var(--blue);
-  background:#fff;
-  padding:15px 17px;
+.option.active{
+  background:linear-gradient(110deg,#eff8ff,#fff6f7);
+  border:2px solid var(--red);
+  padding:14px 16px;
 }
 
-.payment {
-  border:1px solid #d9e1e8;
-  border-radius:11px;
+.option.active b{
+  color:#ac263d;
+}
+
+/* CHỌN NGÂN HÀNG CỦA KHÁCH */
+
+.bank-select-box{
   padding:18px;
-  margin:14px 0 0;
-  background:#fff;
+  margin:17px 0;
+  border-radius:12px;
+  border:1px solid #d5e6f3;
+  background:linear-gradient(120deg,#edf8ff,#fff);
 }
 
-.instruction {
+.bank-select-title{
+  display:block;
+  font-size:15px;
+  font-weight:800;
+  color:#146b9f;
+  margin-bottom:5px;
+}
+
+.bank-select-description{
   font-size:12px;
-  color:#516272;
-  margin:0 0 14px;
+  color:#66879d;
+  line-height:1.6;
+  margin:0 0 12px;
 }
 
-/* KHUNG THÔNG TIN CHUYỂN KHOẢN */
-
-.payrow {
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 178px;
-  gap:18px;
-  align-items:start;
-  padding:13px;
-  border:1px solid #dbe6f0;
-  border-radius:10px;
+#senderBank{
+  display:block;
+  width:100%;
+  padding:13px 14px;
+  border:1px solid #adcfe7;
+  border-radius:9px;
   background:#fff;
+  color:#1e5278;
+  font:14px Arial,sans-serif;
+  cursor:pointer;
 }
 
-.data {
+#senderBank:focus{
+  outline:2px solid var(--blue);
+  outline-offset:2px;
+}
+
+#bankHelp{
+  margin:11px 0 0;
+  font-size:12px;
+  color:#426f90;
+}
+
+/* KHUNG CHUYỂN KHOẢN */
+
+.payment{
+  border:1px solid #cce2f0;
+  background:#fff;
+  border-radius:12px;
+  padding:18px;
+  margin-top:18px;
+}
+
+.payment-heading{
+  color:#c52b40;
+  font-size:15px;
+  font-weight:800;
+  margin:0 0 10px;
+}
+
+.instruction{
+  color:#5b7488;
+  font-size:12px;
+  line-height:1.7;
+  margin:0 0 15px;
+}
+
+.payrow{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 180px;
+  gap:16px;
+  align-items:start;
+  padding:16px;
+  border:1px solid #d4e7f5;
+  border-radius:11px;
+  background:#f6fbff;
+}
+
+.data{
   display:grid;
   grid-template-columns:112px minmax(0,1fr);
-  gap:10px 8px;
+  gap:12px 8px;
   align-items:baseline;
   font-size:13px;
   margin:0;
 }
 
-.data dt {
+.data dt{
   font-weight:700;
-  color:#363f4b;
+  color:#184f77;
 }
 
-.data dd {
+.data dd{
   margin:0;
-  color:#363d48;
   overflow-wrap:anywhere;
+  color:#30495b;
 }
 
-.data .amount {
-  font-weight:bold;
-  font-size:17px;
+.data .amount{
+  color:#d12d43;
+  font-size:18px;
+  font-weight:800;
 }
 
-/* COPY MÀU XANH CẠNH NỘI DUNG */
-
-.transfer-inline {
+.transfer-inline{
   display:flex;
-  align-items:baseline;
   gap:8px;
+  align-items:baseline;
   flex-wrap:wrap;
 }
 
 .copy-inline,
 .copy-inline:hover,
-.copy-inline:focus {
+.copy-inline:focus{
   display:inline-block;
   width:auto;
   min-height:0;
-  background:transparent!important;
-  color:#1677ff!important;
   border:0;
-  box-shadow:none!important;
   border-radius:0;
   padding:0;
-  font:600 13px Arial,sans-serif;
+  box-shadow:none!important;
+  background:transparent!important;
+  color:#1677ff!important;
+  font:700 13px Arial,sans-serif;
   cursor:pointer;
 }
 
-.copy-inline:hover {
+.copy-inline:hover{
   text-decoration:underline;
 }
 
-.qrbox {
-  border:1px solid #e1e5ea;
-  border-radius:8px;
-  padding:10px;
-  text-align:center;
-  min-height:160px;
+.copy-inline:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+.qrbox{
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
+  text-align:center;
+  min-height:160px;
+  padding:9px;
+  background:white;
+  border:1px solid #b8d9ef;
+  border-radius:10px;
 }
 
-.qrbox img {
+.qrbox img{
+  display:block;
+  width:160px;
   max-width:100%;
-  width:152px;
   height:auto;
 }
 
-.qrbox small {
-  color:var(--muted);
+.qrbox small{
+  color:#728da0;
   font-size:10px;
-  margin-top:5px;
+  margin-top:6px;
 }
 
-.notice {
+.notice{
+  background:#fff0f2;
+  color:#9b3041;
+  border-left:4px solid var(--red);
+  padding:11px 12px;
+  margin-top:15px;
   font-size:11px;
-  color:#875c38;
-  background:#fff7ef;
-  border-left:3px solid #e4a268;
-  padding:10px;
-  margin:14px 0 0;
+  line-height:1.7;
+  border-radius:0 7px 7px 0;
 }
 
-.buttons {
+/* NÚT */
+
+.buttons{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:10px;
-  margin:20px 0 17px;
+  margin:20px 0;
 }
 
-button {
-  background:#1774eb;
-  color:#fff;
+button{
   border:0;
-  border-radius:9px;
+  border-radius:10px;
   padding:12px 10px;
-  font:700 13px Arial;
+  font:700 13px Arial,sans-serif;
+  color:white;
+  background:var(--blue);
   cursor:pointer;
 }
 
-button.green {
-  background:#23a34a;
+.buttons button{
+  background:linear-gradient(110deg,#258ee6,#1265c0);
+  box-shadow:0 5px 12px rgba(22,119,216,.14);
 }
 
-button:disabled {
-  background:#b3c4d5;
+.buttons button.red{
+  background:linear-gradient(110deg,#ed485b,#c6253c);
+  box-shadow:0 5px 12px rgba(218,48,69,.14);
+}
+
+.buttons button:disabled{
+  background:#b7c7d7;
+  box-shadow:none;
   cursor:not-allowed;
 }
 
-.fields {
+.fields{
   display:grid;
-  gap:11px;
-  margin-top:11px;
+  gap:12px;
+  padding:18px;
+  border:1px solid #e0eaf2;
+  background:#fbfdff;
+  border-radius:11px;
 }
 
-.fields label {
-  font-weight:600;
+.fields label{
   display:block;
+  color:#255b83;
+  font-weight:700;
   font-size:12px;
   margin-bottom:5px;
-  color:#42464e;
 }
 
-.fields input {
-  display:block;
+.fields input{
   width:100%;
-  border:1px solid #dae1e9;
-  border-radius:9px;
-  background:#f8f8f8;
   padding:12px;
-  font:13px Arial;
-  color:#404650;
+  background:#f1f8fd;
+  border:1px solid #cce0ee;
+  border-radius:8px;
+  color:#24465e;
+  font:13px Arial,sans-serif;
 }
 
-.note {
-  color:#758391;
-  font-size:11px;
-  margin-top:15px;
-}
-
-#feedback {
+#feedback{
+  color:#116ca3;
   font-size:12px;
-  color:#135c90;
   min-height:18px;
 }
 
-.hidden {
+.note{
+  color:#788c9b;
+  font-size:11px;
+  margin-top:16px;
+}
+
+footer{
+  color:#8096a8;
+  font-size:11px;
+  text-align:center;
+  padding:18px;
+  border-top:1px solid #e8eff5;
+}
+
+.hidden{
   display:none!important;
 }
 
-footer {
-  text-align:center;
-  padding:14px;
-  font-size:11px;
-  color:#8392a1;
-}
-
-/* VÙNG CHỤP ẢNH:
-   CÁC PHẦN NÀY CHỈ ẨN TRONG ẢNH,
-   KHÔNG ẨN TRÊN TRANG THẬT.
-*/
+/* CHỤP ẢNH: ẨN THÔNG TIN KHÔNG CẦN THIẾT */
 
 .capture-mode .summary,
+.capture-mode .section-title,
 .capture-mode .notice,
 .capture-mode .buttons,
 .capture-mode .fields,
 .capture-mode .note,
 .capture-mode #feedback,
-.capture-mode footer {
+.capture-mode footer{
   display:none!important;
 }
 
-.capture-mode .body {
-  padding-bottom:24px;
+.capture-mode .body{
+  padding-bottom:25px;
 }
 
-@media(max-width:650px) {
-  .body {
+/* MOBILE */
+
+@media(max-width:650px){
+  .wrap{
+    margin:12px auto;
+    padding:0 9px;
+  }
+  .body{
     padding:8px 13px 20px;
   }
-
-  .brand strong {
+  .brand strong{
+    font-size:21px;
+  }
+  .brand img{
+    width:43px;
+    height:43px;
+  }
+  .heading h1{
     font-size:20px;
   }
-
-  .heading h1 {
-    font-size:20px;
+  .summary{
+    gap:12px;
   }
-
-  .payrow {
+  .payrow{
     grid-template-columns:1fr;
+    padding:13px;
   }
-
-  .qrbox {
-    max-width:200px;
+  .qrbox{
     width:100%;
+    max-width:210px;
     margin:auto;
   }
-
-  .buttons {
+  .buttons{
     grid-template-columns:1fr;
   }
-
-  .payment {
+  .payment{
+    padding:13px;
+  }
+  .fields{
     padding:13px;
   }
 }
 
-@media print {
-  body {
+@media print{
+  body{
     background:white;
   }
-
-  .wrap {
+  .wrap{
     max-width:none;
     margin:0;
     padding:0;
   }
-
-  .panel {
-    border:0;
+  .panel{
     box-shadow:none;
+    border:0;
   }
-
-  .buttons,
-  #feedback {
+  .buttons,#feedback{
     display:none!important;
   }
-
-  @page {
+  @page{
     size:A4;
     margin:12mm;
   }
@@ -412,257 +545,328 @@ footer {
 
 <body>
 <div class="wrap">
-
 <div class="panel" id="captureArea">
 
-  <div class="brand">
-    <img src="logo-enviet.svg" alt="Én Việt Group">
-    <strong>ÉN VIỆT GROUP</strong>
+<div class="brand">
+  <img src="logo-enviet.svg" alt="Én Việt Group">
+  <strong>ÉN VIỆT GROUP</strong>
+</div>
+
+<div class="heading">
+  <h1>CỔNG THANH TOÁN TRỰC TUYẾN</h1>
+  <p>PHIẾU YÊU CẦU THANH TOÁN VÉ MÁY BAY</p>
+</div>
+
+<div class="body">
+
+<p id="loading">Đang tải thông tin hóa đơn...</p>
+
+<section id="invoice" class="hidden">
+
+<!-- THÔNG TIN HÓA ĐƠN -->
+
+<div class="summary">
+  <div>
+    <small>Mã hóa đơn</small>
+    <b id="code">—</b>
   </div>
 
-  <div class="heading">
-    <h1>CỔNG THANH TOÁN TRỰC TUYẾN</h1>
-    <p>PHIẾU YÊU CẦU THANH TOÁN VÉ MÁY BAY</p>
+  <div>
+    <small>Mã đặt chỗ (PNR)</small>
+    <b id="pnr">—</b>
   </div>
 
-  <div class="body">
+  <div>
+    <small>Khách hàng</small>
+    <b id="customer">—</b>
+  </div>
 
-    <p id="loading">
-      Đang tải thông tin hóa đơn...
-    </p>
+  <div>
+    <small>Hãng bay</small>
+    <b id="airline">—</b>
+  </div>
 
-    <section id="invoice" class="hidden">
+  <div style="grid-column:1/-1">
+    <small>Hành trình</small>
+    <b id="route">—</b>
+  </div>
 
-      <!-- THÔNG TIN HÓA ĐƠN -->
+  <div>
+    <small>Ngày bay</small>
+    <b id="flightDate">—</b>
+  </div>
 
-      <div class="summary">
+  <div>
+    <small>Trạng thái</small>
+    <b id="status">—</b>
+  </div>
+</div>
 
-        <div>
-          <small>Mã hóa đơn</small>
-          <b id="code">—</b>
-        </div>
+<!-- PHƯƠNG THỨC THANH TOÁN -->
 
-        <div>
-          <small>Mã đặt chỗ (PNR)</small>
-          <b id="pnr">—</b>
-        </div>
+<div class="section-title">
+  Phương thức thanh toán
+</div>
 
-        <div>
-          <small>Khách hàng</small>
-          <b id="customer">—</b>
-        </div>
+<label class="option disabled">
+  <input type="radio" name="method" disabled>
+  <span>
+    <b>Thẻ ATM / Tài khoản ngân hàng</b>
+    <small>— Chưa tích hợp</small>
+  </span>
+</label>
 
-        <div>
-          <small>Hãng bay</small>
-          <b id="airline">—</b>
-        </div>
+<label class="option disabled">
+  <input type="radio" name="method" disabled>
+  <span>
+    <b>Thẻ ATM nội địa qua cổng thanh toán</b>
+    <small>— Chưa tích hợp</small>
+  </span>
+</label>
 
-        <div style="grid-column:1/-1">
-          <small>Hành trình</small>
-          <b id="route">—</b>
-        </div>
+<label class="option disabled">
+  <input type="radio" name="method" disabled>
+  <span>
+    <b>Thẻ tín dụng quốc tế</b>
+    <small>— Chưa tích hợp</small>
+  </span>
+</label>
 
-        <div>
-          <small>Ngày bay</small>
-          <b id="flightDate">—</b>
-        </div>
+<label class="option active">
+  <input type="radio" name="method" checked>
+  <span>
+    <b>Chuyển khoản ngân hàng bằng VietQR</b>
+    <small>— Theo thông tin hóa đơn</small>
+  </span>
+</label>
 
-        <div>
-          <small>Trạng thái</small>
-          <b id="status">—</b>
-        </div>
+<!-- CHỌN NGÂN HÀNG CỦA KHÁCH -->
 
-      </div>
+<div class="bank-select-box">
 
-      <!-- PHƯƠNG THỨC THANH TOÁN -->
+  <label class="bank-select-title" for="senderBank">
+    Chọn ngân hàng bạn sử dụng
+  </label>
 
-      <label class="option disabled">
-        <input type="radio" disabled name="method">
-        <span>
-          <b>Thẻ ATM / Tài khoản ngân hàng</b>
-          <small>— Chưa tích hợp</small>
-        </span>
-      </label>
+  <p class="bank-select-description">
+    Chọn ngân hàng bạn dùng để chuyển tiền.
+    Tài khoản nhận và số tiền đã lưu trên hóa đơn
+    sẽ không thay đổi.
+  </p>
 
-      <label class="option disabled">
-        <input type="radio" disabled name="method">
-        <span>
-          <b>Thẻ ATM nội địa qua cổng thanh toán</b>
-          <small>— Chưa tích hợp</small>
-        </span>
-      </label>
+  <select id="senderBank">
 
-      <label class="option disabled">
-        <input type="radio" disabled name="method">
-        <span>
-          <b>Thẻ tín dụng quốc tế</b>
-          <small>— Chưa tích hợp</small>
-        </span>
-      </label>
+    <option value="">
+      -- Chọn ngân hàng chuyển tiền --
+    </option>
 
-      <label class="option active">
-        <input type="radio" checked name="method">
-        <span>
-          <b>Chuyển khoản ngân hàng bằng VietQR</b>
-          <small>— Theo thông tin hóa đơn</small>
-        </span>
-      </label>
+    <optgroup label="Ngân hàng phổ biến">
+      <option>Vietcombank</option>
+      <option>MB Bank</option>
+      <option>BIDV</option>
+      <option>VietinBank</option>
+      <option>Techcombank</option>
+      <option>ACB</option>
+      <option>VPBank</option>
+      <option>VIB</option>
+      <option>Agribank</option>
+      <option>TPBank</option>
+      <option>Sacombank</option>
+      <option>OCB</option>
+      <option>MSB</option>
+      <option>HDBank</option>
+      <option>SHB</option>
+      <option>Eximbank</option>
+      <option>LPBank</option>
+    </optgroup>
 
-      <!-- KHUNG CHUYỂN KHOẢN -->
+    <optgroup label="Ngân hàng khác">
+      <option>ABBank</option>
+      <option>Bac A Bank</option>
+      <option>BaoViet Bank</option>
+      <option>BVBank</option>
+      <option>Co-opBank</option>
+      <option>GPBank</option>
+      <option>KienlongBank</option>
+      <option>Nam A Bank</option>
+      <option>NCB</option>
+      <option>PGBank</option>
+      <option>PVcomBank</option>
+      <option>SeABank</option>
+      <option>Saigonbank</option>
+      <option>SCB</option>
+      <option>VietABank</option>
+      <option>VietBank</option>
+      <option>VRB</option>
+      <option>MBV</option>
+    </optgroup>
 
-      <section class="payment">
+    <optgroup label="Ngân hàng nước ngoài và số">
+      <option>HSBC</option>
+      <option>Shinhan Bank</option>
+      <option>Woori Bank</option>
+      <option>UOB</option>
+      <option>CIMB</option>
+      <option>Public Bank</option>
+      <option>Hong Leong Bank</option>
+      <option>Standard Chartered</option>
+      <option>KBank</option>
+      <option>CAKE</option>
+      <option>LioBank</option>
+      <option>Timo</option>
+    </optgroup>
 
-        <p class="instruction">
-          Kiểm tra thông tin người nhận trong ứng
-          dụng ngân hàng trước khi chuyển.
-          Chỉ sử dụng số tài khoản đã được
-          đại lý xác nhận.
-        </p>
+    <option>Ngân hàng khác</option>
 
-        <div class="payrow">
+  </select>
 
-          <dl class="data">
+  <p id="bankHelp" role="status">
+    Bạn có thể sử dụng ứng dụng ngân hàng
+    hỗ trợ VietQR để quét mã chuyển khoản.
+  </p>
 
-            <dt>Tên tài khoản:</dt>
-            <dd id="owner">—</dd>
+</div>
 
-            <dt>Số tiền:</dt>
-            <dd class="amount" id="amount">—</dd>
+<!-- THÔNG TIN CHUYỂN KHOẢN -->
 
-            <dt>Nội dung:</dt>
-            <dd class="transfer-inline">
+<section class="payment">
 
-              <span id="content">—</span>
+  <h2 class="payment-heading">
+    Thông tin chuyển khoản
+  </h2>
 
-              <button
-                type="button"
-                id="copyContent"
-                class="copy-inline">
-                Copy
-              </button>
+  <p class="instruction">
+    Kiểm tra tên người nhận trong ứng dụng ngân hàng
+    trước khi chuyển. Không chuyển khoản nếu thông tin
+    người nhận không trùng khớp.
+  </p>
 
-            </dd>
+  <div class="payrow">
 
-            <dt>Ngân hàng:</dt>
-            <dd id="bank">—</dd>
+    <dl class="data">
 
-            <dt>Số tài khoản:</dt>
-            <dd id="account">—</dd>
+      <dt>Tên tài khoản:</dt>
+      <dd id="owner">—</dd>
 
-          </dl>
+      <dt>Số tiền:</dt>
+      <dd id="amount" class="amount">—</dd>
 
-          <!-- ẢNH VIETQR -->
-
-          <div class="qrbox" id="qrPanel">
-
-            <img
-              class="hidden"
-              id="qr"
-              crossorigin="anonymous"
-              alt="VietQR chuyển khoản">
-
-            <small id="qrNote">
-              Đang kiểm tra mã QR...
-            </small>
-
-          </div>
-
-        </div>
-
-        <div class="notice">
-          VietQR là mã điền sẵn thông tin
-          chuyển khoản, không phải bằng chứng
-          đã thanh toán. Nếu ngân hàng hiện
-          tên người nhận không khớp,
-          không thực hiện giao dịch.
-        </div>
-
-      </section>
-
-      <!-- 3 NÚT CHỨC NĂNG -->
-
-      <div class="buttons" data-ignore="1">
-
-        <button id="saveImage" type="button">
-          Chụp ảnh màn hình · COPY
-        </button>
-
-        <button id="saveQr" type="button" disabled>
-          Chụp QR · COPY
-        </button>
+      <dt>Nội dung:</dt>
+      <dd class="transfer-inline">
+        <span id="content">—</span>
 
         <button
-          id="copy"
+          id="copyContent"
           type="button"
-          class="green"
+          class="copy-inline"
           disabled>
-          Sao chép nội dung
+          Copy
         </button>
+      </dd>
 
-      </div>
+      <dt>Ngân hàng nhận:</dt>
+      <dd id="bank">—</dd>
 
-      <!-- 5 Ô THÔNG TIN BÊN DƯỚI -->
+      <dt>Số tài khoản:</dt>
+      <dd id="account">—</dd>
 
-      <div class="fields">
+    </dl>
 
-        <div>
-          <label for="fieldOwner">
-            Tên tài khoản:
-          </label>
-          <input id="fieldOwner" readonly>
-        </div>
+    <div class="qrbox" id="qrPanel">
 
-        <div>
-          <label for="fieldAmount">
-            Số tiền:
-          </label>
-          <input id="fieldAmount" readonly>
-        </div>
+      <img
+        id="qr"
+        class="hidden"
+        crossorigin="anonymous"
+        alt="Mã chuyển khoản VietQR">
 
-        <div>
-          <label for="fieldContent">
-            Nội dung:
-          </label>
-          <input id="fieldContent" readonly>
-        </div>
+      <small id="qrNote">
+        Đang kiểm tra mã QR...
+      </small>
 
-        <div>
-          <label for="fieldBank">
-            Ngân hàng:
-          </label>
-          <input id="fieldBank" readonly>
-        </div>
-
-        <div>
-          <label for="fieldAccount">
-            Số tài khoản:
-          </label>
-          <input id="fieldAccount" readonly>
-        </div>
-
-      </div>
-
-      <p id="feedback" role="status"></p>
-
-      <p class="note">
-        Thông tin lấy từ hóa đơn đã lưu.
-        Nhân viên thay đổi tài khoản tại
-        trang quản trị rồi lưu và tải lại
-        liên kết khách. Đây không phải
-        trang thanh toán chính thức của
-        hãng hàng không hoặc VNPAY.
-      </p>
-
-    </section>
+    </div>
 
   </div>
 
-  <footer>
-    © 2026 ÉN VIỆT GROUP ·
-    Phiếu yêu cầu thanh toán,
-    không thay thế hóa đơn VAT
-    hoặc xác nhận ngân hàng.
-  </footer>
+  <div class="notice">
+    VietQR chỉ hỗ trợ điền thông tin chuyển khoản,
+    không xác nhận đã thanh toán.
+    Nếu ngân hàng hiện tên người nhận không khớp,
+    vui lòng không thực hiện giao dịch.
+  </div>
+
+</section>
+
+<!-- 3 NÚT COPY -->
+
+<div class="buttons">
+
+  <button id="saveImage" type="button">
+    Chụp ảnh màn hình · COPY
+  </button>
+
+  <button id="saveQr" type="button" disabled>
+    Chụp QR · COPY
+  </button>
+
+  <button
+    id="copy"
+    type="button"
+    class="red"
+    disabled>
+    Sao chép nội dung
+  </button>
+
+</div>
+
+<!-- 5 Ô THÔNG TIN -->
+
+<div class="fields">
+
+  <div>
+    <label for="fieldOwner">Tên tài khoản:</label>
+    <input id="fieldOwner" readonly>
+  </div>
+
+  <div>
+    <label for="fieldAmount">Số tiền:</label>
+    <input id="fieldAmount" readonly>
+  </div>
+
+  <div>
+    <label for="fieldContent">Nội dung:</label>
+    <input id="fieldContent" readonly>
+  </div>
+
+  <div>
+    <label for="fieldBank">Ngân hàng nhận:</label>
+    <input id="fieldBank" readonly>
+  </div>
+
+  <div>
+    <label for="fieldAccount">Số tài khoản:</label>
+    <input id="fieldAccount" readonly>
+  </div>
+
+</div>
+
+<p id="feedback" role="status"></p>
+
+<p class="note">
+  Thông tin lấy từ hóa đơn đã lưu.
+  Nhân viên thay đổi tài khoản tại trang quản trị,
+  sau đó lưu và tải lại liên kết khách.
+  Đây không phải trang thanh toán chính thức
+  của hãng hàng không hoặc VNPAY.
+</p>
+
+</section>
+</div>
+
+<footer>
+  © 2026 ÉN VIỆT GROUP · Phiếu yêu cầu thanh toán,
+  không thay thế hóa đơn VAT hoặc xác nhận ngân hàng.
+</footer>
 
 </div>
 </div>
@@ -682,62 +886,66 @@ const $ = id => document.getElementById(id);
 const opts = new URLSearchParams(location.search);
 
 const money = n =>
-  new Intl.NumberFormat("vi-VN", {
+  new Intl.NumberFormat("vi-VN",{
     style:"currency",
     currency:"VND",
     maximumFractionDigits:0
-  }).format(Number(n) || 0);
+  }).format(Number(n)||0);
 
 let qrUrl = "";
 let qrReady = false;
 let copyText = "";
+let canPay = false;
 
-/* HIỂN THỊ GIÁ TRỊ */
-
-function set(id,value) {
+function set(id,value){
   $(id).textContent =
     String(value ?? "").trim() || "—";
 }
 
-/* ĐỊNH DẠNG NGÀY */
-
-function formatDate(value) {
+function formatDate(value){
   const v = String(value || "");
 
-  if (/^\d{4}-\d{2}-\d{2}$/.test(v)) {
-    return (
-      v.slice(8) + "/" +
-      v.slice(5,7) + "/" +
-      v.slice(0,4)
-    );
-  }
-
-  return v || "—";
+  return /^\d{4}-\d{2}-\d{2}$/.test(v)
+    ? v.slice(8)+"/"+v.slice(5,7)+"/"+v.slice(0,4)
+    : v || "—";
 }
 
-/* THÔNG BÁO */
-
-function notify(message) {
+function notify(message){
   $("feedback").textContent = message;
 }
 
-/* COPY CHỮ */
+/* CHỌN NGÂN HÀNG CHUYỂN */
 
-async function copyTextValue(value,message) {
+$("senderBank").addEventListener("change",()=>{
+  const name = $("senderBank").value;
 
-  if (!value || value === "—") return;
+  set(
+    "bankHelp",
+    name
+      ? "Đã chọn: "+name+
+        ". Hãy mở ứng dụng ngân hàng này để chuyển tiền. "+
+        "Thông tin người nhận không thay đổi."
+      : "Bạn có thể sử dụng ứng dụng ngân hàng hỗ trợ VietQR."
+  );
+});
 
-  try {
+/* COPY VĂN BẢN */
+
+async function copyValue(value,message){
+
+  if(!value || value==="—") return;
+
+  try{
     await navigator.clipboard.writeText(value);
     notify(message);
-  } catch {
-    window.prompt("Sao chép nội dung:", value);
+  }catch{
+    window.prompt("Sao chép nội dung:",value);
   }
 }
 
-/* HIỂN THỊ HÓA ĐƠN */
+/* HIỂN THỊ HÓA ĐƠN FIREBASE */
 
-function render(p,isDemo=false) {
+function render(p,isDemo=false){
 
   set("code",p.code);
   set("pnr",p.pnr);
@@ -746,9 +954,9 @@ function render(p,isDemo=false) {
 
   let route = p.route || "";
 
-  if (Array.isArray(p.legs) && p.legs.length) {
-    route = p.legs.map(leg =>
-      (leg.from || "") + " → " + (leg.to || "")
+  if(Array.isArray(p.legs) && p.legs.length){
+    route = p.legs.map(l =>
+      (l.from||"")+" → "+(l.to||"")
     ).join(" | ");
   }
 
@@ -756,9 +964,7 @@ function render(p,isDemo=false) {
 
   set(
     "flightDate",
-    formatDate(
-      p.flightDate || p.legs?.[0]?.date
-    )
+    formatDate(p.flightDate || p.legs?.[0]?.date)
   );
 
   const status = String(p.status || "pending");
@@ -790,53 +996,44 @@ function render(p,isDemo=false) {
     p.bankAccount || p.bank?.account || ""
   ).trim();
 
-  const amount = Number(
-    p.total ?? p.fare ?? 0
-  );
+  const amount = Number(p.total ?? p.fare ?? 0);
 
-  const reference = String(
+  const ref = String(
     p.transferContent || p.code || ""
   ).trim().toUpperCase();
 
-  set(
-    "owner",
-    owner || "Chưa cung cấp"
-  );
-
-  set(
-    "bank",
-    bankName || "Chưa cung cấp"
-  );
-
-  set(
-    "account",
-    account || "Chưa cung cấp"
-  );
-
+  set("owner",owner || "Chưa cung cấp");
+  set("bank",bankName || "Chưa cung cấp");
+  set("account",account || "Chưa cung cấp");
   set("amount",money(amount));
-  set("content",reference);
+  set("content",ref);
 
   $("fieldOwner").value = owner;
   $("fieldBank").value = bankName;
   $("fieldAccount").value = account;
   $("fieldAmount").value = money(amount);
-  $("fieldContent").value = reference;
-
-  /* XÓA QR CŨ */
+  $("fieldContent").value = ref;
 
   qrUrl = "";
   qrReady = false;
   copyText = "";
+  canPay = false;
 
-  const qr = $("qr");
+  const img = $("qr");
 
-  qr.classList.add("hidden");
-  qr.removeAttribute("src");
+  img.classList.add("hidden");
+  img.removeAttribute("src");
 
   $("saveQr").disabled = true;
   $("copy").disabled = true;
+  $("copyContent").disabled = true;
 
-  /* KIỂM TRA THÔNG TIN NGÂN HÀNG */
+  $("senderBank").value = "";
+
+  set(
+    "bankHelp",
+    "Bạn có thể sử dụng ứng dụng ngân hàng hỗ trợ VietQR."
+  );
 
   const valid =
     /^[A-Z0-9]{2,15}$/.test(bankCode) &&
@@ -845,39 +1042,33 @@ function render(p,isDemo=false) {
     Boolean(owner) &&
     Number.isSafeInteger(amount) &&
     amount > 0 &&
-    /^[A-Z0-9 ]{1,25}$/.test(reference);
+    /^[A-Z0-9 ]{1,25}$/.test(ref);
 
-  if (isDemo) {
+  if(isDemo){
 
     set(
       "qrNote",
       "BẢN MẪU — Không dùng thanh toán"
     );
 
-  } else if (status === "cancelled") {
+  }else if(status==="cancelled"){
+
+    set("qrNote","Phiếu đã hủy");
+
+  }else if(status==="paid"){
+
+    set("qrNote","Đã đối soát nhận tiền");
+
+  }else if(!valid){
 
     set(
       "qrNote",
-      "Phiếu đã hủy"
+      "Chưa đủ thông tin ngân hàng để tạo VietQR."
     );
 
-  } else if (status === "paid") {
+  }else{
 
-    set(
-      "qrNote",
-      "Đã đối soát nhận tiền"
-    );
-
-  } else if (!valid) {
-
-    set(
-      "qrNote",
-      "Chưa đủ dữ liệu ngân hàng để tạo VietQR."
-    );
-
-  } else {
-
-    /* TẠO QR THEO TỪNG HÓA ĐƠN */
+    canPay = true;
 
     const ownerPlain = owner
       .normalize("NFD")
@@ -887,7 +1078,7 @@ function render(p,isDemo=false) {
 
     const query = new URLSearchParams({
       amount:String(amount),
-      addInfo:reference,
+      addInfo:ref,
       accountName:ownerPlain
     });
 
@@ -895,14 +1086,13 @@ function render(p,isDemo=false) {
       "https://img.vietqr.io/image/" +
       encodeURIComponent(bankCode) + "-" +
       encodeURIComponent(account) +
-      "-compact2.png?" +
-      query.toString();
+      "-compact2.png?" + query.toString();
 
-    qr.onload = () => {
+    img.crossOrigin = "anonymous";
 
-      qr.classList.remove("hidden");
+    img.onload = ()=>{
+      img.classList.remove("hidden");
       qrReady = true;
-
       $("saveQr").disabled = false;
 
       set(
@@ -911,11 +1101,9 @@ function render(p,isDemo=false) {
       );
     };
 
-    qr.onerror = () => {
-
+    img.onerror = ()=>{
       qrReady = false;
-      qr.classList.add("hidden");
-
+      img.classList.add("hidden");
       $("saveQr").disabled = true;
 
       set(
@@ -924,90 +1112,66 @@ function render(p,isDemo=false) {
       );
     };
 
-    qr.crossOrigin = "anonymous";
-    qr.src = qrUrl;
+    img.src = qrUrl;
 
     copyText = [
-      "Ngân hàng: " + bankName,
-      "Tên tài khoản: " + owner,
-      "Số tài khoản: " + account,
-      "Số tiền: " + money(amount),
-      "Nội dung: " + reference
+      "Ngân hàng nhận: "+bankName,
+      "Tên tài khoản: "+owner,
+      "Số tài khoản: "+account,
+      "Số tiền: "+money(amount),
+      "Nội dung: "+ref
     ].join("\n");
 
     $("copy").disabled = false;
+    $("copyContent").disabled = false;
   }
 
   $("loading").classList.add("hidden");
   $("invoice").classList.remove("hidden");
 }
 
-/* CHUYỂN CANVAS THÀNH ẢNH PNG
-   VÀ COPY VÀO CLIPBOARD */
+/* COPY ẢNH */
 
-async function canvasToClipboard(canvas) {
+async function canvasToClipboard(canvas){
 
-  if (
+  if(
     !window.isSecureContext ||
     !navigator.clipboard?.write ||
     !window.ClipboardItem
-  ) {
-    throw new Error(
-      "Trình duyệt không hỗ trợ copy ảnh. " +
-      "Hãy sử dụng HTTPS trên Chrome hoặc Edge."
+  ){
+    throw Error(
+      "Trình duyệt không hỗ trợ copy ảnh. "+
+      "Hãy mở bằng HTTPS trên Chrome hoặc Edge."
     );
   }
 
-  const blob = await new Promise(resolve =>
+  const blob = await new Promise(resolve=>
     canvas.toBlob(resolve,"image/png")
   );
 
-  if (!blob) {
-    throw new Error(
-      "Không tạo được ảnh PNG."
-    );
+  if(!blob){
+    throw Error("Không tạo được ảnh PNG.");
   }
 
   await navigator.clipboard.write([
-    new ClipboardItem({
-      "image/png":blob
-    })
+    new ClipboardItem({"image/png":blob})
   ]);
 }
 
-/* MỤC 2:
-   CHỤP CHỈ PHẦN CỔNG THANH TOÁN
+/* CHỤP PHẦN THANH TOÁN */
 
-   Giữ:
-   - Logo và tiêu đề
-   - Các phương thức
-   - Khung chuyển khoản
-   - VietQR
+async function copyScreen(){
 
-   Không lấy:
-   - Thông tin vé bên trên
-   - 3 nút thao tác
-   - 5 ô bên dưới
-   - Footer
-   - Thông báo và ghi chú
-*/
+  notify("Đang tạo ảnh thanh toán...");
 
-async function copyScreen() {
+  try{
 
-  notify("Đang tạo ảnh màn hình...");
-
-  try {
-
-    if (!window.html2canvas) {
-      throw new Error(
-        "Chưa tải được công cụ chụp ảnh."
-      );
+    if(!window.html2canvas){
+      throw Error("Chưa tải được thư viện chụp ảnh.");
     }
 
-    if (qrUrl && !qrReady) {
-      throw new Error(
-        "Hãy đợi VietQR tải xong."
-      );
+    if(qrUrl && !qrReady){
+      throw Error("Hãy đợi mã VietQR tải xong.");
     }
 
     const canvas = await window.html2canvas(
@@ -1018,16 +1182,14 @@ async function copyScreen() {
         useCORS:true,
         allowTaint:false,
 
-        onclone:doc => {
-
+        onclone:doc=>{
           const cloned = doc.getElementById(
             "captureArea"
           );
 
-          if (cloned) {
+          if(cloned){
             cloned.classList.add("capture-mode");
           }
-
         }
       }
     );
@@ -1035,65 +1197,51 @@ async function copyScreen() {
     await canvasToClipboard(canvas);
 
     notify(
-      "ĐÃ COPY ẢNH MÀN HÌNH. " +
+      "Đã copy ảnh thanh toán. "+
       "Nhấn Ctrl + V để gửi qua Messenger hoặc Zalo."
     );
 
-  } catch (err) {
+  }catch(error){
 
     notify(
-      "Chưa copy được ảnh màn hình: " +
-      err.message
+      "Chưa copy được ảnh: "+error.message
     );
 
   }
 }
 
-/* MỤC 3:
-   COPY RIÊNG ẢNH VIETQR NGUYÊN BẢN
+/* COPY RIÊNG ẢNH VIETQR */
 
-   Không chụp:
-   - Khung QR
-   - Chữ hướng dẫn
-   - Các nút bấm
-*/
+async function copyQr(){
 
-async function copyQr() {
-
-  if (!qrReady) {
+  if(!qrReady){
     notify("Mã QR chưa sẵn sàng.");
     return;
   }
 
-  notify("Đang sao chép ảnh VietQR...");
+  notify("Đang copy ảnh VietQR...");
 
-  try {
+  try{
 
     const img = $("qr");
 
-    if (
+    if(
       !img.complete ||
       !img.naturalWidth ||
       !img.naturalHeight
-    ) {
-      throw new Error(
-        "Ảnh VietQR chưa tải xong."
-      );
+    ){
+      throw Error("Ảnh QR chưa tải xong.");
     }
 
-    const canvas = document.createElement(
-      "canvas"
-    );
+    const canvas = document.createElement("canvas");
 
     canvas.width = img.naturalWidth;
     canvas.height = img.naturalHeight;
 
     const context = canvas.getContext("2d");
 
-    if (!context) {
-      throw new Error(
-        "Không tạo được khung ảnh."
-      );
+    if(!context){
+      throw Error("Không tạo được ảnh QR.");
     }
 
     context.drawImage(img,0,0);
@@ -1101,132 +1249,96 @@ async function copyQr() {
     await canvasToClipboard(canvas);
 
     notify(
-      "ĐÃ COPY ẢNH VIETQR. " +
-      "Nhấn Ctrl + V để dán."
+      "Đã copy ảnh VietQR. Nhấn Ctrl + V để dán."
     );
 
-  } catch (err) {
+  }catch(error){
 
     notify(
-      "Không copy được ảnh VietQR: " +
-      err.message +
+      "Không copy được VietQR: "+
+      error.message+
       ". Có thể do quyền Clipboard hoặc CORS."
     );
 
   }
 }
 
-/* NÚT CHỤP MÀN HÌNH */
+/* SỰ KIỆN NÚT */
 
-$("saveImage").addEventListener(
-  "click",
-  copyScreen
-);
+$("saveImage").addEventListener("click",copyScreen);
 
-/* NÚT CHỤP QR */
+$("saveQr").addEventListener("click",copyQr);
 
-$("saveQr").addEventListener(
-  "click",
-  copyQr
-);
+$("copy").addEventListener("click",()=>{
+  if(!canPay || !copyText) return;
 
-/* NÚT XANH LÁ:
-   COPY TOÀN BỘ THÔNG TIN CHUYỂN KHOẢN */
+  copyValue(
+    copyText,
+    "Đã sao chép thông tin chuyển khoản."
+  );
+});
 
-$("copy").addEventListener(
-  "click",
-  () => {
-    if (!copyText) return;
+$("copyContent").addEventListener("click",()=>{
+  if(!canPay) return;
 
-    copyTextValue(
-      copyText,
-      "Đã sao chép thông tin chuyển khoản."
-    );
-  }
-);
+  const value = $("content").textContent.trim();
 
-/* NÚT COPY MÀU XANH CẠNH NỘI DUNG
+  copyValue(
+    value,
+    "Đã sao chép nội dung chuyển khoản."
+  );
+});
 
-   CHỈ COPY NỘI DUNG
-   KHÔNG COPY SỐ TÀI KHOẢN
-*/
+/* KẾT NỐI FIREBASE */
 
-$("copyContent").addEventListener(
-  "click",
-  () => {
+async function init(){
 
-    const value = $("content")
-      .textContent
-      .trim();
-
-    copyTextValue(
-      value,
-      "Đã sao chép nội dung chuyển khoản."
-    );
-  }
-);
-
-/* TẢI THÔNG TIN TỪ FIREBASE */
-
-async function init() {
-
-  if (opts.get("demo") === "1") {
-
-    render(
-      {
-        code:"ENV-DEMO",
-        pnr:"DEMO123",
-        customer:"KHÁCH HÀNG MẪU",
-        airline:"Vietnam Airlines",
-        route:"Hà Nội (HAN) → Đài Bắc (TPE)",
-        flightDate:"2026-10-20",
-        status:"pending",
-        total:2500000
-      },
-      true
-    );
+  if(opts.get("demo")==="1"){
+    render({
+      code:"ENV-DEMO",
+      pnr:"DEMO123",
+      customer:"KHÁCH HÀNG MẪU",
+      airline:"Vietnam Airlines",
+      route:"Hà Nội (HAN) → Đài Bắc (TPE)",
+      flightDate:"2026-10-20",
+      status:"pending",
+      total:2500000
+    },true);
 
     return;
   }
 
   const id = opts.get("id");
 
-  if (!id) {
-
+  if(!id){
     $("loading").textContent =
       "Thiếu mã liên kết hóa đơn.";
-
     return;
   }
 
-  try {
+  try{
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
     const snapshot = await getDoc(
-      doc(
-        db,
-        "publicPaymentRequests",
-        id
-      )
+      doc(db,"publicPaymentRequests",id)
     );
 
-    if (!snapshot.exists()) {
-      throw new Error(
-        "Không tìm thấy hóa đơn."
-      );
+    if(!snapshot.exists()){
+      throw Error("Không tìm thấy hóa đơn.");
     }
 
     render(snapshot.data());
 
-  } catch (error) {
+  }catch(error){
 
     $("loading").textContent =
-      "Không tải được hóa đơn. " +
+      "Không tải được hóa đơn. "+
       "Kiểm tra liên kết hoặc liên hệ đại lý.";
 
     console.error(error);
+
   }
 }
 
