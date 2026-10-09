@@ -3,8 +3,10 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Én Việt Group - Thanh toán vé máy bay</title>
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>Én Việt Group - Hệ thống thanh toán</title>
 
 <style>
 * {
@@ -13,179 +15,188 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
   font-family: Arial, sans-serif;
-  color: #28628c;
-  background:
-    linear-gradient(
-      rgba(227,246,255,.20),
-      rgba(235,248,255,.26)
-    ),
-    url("hero-bg.jpg") center / cover no-repeat fixed,
-    linear-gradient(135deg,#a4d9fa,#eef9ff);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 18px;
-}
-
-.card {
-  width: 100%;
-  max-width: 690px;
-  padding: 38px 34px 32px;
-  text-align: center;
-  border-radius: 24px;
-  background: rgba(255,255,255,.78);
-  border: 1px solid rgba(255,255,255,.75);
-  box-shadow: 0 15px 45px rgba(55,125,180,.16);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-.logo {
-  width: 125px;
-  max-height: 90px;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto 12px;
-}
-
-h1 {
-  color: #167bc0;
-  font-size: 30px;
-  margin: 12px 0;
-  letter-spacing: .8px;
-}
-
-.plane-line {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  max-width: 360px;
-  margin: 19px auto;
-  color: #f58132;
-}
-
-.plane-line::before,
-.plane-line::after {
-  content: "";
-  flex: 1;
-  height: 1px;
+  color: #183c61;
   background: linear-gradient(
-    90deg,
-    transparent,
-    #f58c45
+    135deg,
+    #e8f5ff,
+    #f9fcff,
+    #e1f1ff
   );
 }
 
-.plane-line::after {
-  transform: rotate(180deg);
+.container {
+  max-width: 1500px;
+  margin: 25px auto;
+  padding: 15px;
 }
 
-.plane-line span {
-  font-size: 23px;
-  line-height: 1;
+.main-frame {
+  background: rgba(255,255,255,.90);
+  border: 1px solid #c9e2f5;
+  border-radius: 24px;
+  padding: 25px;
+  box-shadow: 0 12px 35px
+    rgba(19,95,160,.13);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 100px;
+  max-height: 75px;
+  object-fit: contain;
+}
+
+h1 {
+  font-size: 32px;
+  color: #0866aa;
+  margin: 12px 0;
 }
 
 .subtitle {
   font-size: 16px;
-  color: #f27e2d;
-  font-weight: bold;
-  margin: 12px 0;
+  color: #5e8aad;
 }
 
-h2 {
+.divider {
+  width: 160px;
+  height: 3px;
+  border-radius: 5px;
+  background: linear-gradient(
+    90deg,#28b5ed,#f68b39
+  );
+  margin: 20px auto;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid #d5e7f5;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px
+    rgba(25,94,145,.08);
+}
+
+.panel-header {
+  background: linear-gradient(
+    110deg,#0875b8,#35b5df
+  );
+  color: white;
+  padding: 20px;
+}
+
+.panel-header h2 {
+  margin: 0;
   font-size: 21px;
-  color: #176aa8;
-  margin: 24px 0 12px;
-  line-height: 1.5;
 }
 
-.description {
-  font-size: 14px;
-  line-height: 1.7;
-  color: #65839d;
+.panel-header p {
+  font-size: 13px;
+  margin: 7px 0 0;
+  color: #e6f8ff;
+}
+
+.panel-content {
+  padding: 10px;
+}
+
+iframe {
+  display: block;
+  width: 100%;
+  height: 850px;
+  border: 1px solid #e3edf5;
+  border-radius: 10px;
+  background: white;
+}
+
+.panel-footer {
+  padding: 15px;
+  text-align: center;
 }
 
 .btn {
-  display: block;
-  padding: 18px 14px;
-  margin: 28px 0 22px;
-  border-radius: 12px;
+  display: inline-block;
   background: linear-gradient(
-    110deg,
-    #35baf2,
-    #168bef
+    100deg,#1698dc,#086eb4
   );
   color: white;
-  font-size: 15px;
+  padding: 14px 25px;
+  border-radius: 9px;
+  font-size: 14px;
   font-weight: bold;
   text-decoration: none;
-  border: none;
-  box-shadow: 0 5px 16px rgba(51,153,220,.16);
-  transition: background .2s, transform .2s;
+  transition: .2s;
 }
 
 .btn:hover {
-  background: linear-gradient(
-    110deg,
-    #24a8e5,
-    #087ad1
-  );
+  background: #055d9a;
   transform: translateY(-2px);
 }
 
-.btn:focus-visible {
-  outline: 2px solid #178bd7;
-  outline-offset: 3px;
+.features {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 15px;
+  margin-top: 28px;
 }
 
-.notice {
-  background: rgba(226,243,255,.82);
-  color: #39769f;
-  padding: 16px 14px;
+.feature {
+  text-align: center;
+  padding: 20px;
+  background: #f0f8ff;
   border-radius: 12px;
+}
+
+.feature strong {
+  display: block;
+  color: #0868a7;
+  margin-bottom: 7px;
+}
+
+.feature span {
   font-size: 13px;
-  line-height: 1.7;
+  color: #718b9f;
 }
 
-footer {
-  margin-top: 27px;
-  color: #809bad;
-  font-size: 11px;
-  line-height: 1.8;
+.footer {
+  text-align: center;
+  margin-top: 25px;
+  padding: 18px;
+  font-size: 12px;
+  color: #8298aa;
+  border-top: 1px solid #e0eaf1;
 }
 
-@media (max-width:600px) {
-  body {
-    padding: 18px 12px;
-    background-attachment: scroll;
+@media(max-width:900px) {
+  .dashboard {
+    grid-template-columns: 1fr;
   }
 
-  .card {
-    padding: 30px 19px;
-    border-radius: 18px;
+  .features {
+    grid-template-columns: 1fr;
   }
 
-  .logo {
-    width: 110px;
+  iframe {
+    height: 650px;
   }
 
   h1 {
     font-size: 25px;
   }
 
-  h2 {
-    font-size: 18px;
-  }
-
-  .subtitle {
-    font-size: 14px;
-  }
-
-  .btn {
-    font-size: 13px;
+  .main-frame {
+    padding: 15px;
   }
 }
 </style>
@@ -193,50 +204,136 @@ footer {
 
 <body>
 
-<main class="card">
+<div class="container">
 
-<img
-  src="logo-enviet.svg"
-  class="logo"
-  alt="Én Việt Group"
->
+<div class="main-frame">
+
+<header class="header">
+
+<img src="logo-enviet.svg"
+class="logo"
+alt="Én Việt Group">
 
 <h1>ÉN VIỆT GROUP</h1>
 
-<div class="plane-line">
-  <span>✈</span>
-</div>
+<strong>
+HỆ THỐNG THANH TOÁN VÉ MÁY BAY
+</strong>
 
 <p class="subtitle">
-VÉ MÁY BAY NỘI ĐỊA &amp; QUỐC TẾ
+Vé máy bay nội địa và quốc tế
 </p>
 
-<h2>
-HỆ THỐNG THANH TOÁN VÉ MÁY BAY
-</h2>
+<div class="divider"></div>
 
-<p class="description">
-Quản lý phiếu đặt vé và thông tin
-yêu cầu chuyển khoản.
+</header>
+
+<div class="dashboard">
+
+<!-- GIAO DIỆN QUẢN TRỊ -->
+
+<section class="panel">
+
+<div class="panel-header">
+<h2>GIAO DIỆN QUẢN TRỊ</h2>
+<p>
+Quản lý hóa đơn, hành khách và thanh toán
 </p>
-
-<a class="btn" href="quantri.html">
-ĐĂNG NHẬP QUẢN TRỊ / TẠO PHIẾU →
-</a>
-
-<div class="notice">
-Khách hàng xem phiếu qua liên kết riêng
-do nhân viên cung cấp sau khi lưu.
 </div>
 
-<footer>
+<div class="panel-content">
+
+<iframe
+src="quantri.html"
+title="Quản trị thanh toán"
+loading="lazy">
+</iframe>
+
+</div>
+
+<div class="panel-footer">
+<a class="btn"
+href="quantri.html"
+target="_blank"
+rel="noopener">
+MỞ TRANG QUẢN TRỊ →
+</a>
+</div>
+
+</section>
+
+<!-- GIAO DIỆN KHÁCH HÀNG -->
+
+<section class="panel">
+
+<div class="panel-header">
+<h2>GIAO DIỆN KHÁCH HÀNG</h2>
+<p>
+Xem thông tin đặt vé và thanh toán
+</p>
+</div>
+
+<div class="panel-content">
+
+<iframe
+src="phieu.html?demo=1"
+title="Xem trước hóa đơn khách"
+loading="lazy">
+</iframe>
+
+</div>
+
+<div class="panel-footer">
+<a class="btn"
+href="phieu.html?demo=1"
+target="_blank"
+rel="noopener">
+XEM GIAO DIỆN KHÁCH →
+</a>
+</div>
+
+</section>
+
+</div>
+
+<div class="features">
+
+<div class="feature">
+<strong>QUẢN LÝ HÓA ĐƠN</strong>
+<span>
+Tạo và chỉnh sửa thông tin hóa đơn
+</span>
+</div>
+
+<div class="feature">
+<strong>THÔNG TIN ĐẶT VÉ</strong>
+<span>
+Quản lý hành khách và hành trình bay
+</span>
+</div>
+
+<div class="feature">
+<strong>THÔNG TIN THANH TOÁN</strong>
+<span>
+Hiển thị thông tin chuyển khoản và VietQR
+</span>
+</div>
+
+</div>
+
+<footer class="footer">
+
 © 2026 ÉN VIỆT GROUP
+
 <br>
-Phiếu yêu cầu thanh toán không thay thế
-hóa đơn VAT hoặc chứng từ ngân hàng.
+
+Chứng từ yêu cầu thanh toán không thay thế
+hóa đơn VAT hoặc xác nhận của ngân hàng.
+
 </footer>
 
-</main>
+</div>
+</div>
 
 </body>
 </html>
