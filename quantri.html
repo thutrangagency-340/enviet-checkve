@@ -5,46 +5,213 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Én Việt Group | Quản trị</title>
+
 <style>
+:root{
+ --navy:#173d5a;
+ --blue:#1785bd;
+ --line:#dbe6ee;
+ --ink:#243746;
+ --muted:#6b8396;
+}
 *{box-sizing:border-box}
-body{margin:0;background:#f1f6fa;color:#233b50;font:14px Arial,sans-serif}
-header{background:linear-gradient(110deg,#116da5,#35b1dc);color:white;padding:24px 16px}
-header>div,main{max-width:1050px;margin:auto}
-h1{margin:0;font-size:25px}
-header p{margin-bottom:0}
-main{padding:22px 14px}
-.card{background:white;border:1px solid #d7e4ee;border-radius:14px;padding:22px;margin-bottom:18px;box-shadow:0 6px 22px #174a7010}
-h2{font-size:19px;color:#164d76;margin:0 0 20px}
-h3{font-size:15px;color:#164d76;margin:0 0 14px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+html{scroll-behavior:smooth}
+body{
+ margin:0;
+ background:linear-gradient(180deg,#ecf4f9,#f6f9fc 380px);
+ color:var(--ink);
+ font:15px/1.55 Arial,sans-serif;
+ min-height:100vh;
+}
+header{
+ background:linear-gradient(112deg,#133d60,#176b97 58%,#1c94c5);
+ color:white;
+ padding:23px 26px;
+ box-shadow:0 4px 17px #143c5720;
+}
+header>div,main{
+ width:100%;
+ max-width:1160px;
+ margin-left:auto;
+ margin-right:auto;
+}
+h1{
+ margin:0;
+ font-size:25px;
+ letter-spacing:.9px;
+ font-weight:800;
+}
+header p{
+ margin:5px 0 0;
+ font-size:12px;
+ letter-spacing:.5px;
+ color:#e6f5ff;
+}
+main{padding:28px 24px 18px}
+.card{
+ background:white;
+ border:1px solid var(--line);
+ border-radius:16px;
+ padding:28px 30px;
+ margin-bottom:22px;
+ box-shadow:0 8px 30px #1b4f700d;
+}
+h2{
+ font-size:19px;
+ color:var(--navy);
+ margin:0 0 22px;
+ font-weight:800;
+}
+h3{
+ font-size:15px;
+ color:var(--navy);
+ margin:0 0 14px;
+ font-weight:800;
+}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ column-gap:24px;
+ row-gap:20px;
+}
 .full{grid-column:1/-1}
-label{display:block;font-weight:600;margin-bottom:6px}
-input,select{width:100%;min-width:0;padding:12px;border:1px solid #c8dbe8;border-radius:8px;font:inherit;background:#fff;color:#213b4c}
-input:focus,select:focus{outline:2px solid #9bd6f1}
-.item{border:1px solid #dce8f0;border-radius:10px;padding:15px;margin-bottom:12px;background:#fbfdff}
-.itemtop,.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+label{
+ display:block;
+ color:#385166;
+ font-size:13px;
+ font-weight:700;
+ margin-bottom:8px;
+}
+input,select{
+ width:100%;
+ min-width:0;
+ min-height:47px;
+ padding:12px 14px;
+ border:1px solid #cbdce8;
+ border-radius:9px;
+ font:14px Arial,sans-serif;
+ background:white;
+ color:#243b4f;
+}
+input:focus,select:focus{
+ border-color:#168dbe;
+ outline:0;
+ box-shadow:0 0 0 3px #1590c326;
+}
+input[readonly]{
+ background:#f3f8fb;
+ color:#375e7d;
+}
+.item{
+ border:1px solid #dce8f0;
+ border-radius:11px;
+ padding:19px 20px;
+ margin-bottom:13px;
+ background:#fbfdff;
+}
+.itemtop,.bar{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:14px;
+ margin-bottom:14px;
+}
 .bar h2{margin:0}
-.actions{display:flex;gap:10px;flex-wrap:wrap}
-.btn{border:0;border-radius:9px;padding:12px 16px;cursor:pointer;font-weight:bold;background:#167fc0;color:#fff}
-.soft{background:#e9f3fa;color:#155985}
-.danger{background:#ffebeb;color:#ad3232}
-button:disabled{opacity:.45;cursor:not-allowed}
+.actions{
+ display:flex;
+ align-items:center;
+ gap:11px;
+ flex-wrap:wrap;
+}
+.btn{
+ border:0;
+ border-radius:9px;
+ min-height:43px;
+ padding:12px 18px;
+ cursor:pointer;
+ font-size:13px;
+ font-weight:700;
+ background:#177fb1;
+ color:white;
+}
+.btn:hover{background:#12628f}
+.btn.soft{
+ background:#eaf4fa;
+ color:#195d86;
+}
+.btn.danger{
+ background:#ffeded;
+ color:#ad3c3c;
+}
+button:disabled{
+ opacity:.46;
+ cursor:not-allowed;
+}
 .hidden{display:none!important}
-.total{padding:17px;background:#e9f6ff;border-radius:10px;border:1px solid #b9def2;color:#126ca1;font-size:20px;font-weight:bold}
-.help{font-size:12px;color:#6d8595;line-height:1.6}
-.msg{min-height:20px;color:#a03535}
-.entry{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #e8eef3;padding:10px 0}
-.entry button{padding:8px 12px}
+.total{
+ padding:22px 24px;
+ background:linear-gradient(110deg,#ecf7fe,#e6f4fc);
+ border-radius:11px;
+ border:1px solid #b8dcef;
+ color:#11699b;
+ font-size:23px;
+ font-weight:800;
+}
+.help{
+ font-size:12px;
+ color:#758b9d;
+ line-height:1.7;
+ margin:11px 0 0;
+}
+.msg{
+ min-height:22px;
+ font-size:13px;
+ color:#a03535;
+}
+.entry{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:14px;
+ border-bottom:1px solid #e9eff5;
+ padding:14px 0;
+ font-size:14px;
+}
 .entry span{overflow-wrap:anywhere}
-footer{text-align:center;color:#8596a5;padding:22px;font-size:11px}
-@media(max-width:650px){
-.grid{grid-template-columns:1fr}
-.card{padding:16px}
-.entry{flex-wrap:wrap}
+#invoiceList{
+ max-height:360px;
+ overflow:auto;
+}
+#saveBtn{
+ background:linear-gradient(110deg,#126c9e,#1d97c8);
+ min-width:175px;
+}
+#loginBox{
+ max-width:770px;
+ margin:0 auto 22px;
+}
+footer{
+ text-align:center;
+ color:#8095a5;
+ padding:15px 24px 26px;
+ font-size:11px;
+}
+@media(max-width:760px){
+ header{padding:20px 16px}
+ main{padding:17px 12px}
+ .card{padding:19px 17px}
+ .grid{grid-template-columns:1fr;gap:15px}
+ .full{grid-column:1}
+ .item{padding:15px}
+ .total{font-size:19px;padding:17px}
+ .entry{flex-wrap:wrap}
+ .actions .btn{flex:1 1 auto}
 }
 </style>
 </head>
+
 <body>
+
 <header>
 <div>
 <h1>ÉN VIỆT GROUP</h1>
@@ -53,53 +220,65 @@ footer{text-align:center;color:#8596a5;padding:22px;font-size:11px}
 </header>
 
 <main>
+
 <section id="loginBox" class="card">
 <h2>ĐĂNG NHẬP</h2>
 <form id="loginForm" class="grid">
 <div>
 <label>Email</label>
-<input id="email" type="email" autocomplete="username" required>
+<input id="email" type="email"
+ autocomplete="username" required>
 </div>
 <div>
 <label>Mật khẩu</label>
-<input id="password" type="password" autocomplete="current-password" required>
+<input id="password" type="password"
+ autocomplete="current-password" required>
 </div>
 <div class="full">
 <button class="btn">ĐĂNG NHẬP</button>
 </div>
 </form>
-<p id="loginMsg" class="msg" role="status"></p>
+<p id="loginMsg" class="msg"></p>
 </section>
 
 <div id="dashboard" class="hidden">
+
 <section class="card">
 <div class="bar">
 <h2>DANH SÁCH HÓA ĐƠN</h2>
 <button class="btn soft" id="logout">Đăng xuất</button>
 </div>
+
 <div class="actions">
 <button class="btn" id="newBtn">+ Tạo mới</button>
 <button class="btn soft" id="reload">Tải lại danh sách</button>
 </div>
+
 <div id="invoiceList" style="margin-top:16px"></div>
 </section>
 
 <section class="card">
 <h2 id="formHeading">LẬP HÓA ĐƠN</h2>
+
 <form id="invoiceForm" class="grid">
 
 <div>
 <label>Mã hóa đơn</label>
-<input id="code" required maxlength="60" placeholder="ENV-2026-001">
+<input id="code" required maxlength="60"
+ placeholder="ENV-2026-001">
 </div>
+
 <div>
 <label>Mã đặt chỗ (PNR)</label>
-<input id="pnr" maxlength="35" placeholder="Chỉ nhập mã đặt chỗ thực tế">
+<input id="pnr" maxlength="35"
+ placeholder="Mã đặt chỗ thực tế">
 </div>
+
 <div>
 <label>Khách hàng đại diện</label>
 <input id="customer" required maxlength="150">
 </div>
+
 <div>
 <label>Ngày lập</label>
 <input id="issueDate" type="date" required>
@@ -108,14 +287,20 @@ footer{text-align:center;color:#8596a5;padding:22px;font-size:11px}
 <div class="full">
 <h3>DANH SÁCH HÀNH KHÁCH</h3>
 <div id="peopleList"></div>
-<button type="button" class="btn soft" id="addPerson">+ Thêm hành khách</button>
-<p class="help">Số hộ chiếu chỉ lưu trong phần quản trị, không đưa vào dữ liệu phiếu chia sẻ cho khách.</p>
+<button type="button" class="btn soft" id="addPerson">
++ Thêm hành khách
+</button>
+<p class="help">
+Số hộ chiếu chỉ lưu trong dữ liệu quản trị,
+không đưa vào phiếu chia sẻ cho khách.
+</p>
 </div>
 
 <div>
 <label>Số hành khách</label>
 <input id="passengers" readonly>
 </div>
+
 <div>
 <label>Loại hành trình</label>
 <select id="tripType">
@@ -128,8 +313,13 @@ footer{text-align:center;color:#8596a5;padding:22px;font-size:11px}
 <div class="full">
 <h3>HÀNH TRÌNH BAY</h3>
 <div id="legsList"></div>
-<button type="button" class="btn soft hidden" id="addLeg">+ Thêm chặng</button>
-<p class="help">Nhập thành phố hoặc mã sân bay; có thể nhập điểm đến ngoài danh sách gợi ý.</p>
+<button type="button" class="btn soft hidden" id="addLeg">
++ Thêm chặng bay
+</button>
+<p class="help">
+Nhập thành phố hoặc mã sân bay.
+Có thể nhập địa điểm ngoài danh sách.
+</p>
 </div>
 
 <div>
@@ -161,16 +351,21 @@ footer{text-align:center;color:#8596a5;padding:22px;font-size:11px}
 
 <div class="full">
 <label>Tổng giá vé (VNĐ)</label>
-<input id="fare" type="number" min="1" step="1" required>
+<input id="fare" type="number"
+ min="1" step="1" required>
 </div>
 
 <div class="total full">
-TỔNG THANH TOÁN: <span id="total">0 ₫</span>
+TỔNG THANH TOÁN:
+<span id="total">0 ₫</span>
 </div>
 
 <div class="full">
 <h2>THÔNG TIN CHUYỂN KHOẢN</h2>
-<p class="help">Nhập tài khoản thực tế theo từng hóa đơn. Không có tài khoản cố định.</p>
+<p class="help">
+Ngân hàng và tài khoản được nhập riêng
+cho từng hóa đơn, không cố định.
+</p>
 </div>
 
 <div>
@@ -193,49 +388,66 @@ TỔNG THANH TOÁN: <span id="total">0 ₫</span>
 <option value="SHB|SHB">SHB</option>
 <option value="EIB|Eximbank">Eximbank</option>
 <option value="LPB|LPBank">LPBank</option>
-<option value="other">Ngân hàng khác (nhập mã VietQR)</option>
+<option value="other">Ngân hàng khác</option>
 </select>
 </div>
 
 <div>
 <label>Mã ngân hàng VietQR</label>
-<input id="bankCode" maxlength="15" placeholder="Ví dụ: VCB, MB, TCB" required>
+<input id="bankCode" maxlength="15"
+ placeholder="VCB, MB, TCB..." required>
 </div>
+
 <div>
 <label>Tên ngân hàng</label>
 <input id="bankName" maxlength="100" required>
 </div>
+
 <div>
 <label>Số tài khoản</label>
-<input id="bankAccount" inputmode="numeric" autocomplete="off" maxlength="20" required>
+<input id="bankAccount" inputmode="numeric"
+ autocomplete="off" maxlength="20" required>
 </div>
+
 <div>
 <label>Chủ tài khoản</label>
 <input id="bankOwner" maxlength="150" required>
 </div>
+
 <div>
 <label>Nội dung chuyển khoản</label>
-<input id="transferContent" maxlength="25" placeholder="ENV2026001">
+<input id="transferContent" maxlength="25"
+ placeholder="ENV2026001">
 </div>
 
 <div class="full help">
-VietQR chỉ điền thông tin chuyển khoản, không chứng minh đã nhận tiền.
-Cần đối soát thực tế với ngân hàng. Chỉ sử dụng tài khoản thụ hưởng đã xác minh.
+VietQR chỉ hỗ trợ chuyển khoản.
+Phải kiểm tra giao dịch thực tế trên ngân hàng
+trước khi xác nhận đã thanh toán.
 </div>
 
 <div class="full actions">
-<button type="submit" class="btn" id="saveBtn">LƯU HÓA ĐƠN</button>
-<button type="button" class="btn soft" id="copyBtn" disabled>COPY LINK KHÁCH</button>
-<button type="button" class="btn soft" id="viewBtn" disabled>XEM PHIẾU</button>
+<button type="submit" class="btn" id="saveBtn">
+LƯU HÓA ĐƠN
+</button>
+<button type="button" class="btn soft" id="copyBtn" disabled>
+COPY LINK KHÁCH
+</button>
+<button type="button" class="btn soft" id="viewBtn" disabled>
+XEM PHIẾU
+</button>
 </div>
+
 </form>
-<p id="saveMsg" class="msg" role="status"></p>
+<p id="saveMsg" class="msg"></p>
 </section>
+
 </div>
 </main>
 
 <footer>
-© 2026 ÉN VIỆT GROUP · Phiếu yêu cầu thanh toán không phải hóa đơn VAT hay biên nhận ngân hàng.
+© 2026 ÉN VIỆT GROUP · Phiếu yêu cầu thanh toán
+không thay thế hóa đơn VAT hoặc biên nhận ngân hàng.
 </footer>
 
 <datalist id="airports">
@@ -258,493 +470,574 @@ Cần đối soát thực tế với ngân hàng. Chỉ sử dụng tài khoản
 </datalist>
 
 <script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import {
-  getAuth,onAuthStateChanged,
-  signInWithEmailAndPassword,signOut
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-import {
-  getFirestore,collection,doc,getDocs,
-  writeBatch,serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-import {firebaseConfig,adminUid} from "./firebase-config.js";
 
-const $ = id => document.getElementById(id);
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const money = n => new Intl.NumberFormat("vi-VN",{
-  style:"currency",currency:"VND",
-  maximumFractionDigits:0
+import {initializeApp} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+import {
+ getAuth,onAuthStateChanged,
+ signInWithEmailAndPassword,signOut
+} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+import {
+ getFirestore,collection,doc,getDocs,
+ writeBatch,serverTimestamp
+} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+import {firebaseConfig,adminUid}
+from "./firebase-config.js";
+
+const $=id=>document.getElementById(id);
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+const money=n=>new Intl.NumberFormat("vi-VN",{
+ style:"currency",
+ currency:"VND",
+ maximumFractionDigits:0
 }).format(Number(n)||0);
-const newid = () => crypto.randomUUID();
 
-let people=[], legs=[], currentId=null;
+const newid=()=>crypto.randomUUID();
+
+let people=[];
+let legs=[];
+let currentId=null;
 
 function input(value,placeholder,oninput,type="text"){
-  const el=document.createElement("input");
-  el.type=type;
-  el.value=value||"";
-  el.placeholder=placeholder||"";
-  el.oninput=()=>oninput(el.value);
-  return el;
+ const el=document.createElement("input");
+ el.type=type;
+ el.value=value||"";
+ el.placeholder=placeholder||"";
+ el.oninput=()=>oninput(el.value);
+ return el;
 }
 
 function field(label,el){
-  const d=document.createElement("div");
-  const l=document.createElement("label");
-  l.textContent=label;
-  d.append(l,el);
-  return d;
+ const d=document.createElement("div");
+ const l=document.createElement("label");
+ l.textContent=label;
+ d.append(l,el);
+ return d;
 }
 
 function action(label,cb,cls="soft"){
-  const b=document.createElement("button");
-  b.type="button";
-  b.className="btn "+cls;
-  b.textContent=label;
-  b.onclick=cb;
-  return b;
+ const b=document.createElement("button");
+ b.type="button";
+ b.className="btn "+cls;
+ b.textContent=label;
+ b.onclick=cb;
+ return b;
 }
 
 function drawPeople(){
-  const root=$("peopleList");
-  root.replaceChildren();
+ const root=$("peopleList");
+ root.replaceChildren();
 
-  people.forEach((p,i)=>{
-    const box=document.createElement("div");
-    box.className="item";
-    const top=document.createElement("div");
-    top.className="itemtop";
-    const title=document.createElement("strong");
-    title.textContent="Hành khách "+(i+1);
+ people.forEach((p,i)=>{
+  const box=document.createElement("div");
+  box.className="item";
 
-    const del=action("Xóa",()=>{
-      people=people.filter(x=>x.id!==p.id);
-      drawPeople();
-    },"danger");
-    del.disabled=people.length===1;
-    top.append(title,del);
+  const top=document.createElement("div");
+  top.className="itemtop";
 
-    const grid=document.createElement("div");
-    grid.className="grid";
-    grid.append(
-      field("Họ và tên",input(p.name,"NGUYEN VAN A",v=>p.name=v)),
-      field("Số hộ chiếu",input(p.passport,"Passport No.",v=>p.passport=v))
-    );
-    box.append(top,grid);
-    root.append(box);
-  });
+  const title=document.createElement("strong");
+  title.textContent="Hành khách "+(i+1);
 
-  $("passengers").value=people.length;
+  const del=action("Xóa",()=>{
+   people=people.filter(x=>x.id!==p.id);
+   drawPeople();
+  },"danger");
+
+  del.disabled=people.length===1;
+  top.append(title,del);
+
+  const grid=document.createElement("div");
+  grid.className="grid";
+
+  grid.append(
+   field("Họ và tên",
+    input(p.name,"NGUYEN VAN A",v=>p.name=v)),
+   field("Số hộ chiếu",
+    input(p.passport,"Passport No.",v=>p.passport=v))
+  );
+
+  box.append(top,grid);
+  root.append(box);
+ });
+
+ $("passengers").value=people.length;
 }
 
 function addPerson(n="",p=""){
-  people.push({id:newid(),name:n,passport:p});
-  drawPeople();
+ people.push({
+  id:newid(),
+  name:n,
+  passport:p
+ });
+ drawPeople();
 }
+
 $("addPerson").onclick=()=>addPerson();
 
 const newLeg=(from="",to="",date="")=>({
-  id:newid(),from,to,date
+ id:newid(),from,to,date
 });
 
 function drawLegs(){
-  const root=$("legsList");
-  root.replaceChildren();
+ const root=$("legsList");
+ root.replaceChildren();
 
-  legs.forEach((l,i)=>{
-    const box=document.createElement("div");
-    box.className="item";
-    const top=document.createElement("div");
-    top.className="itemtop";
-    const title=document.createElement("strong");
-    title.textContent=$("tripType").value==="roundtrip"
-      ?(i===0?"Chặng đi":"Chặng về")
-      :"Chặng "+(i+1);
-    top.append(title);
+ legs.forEach((l,i)=>{
+  const box=document.createElement("div");
+  box.className="item";
 
-    if($("tripType").value==="multicity"&&legs.length>2){
-      top.append(action("Xóa",()=>{
-        legs=legs.filter(x=>x.id!==l.id);
-        drawLegs();
-      },"danger"));
-    }
+  const top=document.createElement("div");
+  top.className="itemtop";
 
-    const grid=document.createElement("div");
-    grid.className="grid";
+  const title=document.createElement("strong");
 
-    const from=input(l.from,"Nơi đi",v=>l.from=v);
-    const to=input(l.to,"Nơi đến",v=>l.to=v);
-    const date=input(l.date,"",v=>l.date=v,"date");
+  title.textContent=$("tripType").value==="roundtrip"
+   ?(i===0?"Chặng đi":"Chặng về")
+   :"Chặng "+(i+1);
 
-    from.setAttribute("list","airports");
-    to.setAttribute("list","airports");
+  top.append(title);
 
-    grid.append(
-      field("Điểm đi",from),
-      field("Điểm đến",to),
-      field("Ngày bay",date)
-    );
-    box.append(top,grid);
-    root.append(box);
-  });
+  if($("tripType").value==="multicity" && legs.length>2){
+   top.append(action("Xóa",()=>{
+    legs=legs.filter(x=>x.id!==l.id);
+    drawLegs();
+   },"danger"));
+  }
 
-  $("addLeg").classList.toggle(
-    "hidden",$("tripType").value!=="multicity"
+  const grid=document.createElement("div");
+  grid.className="grid";
+
+  const from=input(l.from,"Nơi đi",v=>l.from=v);
+  const to=input(l.to,"Nơi đến",v=>l.to=v);
+  const date=input(l.date,"",v=>l.date=v,"date");
+
+  from.setAttribute("list","airports");
+  to.setAttribute("list","airports");
+
+  grid.append(
+   field("Điểm đi",from),
+   field("Điểm đến",to),
+   field("Ngày bay",date)
   );
+
+  box.append(top,grid);
+  root.append(box);
+ });
+
+ $("addLeg").classList.toggle(
+  "hidden",
+  $("tripType").value!=="multicity"
+ );
 }
 
 function resetLegs(){
-  legs=$("tripType").value==="oneway"
-    ?[newLeg()]
-    :[newLeg(),newLeg()];
-  drawLegs();
+ legs=$("tripType").value==="oneway"
+  ?[newLeg()]
+  :[newLeg(),newLeg()];
+
+ drawLegs();
 }
+
 $("tripType").onchange=resetLegs;
+
 $("addLeg").onclick=()=>{
-  legs.push(newLeg());
-  drawLegs();
+ legs.push(newLeg());
+ drawLegs();
 };
 
 $("bankSelect").onchange=()=>{
-  const selected=$("bankSelect").value;
-  if(!selected||selected==="other"){
-    $("bankCode").value="";
-    $("bankName").value="";
-    return;
-  }
-  const [c,n]=selected.split("|");
-  $("bankCode").value=c;
-  $("bankName").value=n;
+ const selected=$("bankSelect").value;
+
+ if(!selected || selected==="other"){
+  $("bankCode").value="";
+  $("bankName").value="";
+  return;
+ }
+
+ const [c,n]=selected.split("|");
+ $("bankCode").value=c;
+ $("bankName").value=n;
 };
 
 $("fare").oninput=()=>{
-  $("total").textContent=money($("fare").value);
+ $("total").textContent=money($("fare").value);
 };
 
 function setLinkButtons(enabled){
-  $("copyBtn").disabled=!enabled;
-  $("viewBtn").disabled=!enabled;
+ $("copyBtn").disabled=!enabled;
+ $("viewBtn").disabled=!enabled;
 }
 
 function reset(){
-  currentId=null;
-  $("invoiceForm").reset();
-  people=[];
-  addPerson();
-  resetLegs();
+ currentId=null;
+ $("invoiceForm").reset();
 
-  const now=new Date();
-  $("issueDate").value=new Date(
-    now.getTime()-now.getTimezoneOffset()*60000
-  ).toISOString().slice(0,10);
+ people=[];
+ addPerson();
+ resetLegs();
 
-  $("fare").value="";
-  $("total").textContent=money(0);
-  $("formHeading").textContent="LẬP HÓA ĐƠN";
-  $("saveMsg").textContent="";
-  setLinkButtons(false);
+ const now=new Date();
+
+ $("issueDate").value=new Date(
+  now.getTime()-now.getTimezoneOffset()*60000
+ ).toISOString().slice(0,10);
+
+ $("fare").value="";
+ $("total").textContent=money(0);
+ $("formHeading").textContent="LẬP HÓA ĐƠN";
+ $("saveMsg").textContent="";
+ setLinkButtons(false);
 }
+
 $("newBtn").onclick=reset;
 reset();
 
 $("loginForm").onsubmit=async e=>{
-  e.preventDefault();
-  $("loginMsg").textContent="Đang đăng nhập...";
+ e.preventDefault();
+ $("loginMsg").textContent="Đang đăng nhập...";
 
-  try{
-    const r=await signInWithEmailAndPassword(
-      auth,$("email").value,$("password").value
-    );
-    if(r.user.uid!==adminUid){
-      await signOut(auth);
-      throw Error("Không có quyền quản trị");
-    }
-    $("password").value="";
-    $("loginMsg").textContent="";
-  }catch(err){
-    $("loginMsg").textContent=
-      "Đăng nhập thất bại: "+err.message;
+ try{
+  const r=await signInWithEmailAndPassword(
+   auth,
+   $("email").value,
+   $("password").value
+  );
+
+  if(r.user.uid!==adminUid){
+   await signOut(auth);
+   throw Error("Không có quyền quản trị");
   }
+
+  $("password").value="";
+  $("loginMsg").textContent="";
+
+ }catch(err){
+  $("loginMsg").textContent=
+   "Đăng nhập thất bại: "+err.message;
+ }
 };
 
 $("logout").onclick=()=>signOut(auth);
 
 onAuthStateChanged(auth,user=>{
-  const allowed=!!user&&user.uid===adminUid;
+ const allowed=!!user&&user.uid===adminUid;
 
-  $("loginBox").classList.toggle("hidden",allowed);
-  $("dashboard").classList.toggle("hidden",!allowed);
+ $("loginBox").classList.toggle("hidden",allowed);
+ $("dashboard").classList.toggle("hidden",!allowed);
 
-  if(user&&!allowed)signOut(auth);
-  if(allowed)loadList();
+ if(user&&!allowed){
+  signOut(auth);
+ }
+
+ if(allowed){
+  loadList();
+ }
 });
 
 $("reload").onclick=loadList;
 
 async function loadList(){
-  const root=$("invoiceList");
-  root.textContent="Đang tải...";
+ const root=$("invoiceList");
+ root.textContent="Đang tải...";
 
-  try{
-    const snap=await getDocs(
-      collection(db,"paymentRequests")
-    );
-    root.replaceChildren();
+ try{
+  const snap=await getDocs(
+   collection(db,"paymentRequests")
+  );
 
-    if(snap.empty){
-      root.textContent="Chưa có hóa đơn.";
-      return;
-    }
+  root.replaceChildren();
 
-    const docs=snap.docs.sort((a,b)=>
-      (b.data().updatedAt?.seconds||0)-
-      (a.data().updatedAt?.seconds||0)
-    );
-
-    for(const item of docs){
-      const p=item.data();
-      const r=document.createElement("div");
-      const span=document.createElement("span");
-      r.className="entry";
-      span.textContent=
-        `${p.code||item.id} · ${p.customer||"Khách"} · ${money(p.total)}`;
-      r.append(span,action("Chỉnh sửa",()=>edit(item.id,p)));
-      root.append(r);
-    }
-  }catch(err){
-    root.textContent=
-      "Không tải được danh sách: "+err.message;
+  if(snap.empty){
+   root.textContent="Chưa có hóa đơn.";
+   return;
   }
+
+  const docs=snap.docs.sort((a,b)=>
+   (b.data().updatedAt?.seconds||0)-
+   (a.data().updatedAt?.seconds||0)
+  );
+
+  for(const item of docs){
+   const p=item.data();
+
+   const r=document.createElement("div");
+   r.className="entry";
+
+   const span=document.createElement("span");
+   span.textContent=
+    `${p.code||item.id} · ${p.customer||"Khách"} · ${money(p.total)}`;
+
+   r.append(
+    span,
+    action("Chỉnh sửa",()=>edit(item.id,p))
+   );
+
+   root.append(r);
+  }
+
+ }catch(err){
+  root.textContent=
+   "Không tải được danh sách: "+err.message;
+ }
 }
 
 function edit(id,p){
-  currentId=id;
+ currentId=id;
 
-  for(const k of [
-    "code","pnr","customer","issueDate",
-    "airline","status","fare",
-    "bankCode","bankName","bankAccount",
-    "bankOwner","transferContent"
-  ]){
-    $(k).value=p[k]??"";
-  }
+ for(const k of [
+  "code","pnr","customer","issueDate",
+  "airline","status","fare",
+  "bankCode","bankName","bankAccount",
+  "bankOwner","transferContent"
+ ]){
+  $(k).value=p[k]??"";
+ }
 
-  const option=[...$("bankSelect").options].find(x=>
-    x.value.split("|")[0]===
-    String(p.bankCode||"").toUpperCase()
-  );
-  $("bankSelect").value=option?.value||
-    (p.bankCode?"other":"");
+ const option=[...$("bankSelect").options].find(x=>
+  x.value.split("|")[0]===
+  String(p.bankCode||"").toUpperCase()
+ );
 
-  people=(
-    Array.isArray(p.passengerDetails)&&
-    p.passengerDetails.length
-      ?p.passengerDetails
-      :[{name:p.customer||"",passport:""}]
-  ).map(x=>({
-    id:newid(),name:x.name||"",
-    passport:x.passport||""
-  }));
-  drawPeople();
+ $("bankSelect").value=
+  option?.value||(p.bankCode?"other":"");
 
-  $("tripType").value=p.tripType||"oneway";
+ people=(
+  Array.isArray(p.passengerDetails)&&
+  p.passengerDetails.length
+   ?p.passengerDetails
+   :[{name:p.customer||"",passport:""}]
+ ).map(x=>({
+  id:newid(),
+  name:x.name||"",
+  passport:x.passport||""
+ }));
 
-  if(Array.isArray(p.legs)&&p.legs.length){
-    legs=p.legs.map(l=>newLeg(
-      l.from||"",l.to||"",l.date||""
-    ));
-  }else{
-    const a=String(p.route||"").split(/\s*→\s*/);
-    legs=[newLeg(
-      a[0]||"",a[1]||"",p.flightDate||""
-    )];
-  }
+ drawPeople();
 
-  drawLegs();
-  $("total").textContent=money(p.total);
-  $("formHeading").textContent="CHỈNH SỬA HÓA ĐƠN";
-  $("saveMsg").textContent="";
-  setLinkButtons(true);
-  $("invoiceForm").scrollIntoView({behavior:"smooth"});
+ $("tripType").value=p.tripType||"oneway";
+
+ if(Array.isArray(p.legs)&&p.legs.length){
+  legs=p.legs.map(l=>newLeg(
+   l.from||"",
+   l.to||"",
+   l.date||""
+  ));
+ }else{
+  const a=String(p.route||"").split(/\s*→\s*/);
+
+  legs=[newLeg(
+   a[0]||"",
+   a[1]||"",
+   p.flightDate||""
+  )];
+ }
+
+ drawLegs();
+
+ $("total").textContent=money(p.total);
+ $("formHeading").textContent="CHỈNH SỬA HÓA ĐƠN";
+ $("saveMsg").textContent="";
+ setLinkButtons(true);
+
+ $("invoiceForm").scrollIntoView({
+  behavior:"smooth"
+ });
 }
 
 const customerLink=()=>{
-  const u=new URL("phieu.html",location.href);
-  u.searchParams.set("id",currentId);
-  return u.href;
+ const u=new URL("phieu.html",location.href);
+ u.searchParams.set("id",currentId);
+ return u.href;
 };
 
 $("copyBtn").onclick=async()=>{
-  if(!currentId)return;
-  try{
-    await navigator.clipboard.writeText(customerLink());
-    $("saveMsg").textContent="Đã copy liên kết khách.";
-  }catch{
-    prompt("Sao chép liên kết:",customerLink());
-  }
+ if(!currentId)return;
+
+ try{
+  await navigator.clipboard.writeText(customerLink());
+  $("saveMsg").textContent="Đã copy liên kết khách.";
+ }catch{
+  prompt("Sao chép liên kết:",customerLink());
+ }
 };
 
 $("viewBtn").onclick=()=>{
-  if(currentId){
-    window.open(customerLink(),"_blank","noopener");
-  }
+ if(currentId){
+  window.open(customerLink(),"_blank","noopener");
+ }
 };
 
 $("invoiceForm").onsubmit=async e=>{
-  e.preventDefault();
+ e.preventDefault();
 
-  if(!auth.currentUser||
-     auth.currentUser.uid!==adminUid)return;
+ if(!auth.currentUser||
+    auth.currentUser.uid!==adminUid)return;
 
-  const msg=$("saveMsg");
-  msg.textContent="";
+ const msg=$("saveMsg");
+ msg.textContent="";
 
-  const details=people.map(p=>({
-    name:p.name.trim(),
-    passport:p.passport.trim().toUpperCase()
-  }));
+ const details=people.map(p=>({
+  name:p.name.trim(),
+  passport:p.passport.trim().toUpperCase()
+ }));
 
-  if(details.some(p=>!p.name)){
-    msg.textContent="Nhập đủ họ tên hành khách.";
-    return;
-  }
+ if(details.some(p=>!p.name)){
+  msg.textContent="Nhập đủ họ tên hành khách.";
+  return;
+ }
 
-  const journey=legs.map(l=>({
-    from:l.from.trim(),
-    to:l.to.trim(),
-    date:l.date
-  }));
+ const journey=legs.map(l=>({
+  from:l.from.trim(),
+  to:l.to.trim(),
+  date:l.date
+ }));
 
-  if(journey.some(l=>!l.from||!l.to||!l.date)){
-    msg.textContent=
-      "Nhập đủ điểm đi, điểm đến và ngày bay từng chặng.";
-    return;
-  }
+ if(journey.some(l=>!l.from||!l.to||!l.date)){
+  msg.textContent=
+   "Nhập đủ điểm đi, điểm đến và ngày bay từng chặng.";
+  return;
+ }
 
-  const amount=Number($("fare").value);
+ const amount=Number($("fare").value);
 
-  if(!Number.isSafeInteger(amount)||amount<=0){
-    msg.textContent="Tổng tiền phải là số nguyên dương.";
-    return;
-  }
+ if(!Number.isSafeInteger(amount)||amount<=0){
+  msg.textContent="Tổng tiền phải là số nguyên dương.";
+  return;
+ }
 
-  const bankCode=$("bankCode").value.trim().toUpperCase();
-  const bankName=$("bankName").value.trim();
-  const bankAccount=$("bankAccount").value.trim();
-  const bankOwner=$("bankOwner").value.trim();
+ const bankCode=$("bankCode").value.trim().toUpperCase();
+ const bankName=$("bankName").value.trim();
+ const bankAccount=$("bankAccount").value.trim();
+ const bankOwner=$("bankOwner").value.trim();
 
-  if(
-    !/^[A-Z0-9]{2,15}$/.test(bankCode)||
-    !bankName||
-    !/^[0-9]{5,20}$/.test(bankAccount)||
-    !bankOwner
-  ){
-    msg.textContent=
-      "Điền đầy đủ mã ngân hàng VietQR, tên ngân hàng, số tài khoản và chủ tài khoản.";
-    return;
-  }
+ if(
+  !/^[A-Z0-9]{2,15}$/.test(bankCode)||
+  !bankName||
+  !/^[0-9]{5,20}$/.test(bankAccount)||
+  !bankOwner
+ ){
+  msg.textContent=
+   "Điền đầy đủ mã VietQR, ngân hàng, số tài khoản và chủ tài khoản.";
+  return;
+ }
 
-  const code=$("code").value.trim();
-  const transferContent=(
-    $("transferContent").value.trim()||
-    code.replace(/[^a-z0-9]/gi,"")
-  ).toUpperCase();
+ const code=$("code").value.trim();
 
-  if(!/^[A-Z0-9 ]{1,25}$/.test(transferContent)){
-    msg.textContent=
-      "Nội dung chuyển khoản chỉ gồm chữ, số hoặc khoảng trắng, tối đa 25 ký tự.";
-    return;
-  }
+ const transferContent=(
+  $("transferContent").value.trim()||
+  code.replace(/[^a-z0-9]/gi,"")
+ ).toUpperCase();
 
-  const status=$("status").value;
+ if(!/^[A-Z0-9 ]{1,25}$/.test(transferContent)){
+  msg.textContent=
+   "Nội dung CK chỉ gồm chữ, số hoặc khoảng trắng, tối đa 25 ký tự.";
+  return;
+ }
 
-  if(status==="paid"&&!confirm(
-    "Bạn đã kiểm tra ngân hàng và xác nhận thực sự nhận được tiền?"
-  ))return;
+ const status=$("status").value;
 
-  const route=journey.map(l=>
-    l.from+" → "+l.to
-  ).join(" | ");
+ if(status==="paid"&&!confirm(
+  "Bạn đã kiểm tra ngân hàng và xác nhận đã nhận tiền?"
+ )){
+  return;
+ }
 
-  const p={
-    code,
-    pnr:$("pnr").value.trim(),
-    customer:$("customer").value.trim(),
-    issueDate:$("issueDate").value,
-    airline:$("airline").value,
-    status,
-    fare:amount,
-    total:amount,
-    passengers:details.length,
-    passengerDetails:details,
-    tripType:$("tripType").value,
-    legs:journey,
-    route,
-    flightDate:journey[0].date,
-    bankCode,
-    bankName,
-    bankAccount,
-    bankOwner,
-    transferContent,
-    updatedAt:serverTimestamp()
-  };
+ const route=journey.map(l=>
+  l.from+" → "+l.to
+ ).join(" | ");
 
-  // Không sao chép số hộ chiếu sang phiếu khách.
-  const shared={
-    code:p.code,
-    pnr:p.pnr,
-    customer:p.customer,
-    issueDate:p.issueDate,
-    airline:p.airline,
-    status:p.status,
-    fare:p.fare,
-    total:p.total,
-    passengers:p.passengers,
-    tripType:p.tripType,
-    legs:p.legs,
-    route:p.route,
-    flightDate:p.flightDate,
-    bankCode,
-    bankName,
-    bankAccount,
-    bankOwner,
-    transferContent,
-    updatedAt:serverTimestamp()
-  };
+ const p={
+  code,
+  pnr:$("pnr").value.trim(),
+  customer:$("customer").value.trim(),
+  issueDate:$("issueDate").value,
+  airline:$("airline").value,
+  status,
+  fare:amount,
+  total:amount,
+  passengers:details.length,
+  passengerDetails:details,
+  tripType:$("tripType").value,
+  legs:journey,
+  route,
+  flightDate:journey[0].date,
+  bankCode,
+  bankName,
+  bankAccount,
+  bankOwner,
+  transferContent,
+  updatedAt:serverTimestamp()
+ };
 
-  const id=currentId||newid();
+ const shared={
+  code:p.code,
+  pnr:p.pnr,
+  customer:p.customer,
+  issueDate:p.issueDate,
+  airline:p.airline,
+  status:p.status,
+  fare:p.fare,
+  total:p.total,
+  passengers:p.passengers,
+  tripType:p.tripType,
+  legs:p.legs,
+  route:p.route,
+  flightDate:p.flightDate,
+  bankCode,
+  bankName,
+  bankAccount,
+  bankOwner,
+  transferContent,
+  updatedAt:serverTimestamp()
+ };
 
-  $("saveBtn").disabled=true;
-  msg.textContent="Đang lưu...";
+ const id=currentId||newid();
 
-  try{
-    const batch=writeBatch(db);
+ $("saveBtn").disabled=true;
+ msg.textContent="Đang lưu...";
 
-    batch.set(
-      doc(db,"paymentRequests",id),
-      p,{merge:true}
-    );
+ try{
+  const batch=writeBatch(db);
 
-    batch.set(
-      doc(db,"publicPaymentRequests",id),
-      shared
-    );
+  batch.set(
+   doc(db,"paymentRequests",id),
+   p,
+   {merge:true}
+  );
 
-    await batch.commit();
-    currentId=id;
-    setLinkButtons(true);
+  batch.set(
+   doc(db,"publicPaymentRequests",id),
+   shared
+  );
 
-    msg.textContent=
-      "Đã lưu thành công. Bạn có thể copy link khách.";
-    loadList();
-  }catch(err){
-    msg.textContent="Không lưu được: "+err.message;
-  }finally{
-    $("saveBtn").disabled=false;
-  }
+  await batch.commit();
+
+  currentId=id;
+  setLinkButtons(true);
+
+  msg.textContent=
+   "Đã lưu thành công. Có thể copy link khách.";
+
+  loadList();
+
+ }catch(err){
+  msg.textContent=
+   "Không lưu được: "+err.message;
+
+ }finally{
+  $("saveBtn").disabled=false;
+ }
 };
+
 </script>
 </body>
 </html>
