@@ -1,838 +1,1081 @@
 
-
+<!doctype html>
+<html lang="vi">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Én Việt Group | Kết nối mọi đường bay đẹp</title>
-<meta name="description" content="Én Việt Group - Tư vấn vé máy bay nội địa, quốc tế và dịch vụ du lịch.">
+
+<title>Én Việt Travel | Kết nối mọi đường bay đẹp</title>
+
+<meta name="description" content="Én Việt Travel - Tư vấn vé máy bay nội địa, quốc tế, du lịch và hỗ trợ hành trình.">
 
 <style>
 :root{
- --orange:#f58220;
- --blue:#1389bd;
- --navy:#173e5a;
+  --orange:#f58220;
+  --dark:#183c58;
+  --blue:#1679b3;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
- margin:0;
- font-family:Arial,Helvetica,sans-serif;
- background:white;
- color:#273b4e;
-}
-a{text-decoration:none}
-button{font:inherit;cursor:pointer}
-
-/* LOGO CHÀO */
-
-.splash{
- position:fixed;
- inset:0;
- z-index:9999;
- display:grid;
- place-items:center;
- background:#fff;
- transition:opacity .65s,visibility .65s;
-}
-.splash.hide{
- opacity:0;
- visibility:hidden;
- pointer-events:none;
-}
-.splash img{
- width:min(62vw,310px);
- height:auto;
- animation:logoBounce 1.9s ease-in-out both;
-}
-@keyframes logoBounce{
- 0%{opacity:0;transform:translateY(22px) scale(.72)}
- 30%{opacity:1;transform:translateY(-13px) scale(1.07)}
- 55%{transform:translateY(5px) scale(.97)}
- 75%{transform:translateY(-4px) scale(1.03)}
- 100%{opacity:1;transform:none}
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#263d50;
+  background:#fff;
 }
 
-/* ĐẦU TRANG */
+a{
+  text-decoration:none;
+}
+
+/* TRANG CHỦ HÌNH NÚI */
 
 .hero{
- min-height:100svh;
- position:relative;
- display:flex;
- flex-direction:column;
- background:
-  linear-gradient(to bottom,
-   rgba(18,48,67,.35),
-   transparent 25%,
-   transparent 62%,
-   rgba(245,130,32,.76) 100%),
-  url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=90")
-  center/cover no-repeat;
+  min-height:100vh;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(15,46,67,.40) 0%,
+      rgba(18,48,64,.04) 23%,
+      rgba(255,255,255,0) 59%,
+      rgba(245,130,32,.76) 100%
+    ),
+    url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=90")
+    center center/cover no-repeat;
 }
 
+/* THANH MENU - KHÔNG CÓ LOGO */
+
 .header{
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:18px 3%;
- gap:18px;
- z-index:2;
+  width:100%;
+  padding:22px 4%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:28px;
+  position:relative;
+  z-index:2;
 }
 
 .brand{
- display:flex;
- align-items:center;
- gap:9px;
- color:#fff;
- font-size:14px;
- font-weight:800;
-}
-.brand img{
- width:55px;
- height:55px;
- object-fit:contain;
- border-radius:5px;
-}
-.nav{
- display:flex;
- align-items:center;
- justify-content:flex-end;
- flex-wrap:wrap;
- gap:23px;
-}
-.nav a{
- color:white;
- font-size:14px;
- font-weight:700;
- text-shadow:0 1px 5px #0005;
-}
-.nav a:hover{color:#ffdfb8}
-.nav .login{
- padding:13px 18px;
- background:var(--orange);
- border-radius:9px;
- box-shadow:0 5px 15px #0003;
+  flex-shrink:0;
+  color:#fff;
+  font-size:30px;
+  font-weight:800;
+  letter-spacing:.6px;
+  white-space:nowrap;
+  text-shadow:0 2px 8px rgba(0,0,0,.35);
 }
 
-/* KHẨU HIỆU - CHỮ TO HƠN */
+.brand:hover{
+  color:#fff;
+}
+
+/* MENU BÊN PHẢI */
+
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  gap:25px;
+}
+
+.nav a{
+  color:#fff;
+  font-size:16px;
+  font-weight:700;
+  white-space:nowrap;
+  text-shadow:0 1px 5px rgba(0,0,0,.4);
+}
+
+.nav a:hover{
+  color:#ffe3c4;
+}
+
+.nav .login{
+  background:var(--orange);
+  padding:15px 21px;
+  border-radius:10px;
+  font-size:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,.25);
+  text-shadow:none;
+  transition:background .2s;
+}
+
+.nav .login:hover{
+  background:#e7710c;
+  color:#fff;
+}
+
+/* KHẨU HIỆU ÉN VIỆT */
 
 .hero-inner{
- flex:1;
- display:flex;
- flex-direction:column;
- justify-content:space-between;
- gap:85px;
- padding:38px 8% 50px;
-}
-.slogan{
- color:var(--orange);
- position:relative;
- width:max-content;
- max-width:100%;
- text-shadow:0 1px 10px #fff9;
-}
-.slogan .first{
- font-size:clamp(48px,5.4vw,78px);
- font-weight:400;
- line-height:1.12;
-}
-.slogan .second{
- font-size:clamp(54px,6.1vw,88px);
- font-weight:400;
- line-height:1.14;
-}
-.slogan .second em{
- font-family:"Brush Script MT","Segoe Script",Georgia,cursive;
- font-weight:400;
- font-size:1.12em;
-}
-.slogan .third{
- margin-top:6px;
- font-size:clamp(27px,3.2vw,43px);
-}
-.plane{
- position:absolute;
- top:-8px;
- right:-75px;
- font-size:43px;
- transform:rotate(-25deg);
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:85px;
+  padding:60px 8% 55px;
 }
 
-/* 3 THÔNG TIN PHÍA DƯỚI */
+.slogan{
+  width:max-content;
+  max-width:100%;
+  color:var(--orange);
+  position:relative;
+  text-shadow:0 2px 12px rgba(255,255,255,.7);
+}
+
+.slogan .first{
+  font-size:clamp(52px,5.7vw,83px);
+  line-height:1.13;
+  font-weight:400;
+}
+
+.slogan .second{
+  font-size:clamp(57px,6.3vw,92px);
+  line-height:1.15;
+  font-weight:400;
+}
+
+.slogan .second em{
+  font-family:"Brush Script MT","Segoe Script",Georgia,cursive;
+  font-size:1.13em;
+  font-weight:400;
+}
+
+.slogan .third{
+  margin-top:4px;
+  font-size:clamp(28px,3.2vw,45px);
+}
+
+.plane{
+  position:absolute;
+  top:-12px;
+  right:-72px;
+  font-size:48px;
+  transform:rotate(-22deg);
+}
+
+/* BA MỤC PHÍA DƯỚI */
 
 .highlights{
- display:grid;
- grid-template-columns:repeat(3,minmax(0,1fr));
- gap:20px;
- color:#fff;
- text-align:center;
- text-shadow:0 2px 8px #0004;
-}
-.highlights h2{
- margin:0 0 13px;
- font-size:17px;
- font-weight:600;
-}
-.highlights p{
- margin:0;
- font-size:clamp(25px,3.2vw,46px);
- font-weight:400;
-}
-.scroll{
- position:absolute;
- right:16px;
- bottom:65px;
- color:white;
- background:var(--orange);
- padding:11px 15px;
- font-size:23px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:28px;
+  text-align:center;
+  color:white;
+  text-shadow:0 2px 8px rgba(0,0,0,.32);
 }
 
-/* PHẦN GIỚI THIỆU */
+.highlights h2{
+  margin:0 0 15px;
+  font-size:17px;
+  font-weight:600;
+}
+
+.highlights p{
+  margin:0;
+  font-size:clamp(26px,3.1vw,46px);
+  font-weight:400;
+}
+
+.scroll{
+  position:absolute;
+  right:17px;
+  bottom:65px;
+  padding:10px 15px;
+  background:var(--orange);
+  color:#fff;
+  font-size:24px;
+}
+
+/* CHỮ CHUNG */
+
+.eyebrow{
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+/* GIỚI THIỆU */
 
 .intro{
- padding:65px 8%;
- text-align:center;
+  padding:75px 8%;
+  text-align:center;
+  background:white;
 }
-.eyebrow{
- font-size:13px;
- font-weight:800;
- letter-spacing:1.5px;
- text-transform:uppercase;
+
+.intro .eyebrow{
+  color:var(--orange);
 }
-.intro .eyebrow{color:var(--orange)}
+
 .intro h2{
- font-size:clamp(26px,3vw,38px);
- color:var(--orange);
- margin:12px 0 17px;
+  margin:13px 0 18px;
+  color:var(--orange);
+  font-size:36px;
 }
+
 .intro p{
- max-width:780px;
- margin:0 auto;
- color:#526b7e;
- line-height:1.8;
+  max-width:820px;
+  margin:0 auto;
+  color:#576c7e;
+  font-size:16px;
+  line-height:1.9;
 }
 
 /* DỊCH VỤ NỀN CAM */
 
 .services-section{
- padding:75px 7%;
- background:var(--orange);
- color:white;
- text-align:center;
+  background:var(--orange);
+  padding:80px 7%;
+  color:white;
+  text-align:center;
 }
+
 .services-section h2{
- font-size:clamp(27px,3.1vw,39px);
- font-weight:500;
- margin:12px 0 40px;
+  margin:12px 0 40px;
+  font-size:36px;
+  font-weight:500;
 }
+
 .services-grid{
- max-width:1120px;
- margin:auto;
- display:grid;
- grid-template-columns:repeat(3,minmax(0,1fr));
- gap:20px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  max-width:1120px;
+  gap:22px;
+  margin:auto;
 }
+
 .service-card{
- padding:29px 20px;
- border:1px solid #ffffff70;
- border-radius:13px;
- min-height:220px;
- transition:transform .2s,background .2s;
+  min-height:218px;
+  border:1px solid rgba(255,255,255,.43);
+  border-radius:13px;
+  padding:28px 20px;
+  transition:transform .2s,background .2s;
 }
+
 .service-card:hover{
- background:#ffffff16;
- transform:translateY(-4px);
+  transform:translateY(-4px);
+  background:rgba(255,255,255,.10);
 }
+
 .service-card.featured{
- border:2px solid white;
- background:#ffffff13;
+  border:2px solid white;
+  background:rgba(255,255,255,.07);
 }
+
 .service-icon{
- display:grid;
- place-items:center;
- margin:0 auto 15px;
- width:55px;
- height:55px;
- border:2px solid white;
- border-radius:50%;
- font-size:26px;
+  width:56px;
+  height:56px;
+  display:grid;
+  place-items:center;
+  margin:0 auto 15px;
+  border:2px solid white;
+  border-radius:50%;
+  font-size:27px;
 }
+
 .service-card h3{
- margin:0 0 11px;
- font-size:18px;
+  font-size:18px;
+  margin:0 0 10px;
 }
+
 .service-card p{
- font-size:13px;
- line-height:1.75;
- margin:0;
+  font-size:13px;
+  line-height:1.8;
+  margin:0;
 }
 
 /* TẠI SAO CHỌN CHÚNG TÔI */
 
 .why{
- background:#fff;
- padding:75px 7%;
- text-align:center;
+  padding:80px 7%;
+  background:#fff;
+  text-align:center;
 }
-.why .eyebrow{color:var(--orange)}
+
+.why .eyebrow{
+  color:var(--orange);
+}
+
 .why h2{
- font-size:clamp(26px,3vw,37px);
- font-weight:500;
- color:var(--orange);
- margin:11px 0 36px;
+  margin:12px 0 38px;
+  font-size:35px;
+  font-weight:500;
+  color:var(--orange);
 }
+
 .reasons{
- max-width:1100px;
- margin:auto;
- display:grid;
- grid-template-columns:repeat(3,minmax(0,1fr));
- gap:24px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:25px;
+  max-width:1120px;
+  margin:auto;
 }
+
 .reason{
- overflow:hidden;
- border:1px solid #e8e8e8;
- border-radius:15px;
- background:white;
- text-align:left;
- box-shadow:0 9px 25px #123e5d12;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid #e9e9e9;
+  border-radius:15px;
+  text-align:left;
+  box-shadow:0 9px 26px rgba(15,59,90,.09);
 }
+
 .reason img{
- width:100%;
- height:190px;
- object-fit:cover;
- display:block;
+  display:block;
+  width:100%;
+  height:200px;
+  object-fit:cover;
 }
-.reason .detail{padding:20px}
+
+.reason .detail{
+  padding:20px;
+}
+
 .reason h3{
- color:var(--orange);
- margin:0 0 10px;
- font-size:17px;
+  color:var(--orange);
+  margin:0 0 10px;
+  font-size:18px;
 }
+
 .reason p{
- color:#68798a;
- font-size:13px;
- line-height:1.8;
- margin:0;
+  margin:0;
+  font-size:13px;
+  line-height:1.8;
+  color:#627587;
 }
 
-/* TIN TỨC CUỐI TRANG */
+/* TIN TỨC */
 
-.news-section{
- background:#fff;
- padding:75px 7% 70px;
- text-align:center;
+.news{
+  padding:80px 7%;
+  background:#fff;
+  text-align:center;
 }
-.news-section .eyebrow{
- color:var(--orange);
+
+.news .eyebrow{
+  color:var(--orange);
 }
-.news-section h2{
- margin:10px 0 36px;
- font-size:clamp(26px,3vw,36px);
- color:var(--orange);
- font-weight:500;
+
+.news h2{
+  margin:12px 0 40px;
+  color:var(--orange);
+  font-size:35px;
+  font-weight:500;
 }
 
 .news-grid{
- width:100%;
- max-width:1050px;
- margin:auto;
- display:grid;
- grid-template-columns:repeat(3,minmax(0,1fr));
- gap:26px;
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:25px;
 }
 
 .news-card{
- background:#fff;
- border:1px solid #ececec;
- border-radius:13px;
- box-shadow:0 10px 27px #143e5c15;
- overflow:hidden;
- text-align:left;
- transition:transform .2s;
-}
-.news-card:hover{
- transform:translateY(-5px);
-}
-.news-card img{
- display:block;
- width:100%;
- height:195px;
- object-fit:cover;
-}
-.news-content{
- padding:16px 17px 20px;
-}
-.news-content h3{
- font-size:17px;
- line-height:1.4;
- margin:0 0 10px;
- color:#465b76;
- font-weight:800;
-}
-.news-content p{
- font-size:13px;
- color:#777;
- line-height:1.7;
- min-height:66px;
- margin:0 0 15px;
-}
-.news-content a{
- display:inline-block;
- background:var(--orange);
- color:#fff;
- padding:10px 17px;
- font-size:13px;
- font-weight:700;
- border-radius:25px;
+  overflow:hidden;
+  background:white;
+  text-align:left;
+  border:1px solid #ededed;
+  border-radius:14px;
+  box-shadow:0 10px 27px rgba(20,62,92,.10);
 }
 
-/* DẢI HÃNG BAY CUỐI TRANG */
+.news-card img{
+  display:block;
+  width:100%;
+  height:210px;
+  object-fit:cover;
+}
+
+.news-content{
+  padding:18px;
+}
+
+.news-content h3{
+  margin:0 0 11px;
+  font-size:17px;
+  line-height:1.5;
+  color:#485e77;
+}
+
+.news-content p{
+  margin:0 0 17px;
+  color:#777;
+  font-size:13px;
+  line-height:1.8;
+  min-height:70px;
+}
+
+.news-content a{
+  display:inline-block;
+  border-radius:25px;
+  padding:10px 19px;
+  background:var(--orange);
+  color:white;
+  font-size:13px;
+  font-weight:700;
+}
+
+/* CÁC HÃNG HÀNG KHÔNG */
 
 .airlines{
- background:white;
- padding:35px 4% 58px;
- text-align:center;
+  background:#fff;
+  text-align:center;
+  padding:43px 5% 66px;
 }
+
 .airlines h2{
- font-size:21px;
- font-weight:700;
- color:#536779;
- margin:0 0 35px;
+  color:#52677c;
+  font-size:23px;
+  margin:0 0 38px;
 }
+
 .airline-strip{
- display:flex;
- justify-content:space-around;
- align-items:center;
- flex-wrap:wrap;
- gap:22px 30px;
- max-width:1480px;
- margin:auto;
+  max-width:1450px;
+  margin:auto;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-around;
+  gap:30px 38px;
 }
+
 .airline-name{
- font-size:clamp(18px,2vw,29px);
- font-weight:800;
- letter-spacing:.2px;
- white-space:nowrap;
+  font-size:clamp(19px,2vw,29px);
+  font-weight:800;
+  white-space:nowrap;
 }
-.airline-name:nth-child(1){color:#077c8d}
-.airline-name:nth-child(2){color:#194ca4}
-.airline-name:nth-child(3){color:#2365b5}
-.airline-name:nth-child(4){color:#68529d}
-.airline-name:nth-child(5){color:#777}
-.airline-name:nth-child(6){color:#296ca9}
-.airline-name:nth-child(7){color:#173f8c}
-.airline-name:nth-child(8){color:#a80024}
+
+.airline-name:nth-child(1){color:#005ba6}
+.airline-name:nth-child(2){color:#e7192e}
+.airline-name:nth-child(3){color:#2164b3}
+.airline-name:nth-child(4){color:#62529b}
+.airline-name:nth-child(5){color:#666}
+.airline-name:nth-child(6){color:#2978ba}
+.airline-name:nth-child(7){color:#244b89}
+.airline-name:nth-child(8){color:#ad0029}
+
 .airline-note{
- margin-top:25px;
- font-size:12px;
- color:#87939d;
+  margin-top:28px;
+  color:#8794a0;
+  font-size:12px;
 }
 
 /* LIÊN HỆ */
 
 .contact{
- text-align:center;
- padding:65px 7%;
- background:#f5f9fc;
+  padding:75px 7%;
+  background:#f4f9fc;
+  text-align:center;
 }
+
 .contact h2{
- color:var(--orange);
- font-size:29px;
+  color:var(--orange);
+  font-size:31px;
 }
+
 .contact p{
- color:#596f80;
- line-height:1.8;
+  color:#5a7083;
+  line-height:1.9;
+  font-size:15px;
 }
+
 .contact a{
- display:inline-block;
- background:var(--orange);
- padding:13px 24px;
- color:white;
- font-weight:700;
- border-radius:9px;
- margin-top:15px;
+  display:inline-block;
+  background:var(--orange);
+  color:#fff;
+  padding:14px 25px;
+  margin-top:18px;
+  border-radius:9px;
+  font-weight:700;
 }
+
 footer{
- background:#153e5d;
- color:white;
- text-align:center;
- padding:23px 15px;
- font-size:12px;
+  background:#153e5d;
+  color:white;
+  padding:25px 15px;
+  text-align:center;
+  font-size:12px;
+}
+
+/* MÁY TÍNH MÀN HÌNH VỪA */
+
+@media(max-width:1050px){
+
+  .brand{
+    font-size:24px;
+  }
+
+  .nav{
+    gap:15px;
+  }
+
+  .nav a{
+    font-size:13px;
+  }
+
+  .nav .login{
+    font-size:13px;
+    padding:12px 15px;
+  }
 }
 
 /* ĐIỆN THOẠI */
 
-@media(max-width:800px){
- .header{
-  padding:12px;
-  align-items:flex-start;
- }
- .brand img{
-  width:45px;
-  height:45px;
- }
- .brand span{display:none}
- .nav{gap:10px}
- .nav a{font-size:11px}
- .nav .login{padding:10px}
- .hero-inner{padding:43px 6% 58px}
- .plane{display:none}
- .highlights{gap:8px}
- .highlights h2{font-size:10px}
- .highlights p{font-size:17px}
- .services-grid{
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px;
- }
- .service-card{padding:20px 11px}
- .service-card h3{font-size:15px}
- .reasons{grid-template-columns:1fr}
- .news-grid{grid-template-columns:1fr}
- .news-card img{height:220px}
- .scroll{bottom:105px}
+@media(max-width:760px){
+
+  .header{
+    padding:15px;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:15px;
+  }
+
+  .brand{
+    font-size:23px;
+  }
+
+  .nav{
+    justify-content:flex-start;
+    gap:12px;
+    width:100%;
+  }
+
+  .nav a{
+    font-size:12px;
+  }
+
+  .nav .login{
+    padding:11px 13px;
+  }
+
+  .hero-inner{
+    padding:45px 6% 60px;
+    gap:75px;
+  }
+
+  .slogan .first{
+    font-size:47px;
+  }
+
+  .slogan .second{
+    font-size:52px;
+  }
+
+  .slogan .third{
+    font-size:25px;
+  }
+
+  .plane{
+    display:none;
+  }
+
+  .highlights{
+    gap:8px;
+  }
+
+  .highlights h2{
+    font-size:10px;
+  }
+
+  .highlights p{
+    font-size:17px;
+  }
+
+  .services-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+  }
+
+  .service-card{
+    padding:20px 12px;
+  }
+
+  .service-card h3{
+    font-size:15px;
+  }
+
+  .reasons,
+  .news-grid{
+    grid-template-columns:1fr;
+  }
+
+  .scroll{
+    bottom:105px;
+  }
 }
 
 @media(max-width:440px){
- .services-grid{grid-template-columns:1fr}
- .slogan .first{font-size:44px}
- .slogan .second{font-size:49px}
- .slogan .third{font-size:24px}
-}
 
-@media(prefers-reduced-motion:reduce){
- .splash img{animation:none}
- .splash{transition:none}
+  .services-grid{
+    grid-template-columns:1fr;
+  }
+
+  .brand{
+    font-size:22px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGO CHÀO -->
-
-<div id="splash" class="splash">
- <img src="logo-enviet.png" alt="Én Việt Group">
-</div>
-
 <main>
 
-<!-- ĐẦU TRANG -->
+<!-- TRANG CHỦ KHÔNG CÓ LOGO ẢNH -->
 
 <section class="hero" id="trangchu">
 
-<header class="header">
- <a href="#trangchu" class="brand">
-  <img src="logo-enviet.png" alt="Én Việt Group">
-  <span>ÉN VIỆT GROUP</span>
- </a>
+  <header class="header">
 
- <nav class="nav" aria-label="Menu chính">
-  <a href="#trangchu">Trang chủ</a>
-  <a href="#gioithieu">Về Én Việt</a>
-  <a href="#dichvu">Dịch vụ</a>
-  <a href="#tintuc">Tin tức</a>
-  <a href="#lienhe">Liên hệ</a>
-  <a class="login"
-     href="https://enviettravel.website/quantri.html">
-    Đăng nhập đại lý
+    <!-- CHỮ THƯƠNG HIỆU TO Ở GÓC TRÁI -->
+
+    <a class="brand" href="#trangchu">
+      ÉN VIỆT TRAVEL
+    </a>
+
+    <!-- THANH MENU -->
+
+    <nav class="nav" aria-label="Menu chính">
+
+      <a href="#trangchu">Trang chủ</a>
+
+      <a href="#gioithieu">Về Én Việt</a>
+
+      <a href="#dichvu">Dịch vụ</a>
+
+      <a href="#tintuc">Tin tức</a>
+
+      <a href="#lienhe">Liên hệ</a>
+
+      <a
+        class="login"
+        href="./quantri.html">
+        Đăng nhập đại lý
+      </a>
+
+    </nav>
+
+  </header>
+
+  <!-- GIỮ NGUYÊN KHẨU HIỆU -->
+
+  <div class="hero-inner">
+
+    <div class="slogan">
+
+      <div class="first">
+        Én Việt
+      </div>
+
+      <div class="second">
+        Kết <em>Nối</em>
+      </div>
+
+      <div class="third">
+        mọi đường bay đẹp
+      </div>
+
+      <span class="plane" aria-hidden="true">
+        ✈
+      </span>
+
+    </div>
+
+    <div class="highlights">
+
+      <div>
+        <h2>VÉ MÁY BAY</h2>
+        <p>NỘI ĐỊA</p>
+      </div>
+
+      <div>
+        <h2>HÀNH TRÌNH</h2>
+        <p>QUỐC TẾ</p>
+      </div>
+
+      <div>
+        <h2>DỊCH VỤ</h2>
+        <p>HỖ TRỢ 24/7</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <a
+    class="scroll"
+    href="#dichvu"
+    aria-label="Xem dịch vụ">
+    ↓
   </a>
- </nav>
-</header>
-
-<div class="hero-inner">
-
- <div class="slogan">
-  <div class="first">Én Việt</div>
-  <div class="second">Kết <em>Nối</em></div>
-  <div class="third">mọi đường bay đẹp</div>
-  <span class="plane">✈</span>
- </div>
-
- <div class="highlights">
-  <div>
-   <h2>VÉ MÁY BAY</h2>
-   <p>NỘI ĐỊA</p>
-  </div>
-  <div>
-   <h2>HÀNH TRÌNH</h2>
-   <p>QUỐC TẾ</p>
-  </div>
-  <div>
-   <h2>DỊCH VỤ</h2>
-   <p>HỖ TRỢ 24/7</p>
-  </div>
- </div>
-
-</div>
-
-<a class="scroll" href="#dichvu" aria-label="Xem tiếp">↓</a>
 
 </section>
 
 <!-- GIỚI THIỆU -->
 
 <section class="intro" id="gioithieu">
- <div class="eyebrow">CHÀO MỪNG ĐẾN VỚI</div>
- <h2>ÉN VIỆT GROUP</h2>
- <p>
-  Kết nối mọi đường bay đẹp.
-  Tư vấn vé máy bay nội địa, quốc tế
-  và các dịch vụ liên quan đến hành trình
-  của khách hàng.
- </p>
+
+  <div class="eyebrow">
+    CHÀO MỪNG ĐẾN VỚI
+  </div>
+
+  <h2>ÉN VIỆT TRAVEL</h2>
+
+  <p>
+    Én Việt Travel – Kết nối mọi đường bay đẹp.
+    Chúng tôi tư vấn và hỗ trợ đặt vé máy bay
+    nội địa, quốc tế và các dịch vụ
+    liên quan đến hành trình của khách hàng.
+  </p>
+
 </section>
 
-<!-- DỊCH VỤ NỀN CAM -->
+<!-- PHẦN DỊCH VỤ NỀN CAM -->
 
 <section class="services-section" id="dichvu">
 
- <div class="eyebrow">DỊCH VỤ CỦA CHÚNG TÔI</div>
- <h2>Các Dịch Vụ Của Én Việt</h2>
-
- <div class="services-grid">
-
-  <div class="service-card featured">
-   <div class="service-icon">✈</div>
-   <h3>Vé máy bay</h3>
-   <p>
-    Tư vấn vé máy bay nội địa và quốc tế
-    với nhiều điểm đến và lịch trình.
-   </p>
+  <div class="eyebrow">
+    DỊCH VỤ CỦA CHÚNG TÔI
   </div>
 
-  <div class="service-card">
-   <div class="service-icon">☀</div>
-   <h3>Du lịch</h3>
-   <p>
-    Tư vấn hành trình du lịch,
-    nghỉ dưỡng và trải nghiệm điểm đến.
-   </p>
+  <h2>Các Dịch Vụ Của Én Việt</h2>
+
+  <div class="services-grid">
+
+    <div class="service-card featured">
+
+      <div class="service-icon">✈</div>
+
+      <h3>Vé máy bay</h3>
+
+      <p>
+        Tư vấn và hỗ trợ đặt vé máy bay
+        nội địa và quốc tế theo lịch trình.
+      </p>
+
+    </div>
+
+    <div class="service-card">
+
+      <div class="service-icon">☀</div>
+
+      <h3>Du lịch</h3>
+
+      <p>
+        Tư vấn điểm đến, hành trình du lịch,
+        nghỉ dưỡng và khám phá.
+      </p>
+
+    </div>
+
+    <div class="service-card">
+
+      <div class="service-icon">🚐</div>
+
+      <h3>Vận chuyển</h3>
+
+      <p>
+        Hỗ trợ thông tin phương tiện
+        di chuyển phù hợp với hành trình.
+      </p>
+
+    </div>
+
+    <div class="service-card">
+
+      <div class="service-icon">⌂</div>
+
+      <h3>Khách sạn</h3>
+
+      <p>
+        Tư vấn lựa chọn nơi lưu trú
+        theo điểm đến và nhu cầu.
+      </p>
+
+    </div>
+
+    <div class="service-card">
+
+      <div class="service-icon">☎</div>
+
+      <h3>Hỗ trợ khách hàng</h3>
+
+      <p>
+        Tư vấn thông tin chuyến bay,
+        điều kiện vé và hành lý.
+      </p>
+
+    </div>
+
+    <div class="service-card">
+
+      <div class="service-icon">✉</div>
+
+      <h3>Nhận báo giá</h3>
+
+      <p>
+        Gửi hành trình để được hỗ trợ
+        tra cứu và tư vấn giá vé.
+      </p>
+
+    </div>
+
   </div>
 
-  <div class="service-card">
-   <div class="service-icon">🚐</div>
-   <h3>Vận chuyển</h3>
-   <p>
-    Hỗ trợ tìm hiểu phương tiện
-    di chuyển phù hợp với hành trình.
-   </p>
-  </div>
-
-  <div class="service-card">
-   <div class="service-icon">⌂</div>
-   <h3>Đặt phòng khách sạn</h3>
-   <p>
-    Tư vấn lựa chọn nơi lưu trú
-    theo địa điểm và nhu cầu.
-   </p>
-  </div>
-
-  <div class="service-card">
-   <div class="service-icon">☎</div>
-   <h3>Hỗ trợ khách hàng</h3>
-   <p>
-    Tư vấn thông tin đặt vé,
-    hành lý và điều kiện chuyến bay.
-   </p>
-  </div>
-
-  <div class="service-card">
-   <div class="service-icon">✉</div>
-   <h3>Liên hệ nhận báo giá</h3>
-   <p>
-    Gửi lịch trình bay để nhận
-    hỗ trợ tra cứu và tư vấn giá.
-   </p>
-  </div>
-
- </div>
 </section>
 
-<!-- TẠI SAO CHỌN CHÚNG TÔI -->
+<!-- LÝ DO CHỌN CHÚNG TÔI -->
 
 <section class="why">
 
- <div class="eyebrow">TẠI SAO CHỌN CHÚNG TÔI</div>
- <h2>Chúng Tôi Đồng Hành Cùng Nhu Cầu Của Bạn</h2>
+  <div class="eyebrow" style="color:#f58220">
+    TẠI SAO CHỌN CHÚNG TÔI
+  </div>
 
- <div class="reasons">
+  <h2>
+    Chúng Tôi Đồng Hành Cùng Nhu Cầu Của Bạn
+  </h2>
 
-  <article class="reason">
-   <img
-    src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=85"
-    alt="Máy bay trên bầu trời">
-   <div class="detail">
-    <h3>Tư vấn hành trình</h3>
-    <p>
-     Hỗ trợ lựa chọn chuyến bay phù hợp
-     theo điểm đến, thời gian và nhu cầu.
-    </p>
-   </div>
-  </article>
+  <div class="reasons">
 
-  <article class="reason">
-   <img
-    src="https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=900&q=85"
-    alt="Du lịch và trải nghiệm">
-   <div class="detail">
-    <h3>Dịch vụ đa dạng</h3>
-    <p>
-     Tư vấn vé máy bay, lịch trình du lịch
-     và các dịch vụ liên quan.
-    </p>
-   </div>
-  </article>
+    <article class="reason">
 
-  <article class="reason">
-   <img
-    src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85"
-    alt="Hỗ trợ khách hàng">
-   <div class="detail">
-    <h3>Hỗ trợ tận tâm</h3>
-    <p>
-     Đồng hành cùng khách hàng
-     trong việc tìm hiểu và đặt dịch vụ.
-    </p>
-   </div>
-  </article>
+      <img
+        src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=85"
+        alt="Máy bay trên bầu trời"
+        loading="lazy">
 
- </div>
+      <div class="detail">
+
+        <h3>Tư vấn hành trình</h3>
+
+        <p>
+          Hỗ trợ lựa chọn chuyến bay
+          phù hợp với ngày bay và điểm đến.
+        </p>
+
+      </div>
+
+    </article>
+
+    <article class="reason">
+
+      <img
+        src="https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=900&q=85"
+        alt="Du lịch và trải nghiệm"
+        loading="lazy">
+
+      <div class="detail">
+
+        <h3>Dịch vụ đa dạng</h3>
+
+        <p>
+          Tư vấn vé máy bay, hành trình du lịch
+          và các dịch vụ hỗ trợ liên quan.
+        </p>
+
+      </div>
+
+    </article>
+
+    <article class="reason">
+
+      <img
+        src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85"
+        alt="Nhân viên tư vấn khách hàng"
+        loading="lazy">
+
+      <div class="detail">
+
+        <h3>Hỗ trợ tận tâm</h3>
+
+        <p>
+          Đồng hành cùng khách hàng
+          trong quá trình lựa chọn dịch vụ.
+        </p>
+
+      </div>
+
+    </article>
+
+  </div>
 
 </section>
 
-<!-- TIN TỨC - 3 THẺ GIỐNG ẢNH MẪU -->
+<!-- TIN TỨC -->
 
-<section class="news-section" id="tintuc">
+<section class="news" id="tintuc">
 
- <div class="eyebrow">TIN TỨC</div>
- <h2>Xem các bài viết từ chúng tôi</h2>
+  <div class="eyebrow" style="color:#f58220">
+    TIN TỨC
+  </div>
 
- <div class="news-grid">
+  <h2>Xem các bài viết từ chúng tôi</h2>
 
-  <article class="news-card">
-   <img
-    src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=850&q=85"
-    alt="Máy bay và bầu trời">
+  <div class="news-grid">
 
-   <div class="news-content">
-    <h3>Kinh nghiệm săn vé máy bay giá tốt</h3>
-    <p>
-     Một số lưu ý khi tìm chuyến bay,
-     so sánh giá vé và lựa chọn
-     thời gian khởi hành phù hợp.
-    </p>
-    <a href="#lienhe">Xem ngay</a>
-   </div>
-  </article>
+    <article class="news-card">
 
-  <article class="news-card">
-   <img
-    src="https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=850&q=85"
-    alt="Hành trình du lịch">
+      <img
+        src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=85"
+        alt="Máy bay"
+        loading="lazy">
 
-   <div class="news-content">
-    <h3>Tư vấn vé máy bay nội địa và quốc tế</h3>
-    <p>
-     Tìm hiểu những thông tin nên
-     chuẩn bị trước khi đặt vé
-     và lựa chọn hành trình.
-    </p>
-    <a href="#lienhe">Xem ngay</a>
-   </div>
-  </article>
+      <div class="news-content">
 
-  <article class="news-card">
-   <img
-    src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=850&q=85"
-    alt="Điểm đến du lịch">
+        <h3>Kinh nghiệm săn vé máy bay giá tốt</h3>
 
-   <div class="news-content">
-    <h3>Những lưu ý trước chuyến bay</h3>
-    <p>
-     Kiểm tra giấy tờ, hành lý,
-     thời gian làm thủ tục
-     và thông tin chuyến bay.
-    </p>
-    <a href="#lienhe">Xem ngay</a>
-   </div>
-  </article>
+        <p>
+          Những điều cần lưu ý khi tìm kiếm
+          và so sánh giá vé máy bay.
+        </p>
 
- </div>
+        <a href="#lienhe">Xem ngay</a>
+
+      </div>
+
+    </article>
+
+    <article class="news-card">
+
+      <img
+        src="https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=900&q=85"
+        alt="Hành trình du lịch"
+        loading="lazy">
+
+      <div class="news-content">
+
+        <h3>Hành trình nội địa và quốc tế</h3>
+
+        <p>
+          Chuẩn bị những thông tin cần thiết
+          trước khi lựa chọn chuyến bay.
+        </p>
+
+        <a href="#lienhe">Xem ngay</a>
+
+      </div>
+
+    </article>
+
+    <article class="news-card">
+
+      <img
+        src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=85"
+        alt="Điểm đến du lịch"
+        loading="lazy">
+
+      <div class="news-content">
+
+        <h3>Những lưu ý trước chuyến bay</h3>
+
+        <p>
+          Kiểm tra giấy tờ, hành lý,
+          giờ bay và thời gian làm thủ tục.
+        </p>
+
+        <a href="#lienhe">Xem ngay</a>
+
+      </div>
+
+    </article>
+
+  </div>
+
 </section>
 
-<!-- DẢI HÃNG HÀNG KHÔNG -->
+<!-- HÃNG HÀNG KHÔNG -->
 
 <section class="airlines">
 
- <h2>Một số hãng hàng không được khách hàng quan tâm</h2>
+  <h2>
+    Một số hãng hàng không được khách hàng quan tâm
+  </h2>
 
- <div class="airline-strip">
-  <span class="airline-name">Vietnam Airlines</span>
-  <span class="airline-name">Vietjet Air</span>
-  <span class="airline-name">ANA</span>
-  <span class="airline-name">oneworld</span>
-  <span class="airline-name">Asiana Airlines</span>
-  <span class="airline-name">Bangkok Airways</span>
-  <span class="airline-name">Philippine Airlines</span>
-  <span class="airline-name">Qantas</span>
- </div>
+  <div class="airline-strip">
 
- <p class="airline-note">
-  Tên các hãng được hiển thị để tham khảo;
-  không thể hiện quan hệ đối tác chính thức.
- </p>
+    <span class="airline-name">
+      Vietnam Airlines
+    </span>
+
+    <span class="airline-name">
+      Vietjet Air
+    </span>
+
+    <span class="airline-name">
+      ANA
+    </span>
+
+    <span class="airline-name">
+      oneworld
+    </span>
+
+    <span class="airline-name">
+      Asiana Airlines
+    </span>
+
+    <span class="airline-name">
+      Bangkok Airways
+    </span>
+
+    <span class="airline-name">
+      Philippine Airlines
+    </span>
+
+    <span class="airline-name">
+      Qantas
+    </span>
+
+  </div>
+
+  <p class="airline-note">
+    Danh sách tham khảo, không đại diện
+    cho quan hệ đối tác chính thức.
+  </p>
 
 </section>
 
 <!-- LIÊN HỆ -->
 
 <section class="contact" id="lienhe">
- <h2>LIÊN HỆ ÉN VIỆT GROUP</h2>
- <p>
-  Gửi ngày bay, hành trình và số lượng hành khách
-  để được hỗ trợ kiểm tra giá vé.
- </p>
- <a href="mailto:vemaybaytructuyen24@gmail.com">
-  Liên hệ tư vấn
- </a>
+
+  <h2>LIÊN HỆ ÉN VIỆT TRAVEL</h2>
+
+  <p>
+    Gửi ngày bay, hành trình và số lượng hành khách
+    để được tư vấn giá vé phù hợp.
+  </p>
+
+  <a href="mailto:vemaybaytructuyen24@gmail.com">
+    Liên hệ tư vấn
+  </a>
+
 </section>
 
 </main>
 
 <footer>
- © 2026 ÉN VIỆT GROUP · Kết nối mọi đường bay đẹp
+  © 2026 ÉN VIỆT TRAVEL · Kết nối mọi đường bay đẹp
 </footer>
-
-<!-- HIỆU ỨNG LOGO -->
-
-<script>
-(function(){
-
- const splash=document.getElementById("splash");
- let closed=false;
-
- function closeSplash(){
-  if(closed)return;
-  closed=true;
-
-  splash.classList.add("hide");
-
-  setTimeout(()=>{
-   splash.remove();
-  },700);
- }
-
- const reduced=window.matchMedia(
-  "(prefers-reduced-motion:reduce)"
- ).matches;
-
- window.addEventListener("load",()=>{
-  setTimeout(closeSplash,reduced?100:2000);
- },{once:true});
-
- setTimeout(closeSplash,5500);
-
-})();
-</script>
 
 </body>
 </html>
